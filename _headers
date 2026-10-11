@@ -1,0 +1,49 @@
+# ============================================================================
+#  Netlify / Cloudflare Pages headers
+#  ---------------------------------------------------------------------------
+#  Security first, then caching. Netlify applies every matching rule in order,
+#  with the last match winning - so the wildcard rules come first and the more
+#  specific ones below override them.
+#
+#  The CSP here mirrors the <meta http-equiv="Content-Security-Policy"> tag in
+#  index.html, which is what protects the site on hosts that ignore this file
+#  (GitHub Pages, for instance). If you change one, change both. The only
+#  intended difference is frame-ancestors, which browsers ignore in a meta tag.
+#
+#  'unsafe-inline' is absent from every directive on purpose: the page has no
+#  inline scripts, no inline styles and no inline style attributes.
+# ============================================================================
+
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://formspree.io; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; manifest-src 'self'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  # 2 years. Add "; includeSubDomains; preload" only once you are certain every
+  # subdomain of this domain can be served over HTTPS forever.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+
+# ---------------------------------------------------------------------------
+#  Caching
+#  These filenames are not content-hashed, so they are cached for an hour and
+#  revalidated rather than marked immutable - a redeploy should be visible
+#  straight away instead of serving last month's stylesheet.
+# ---------------------------------------------------------------------------
+
+/assets/*
+  Cache-Control: public, max-age=3600
+
+/css/*
+  Cache-Control: public, max-age=3600
+
+/js/*
+  Cache-Control: public, max-age=3600
+
+# The document itself always revalidates
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate

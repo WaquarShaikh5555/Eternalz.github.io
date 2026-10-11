@@ -1,80 +1,127 @@
-# Waquar Shaikh Portfolio
+# Waquar Shaikh — Portfolio
 
-A premium, production-ready personal portfolio built with HTML, CSS, and vanilla JavaScript.
+A fast, accessible, dependency-free personal portfolio for **Waquar Shaikh**.
+Static HTML5, CSS3 and vanilla JavaScript — there is no build step, no framework
+and no package manager, so the repository deploys exactly as it sits.
 
-## Features
-- Dark theme with light/dark mode toggle
-- Responsive sticky navigation and mobile menu
-- Hero section with animated typing effect
-- About, Skills, Projects, Experience, and Contact sections
-- Glassmorphism cards, gradients, and smooth entry animations
-- Contact form with validation and honeypot field
-- SEO metadata and social preview tags
-- Basic GitHub Pages / static hosting setup
+**Live:** https://eternalz.me · **Contact:** waquarsk1@gmail.com
 
-## Run locally
-1. Open the project folder in a code editor.
-2. Serve it with any static server, for example:
-   ```bash
-   python3 -m http.server 8000
-   ```
-3. Open http://localhost:8000 in your browser.
+---
+
+## What's in here
+
+```
+.
+├── index.html          Single page: hero, about, skills, projects, experience, contact
+├── css/
+│   └── style.css       Design tokens, layout, components (one stylesheet, commented)
+├── js/
+│   ├── theme-init.js   Pre-paint colour-scheme switch (blocking, ~20 lines)
+│   └── main.js         Menu, scroll spy, reveal, smooth scroll, form validation
+├── assets/
+│   ├── favicon.svg     Indigo→violet monogram (scales to any size)
+│   ├── favicon-32.png  Raster fallback for older browsers
+│   ├── apple-touch-icon.png
+│   ├── icon-192.png / icon-512.png   PWA / manifest icons
+│   ├── og-image.png    1200×630 Open Graph card
+│   └── project-1|2|3.svg   Abstract cover art for the three project cards
+├── _headers            Netlify / Cloudflare Pages security + cache headers
+├── site.webmanifest    PWA metadata
+├── robots.txt
+├── sitemap.xml
+└── CNAME               Custom domain for GitHub Pages (eternalz.me)
+```
+
+## Before you publish
+
+The markup is complete and styled, but every personal detail is a clearly marked
+placeholder. Search `index.html` for `[` and replace:
+
+| Placeholder | Where |
+| --- | --- |
+| `[PROFESSIONAL_TITLE]`, `[HERO_INTRO_TEXT]`, `[LOCATION]`, `[AVAILABILITY_STATUS]` | Hero |
+| `[ABOUT_ME_TEXT]`, `[ABOUT_PARAGRAPH_1..3]`, `[PRIMARY_FOCUS]`, `[SPOKEN_LANGUAGES]`, `[CURRENT_STATUS]` | About |
+| `[SKILLS_INTRO_TEXT]`, `[SKILL_GROUP_1..3_TITLE/DESCRIPTION]`, `[SKILL_1_1]` … | Skills |
+| `[PROJECTS_INTRO_TEXT]`, `[PROJECT_1..3_TITLE/DESCRIPTION]`, `[TAG]` | Projects |
+| `[EXPERIENCE_INTRO_TEXT]`, `[ROLE_TITLE_1..3]`, `[COMPANY_OR_ORGANISATION_1..3]`, `[START_DATE]`, `[END_DATE]`, dates and education | Experience |
+| `[CONTACT_INTRO_TEXT]`, `[FOOTER_TAGLINE]` | Contact & footer |
+| `[GITHUB_PROFILE_URL]`, `[GITHUB_HANDLE]`, `[LINKEDIN_PROFILE_URL]`, `[LINKEDIN_HANDLE]` | Contact, footer, structured data |
+| `[FORMSPREE_ACTION_ID]` | Contact form `action` (see below) |
+
+Project covers are abstract SVG placeholders — swap in real screenshots at
+1200×750 if you prefer, keeping the `width`/`height` attributes so the layout
+does not shift while loading.
+
+### Connecting the contact form
+
+1. Create a form at [formspree.io](https://formspree.io) and copy its id.
+2. In `index.html`, replace `[FORMSPREE_ACTION_ID]` in the form's `action`
+   attribute: `https://formspree.io/f/yourid`.
+3. If you use a different service, add its origin to `form-action` and
+   `connect-src` in **both** `_headers` and the CSP `<meta>` tag in
+   `index.html`.
+
+Until then the form validates normally and shows a friendly "not wired up yet"
+message instead of silently posting nowhere. It includes a `_gotcha` honeypot
+field and no secrets — the endpoint id is public by design.
+
+## Run it locally
+
+No tooling required; serve the folder over HTTP so the CSP and relative paths
+behave exactly as in production:
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
 
 ## Deploy
-This site is designed for static hosting.
 
 ### GitHub Pages
-1. Push this repo to GitHub.
-2. Go to Repository Settings → Pages.
-3. Select the default branch and root folder.
-4. Ensure the custom domain is set to `eternalz.me` and that `CNAME` exists.
+
+1. Push to the `main` branch of `WaquarShaikh5555/Eternalz.github.io`.
+2. **Settings → Pages → Source:** deploy from branch `main`, folder `/ (root)`.
+3. The included `CNAME` sets the custom domain to `eternalz.me`. Point the
+   domain's DNS at GitHub Pages and enable **Enforce HTTPS**.
+4. `_headers` is *not* read by GitHub Pages, so the CSP `<meta>` tag in
+   `index.html` is what protects the site there.
 
 ### Netlify
-```toml
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Security-Policy = "default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io;"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-```
 
-### Vercel
-Add the following to `vercel.json`:
-```json
-{
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io;" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
-      ]
-    }
-  ]
-}
-```
+1. **Add new site → Import an existing project**, pick this repository, leave
+   the build command empty and the publish directory as `/`.
+2. `_headers` applies the full header set (CSP with `frame-ancestors`,
+   HSTS, `X-Frame-Options`, caching).
 
-### Nginx
-```nginx
-add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io;" always;
-add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-add_header X-Content-Type-Options "nosniff" always;
-add_header X-Frame-Options "DENY" always;
-add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
-```
+### Cloudflare Pages / Vercel
 
-## Contact form and security notes
-- Use a backend or Formspree/EmailJS endpoint for production email sending.
-- The current form includes a honeypot field and basic client-side validation.
-- Don’t expose secrets or API keys in browser code.
-- Use HTTPS only and set proper domain DNS records for `eternalz.me`.
-- Replace placeholder social URLs, project details, and personal bio text before going live.
+Same story: no build command, output directory `.`. Cloudflare Pages honours
+`_headers`; on Vercel convert the contents of `_headers` into a `vercel.json`
+`headers` array or a `next.config` rule.
 
-## Important
-The repository already contains a `CNAME` file pointing to `eternalz.me`, which is the correct step for GitHub Pages custom domain setup. Actual live availability depends on DNS configuration at your domain provider and the GitHub Pages publishing settings.
+---
+
+## Engineering notes
+
+- **No dependencies.** The only external request is the Inter webfont from
+  Google Fonts. Everything else — icons included — is inline SVG in one sprite
+  at the bottom of `index.html`, so there are no icon fonts or image requests
+  for UI chrome.
+- **Security.** Strict CSP with no `unsafe-inline`: there is not one inline
+  `<script>`, `<style>` or `style` attribute on the page. External links use
+  `rel="noopener noreferrer"`. `frame-ancestors` lives in `_headers` only,
+  because browsers ignore it in a `<meta>` tag.
+- **Accessibility.** Semantic landmarks, a skip link, visible focus rings,
+  `aria-expanded`/`aria-controls` on the menu, a focus trap and Escape-to-close
+  in the mobile panel, `aria-current` scroll-spy highlighting, `aria-live`
+  form status, and labels tied to every input. Text meets WCAG AA contrast in
+  both themes; the primary button uses a slightly darker indigo→violet ramp
+  than the decorative one specifically so white label text stays above 4.5:1.
+- **Motion.** Scroll reveal, hover lift and smooth scrolling only — all of it
+  disabled under `prefers-reduced-motion: reduce`.
+- **No-JavaScript fallback.** `<html>` is only flagged `.js` by the theme
+  script, so with scripting disabled nothing is hidden, and the contact form
+  falls back to a normal POST.
+- **Theming.** Dark by default, follows `prefers-color-scheme`, and the visitor's
+  explicit choice is remembered in `localStorage`. Because the toggle only ever
+  records a preference, the page stays correct if storage is blocked.

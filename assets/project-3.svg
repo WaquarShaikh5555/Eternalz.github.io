@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract placeholder cover graphic">
+  <defs>
+    <linearGradient id="p3Accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="p3Bar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="p3Shell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#13161f"/>
+      <stop offset="1" stop-color="#0b0d13"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base surface -->
+  <rect width="1200" height="750" fill="url(#p3Shell)"/>
+
+  <!-- Soft accent wash -->
+  <ellipse cx="880" cy="620" rx="420" ry="260" fill="#6366f1" opacity="0.16"/>
+  <ellipse cx="330" cy="120" rx="360" ry="220" fill="#8b5cf6" opacity="0.12"/>
+
+  <!-- Monogram watermark -->
+  <path d="M470 250 570 520 670 300 770 520 870 250"
+        fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="34"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Bar chart abstraction -->
+  <g>
+    <rect x="150" y="430" width="70" height="170" rx="16" fill="url(#p3Bar)"/>
+    <rect x="248" y="360" width="70" height="240" rx="16" fill="url(#p3Bar)"/>
+    <rect x="346" y="470" width="70" height="130" rx="16" fill="url(#p3Bar)"/>
+    <rect x="444" y="300" width="70" height="300" rx="16" fill="url(#p3Bar)"/>
+    <rect x="542" y="390" width="70" height="210" rx="16" fill="url(#p3Bar)"/>
+    <rect x="640" y="250" width="70" height="350" rx="16" fill="url(#p3Bar)"/>
+    <rect x="738" y="330" width="70" height="270" rx="16" fill="url(#p3Bar)"/>
+    <rect x="836" y="200" width="70" height="400" rx="16" fill="url(#p3Bar)"/>
+    <rect x="934" y="290" width="70" height="310" rx="16" fill="url(#p3Bar)"/>
+  </g>
+
+  <!-- Baseline -->
+  <path d="M110 604h980" stroke="url(#p3Accent)" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+</svg>

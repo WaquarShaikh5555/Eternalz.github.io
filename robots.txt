@@ -1,3 +1,4 @@
+# robots.txt — https://eternalz.me
 User-agent: *
 Allow: /
 
