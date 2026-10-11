@@ -1,30 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract placeholder cover graphic">
-  <!-- Plate 03: measured bars on paper, a single accent column -->
-  <rect width="1200" height="750" fill="#F4F2EC"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract placeholder plate, measured bars on bone">
+  <!-- Plate 03: measured bars, one ember column, acid marker -->
+  <rect width="1200" height="750" fill="#EFE9DC"/>
 
-  <!-- Hairline rules -->
-  <g stroke="#171815" stroke-opacity="0.1" stroke-width="2">
+  <g stroke="#15140F" stroke-opacity="0.12" stroke-width="2">
     <path d="M120 200h960M120 330h960M120 460h960"/>
   </g>
 
-  <!-- Bars: a single tonal ramp left to right, with one accent column -->
   <g>
-    <rect x="150" y="380" width="58" height="250" fill="#171815" fill-opacity="0.16"/>
-    <rect x="244" y="300" width="58" height="330" fill="#171815" fill-opacity="0.24"/>
-    <rect x="338" y="430" width="58" height="200" fill="#171815" fill-opacity="0.32"/>
-    <rect x="432" y="250" width="58" height="380" fill="#C34F32"/>
-    <rect x="526" y="350" width="58" height="280" fill="#171815" fill-opacity="0.40"/>
-    <rect x="620" y="210" width="58" height="420" fill="#171815" fill-opacity="0.48"/>
-    <rect x="714" y="390" width="58" height="240" fill="#171815" fill-opacity="0.30"/>
-    <rect x="808" y="290" width="58" height="340" fill="#171815" fill-opacity="0.56"/>
-    <rect x="902" y="200" width="58" height="430" fill="#171815" fill-opacity="0.64"/>
+    <rect x="150" y="380" width="58" height="250" fill="#15140F" fill-opacity="0.16"/>
+    <rect x="244" y="300" width="58" height="330" fill="#15140F" fill-opacity="0.24"/>
+    <rect x="338" y="430" width="58" height="200" fill="#15140F" fill-opacity="0.32"/>
+    <rect x="432" y="250" width="58" height="380" fill="#F04E23"/>
+    <rect x="526" y="350" width="58" height="280" fill="#15140F" fill-opacity="0.4"/>
+    <rect x="620" y="210" width="58" height="420" fill="#15140F" fill-opacity="0.48"/>
+    <rect x="714" y="390" width="58" height="240" fill="#15140F" fill-opacity="0.3"/>
+    <rect x="808" y="290" width="58" height="340" fill="#15140F" fill-opacity="0.56"/>
+    <rect x="902" y="200" width="58" height="430" fill="#15140F" fill-opacity="0.64"/>
   </g>
 
-  <!-- Category ticks -->
-  <g stroke="#171815" stroke-opacity="0.3" stroke-width="2">
+  <!-- Acid marker above the ember column -->
+  <circle cx="461" cy="222" r="10" fill="#D4F04A"/>
+
+  <g stroke="#15140F" stroke-opacity="0.34" stroke-width="2">
     <path d="M179 655v22M273 655v22M367 655v22M461 655v22M555 655v22M649 655v22M743 655v22M837 655v22M931 655v22"/>
   </g>
 
-  <!-- Baseline -->
-  <path d="M120 630h960" stroke="#171815" stroke-width="3"/>
+  <path d="M120 630h960" stroke="#15140F" stroke-width="4"/>
 </svg>

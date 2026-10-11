@@ -8,9 +8,10 @@
     ============================================================================
     SECURITY POLICY
     Strict CSP, duplicated as a meta tag so static hosts without header support
-    are still covered (the canonical copy lives in _headers for Netlify).
-    No 'unsafe-inline' anywhere: every script, style and image is an external
-    file, and there is not a single inline style attribute on the page.
+    are still covered (the canonical copy lives in _headers).
+    No 'unsafe-inline': every script, style and image is an external file, and
+    there is not a single inline style attribute on the page. The only data:
+    URI is the film-grain texture, which is allowed under img-src.
     ============================================================================
   -->
   <meta http-equiv="Content-Security-Policy"
@@ -21,22 +22,22 @@
   <title>Waquar Shaikh — Portfolio</title>
   <meta name="description" content="Waquar Shaikh — a tech enthusiast exploring AI, software development, web technologies and automation.">
   <meta name="author" content="Waquar Shaikh">
-  <meta name="theme-color" content="#f4f2ec">
+  <meta name="theme-color" content="#efe9dc">
   <link rel="canonical" href="https://eternalz.me/">
 
   <!-- ======================= Open Graph / social ======================= -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Waquar Shaikh">
   <meta property="og:title" content="Waquar Shaikh — Portfolio">
-  <meta property="og:description" content="Exploring AI, software development, web technologies and automation, and the projects along the way.">
+  <meta property="og:description" content="Exploring AI, software development, web technologies and automation.">
   <meta property="og:url" content="https://eternalz.me/">
   <meta property="og:image" content="https://eternalz.me/assets/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Waquar Shaikh — portfolio card on a warm paper background">
+  <meta property="og:image:alt" content="Waquar Shaikh — portfolio card">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Waquar Shaikh — Portfolio">
-  <meta name="twitter:description" content="Exploring AI, software development, web technologies and automation, and the projects along the way.">
+  <meta name="twitter:description" content="Exploring AI, software development, web technologies and automation.">
   <meta name="twitter:image" content="https://eternalz.me/assets/og-image.png">
 
   <!-- ======================= Icons ======================= -->
@@ -45,25 +46,16 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- ======================= Fonts (only external dependency) ======================= -->
+  <!-- ======================= Type (only external dependency) ======================= -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
 
-  <!-- ======================= Site styles ======================= -->
   <link rel="stylesheet" href="css/style.css">
-
-  <!--
-    Applies the saved colour scheme before the first paint so the page never
-    flashes the wrong theme. Deliberately loaded without defer/async (it must
-    run before paint) and kept to a few lines - it is the only blocking script.
-  -->
   <script src="js/theme-init.js"></script>
 
   <!-- ======================= Structured data ======================= -->
-  <!-- Add your GitHub and LinkedIn profile URLs to "sameAs" once those
-       placeholders in the contact section are filled in. -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -83,11 +75,17 @@
 </head>
 
 <body>
-  <!-- Keyboard users can jump straight past the navigation -->
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- Film grain: a fixed texture over the whole page, for depth rather than
+       gloss. Purely decorative, and it never intercepts the pointer. -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Reading progress, driven by scroll -->
+  <div class="progress" aria-hidden="true"><span class="progress__bar" id="progress-bar"></span></div>
+
   <!-- =========================================================================
-       HEADER / NAVIGATION
+       HEADER
        ========================================================================= -->
   <header class="site-header" id="site-header">
     <div class="container site-header__inner">
@@ -101,8 +99,17 @@
         <span class="brand__name">Waquar Shaikh</span>
       </a>
 
-      <!-- Actions stay in the bar on every breakpoint, so the theme switch
-           never becomes unreachable while the mobile menu is collapsed -->
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <span class="site-nav__indicator" aria-hidden="true" id="nav-indicator"></span>
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#about" data-label="About"><span class="site-nav__text">About</span></a></li>
+          <li><a class="site-nav__link" href="#skills" data-label="Skills"><span class="site-nav__text">Skills</span></a></li>
+          <li><a class="site-nav__link" href="#projects" data-label="Projects"><span class="site-nav__text">Projects</span></a></li>
+          <li><a class="site-nav__link" href="#experience" data-label="Experience"><span class="site-nav__text">Experience</span></a></li>
+          <li><a class="site-nav__link" href="#contact" data-label="Contact"><span class="site-nav__text">Contact</span></a></li>
+        </ul>
+      </nav>
+
       <div class="site-header__actions">
         <button class="icon-btn" id="theme-toggle" type="button"
                 aria-label="Switch to dark theme" aria-pressed="false">
@@ -116,24 +123,9 @@
 
         <button class="nav-toggle" id="nav-toggle" type="button"
                 aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu">
-          <svg class="nav-toggle__icon nav-toggle__icon--open" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <use href="#icon-menu"></use>
-          </svg>
-          <svg class="nav-toggle__icon nav-toggle__icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <use href="#icon-close"></use>
-          </svg>
+          <span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i></span>
         </button>
       </div>
-
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="#about">About</a></li>
-          <li><a class="site-nav__link" href="#skills">Skills</a></li>
-          <li><a class="site-nav__link" href="#projects">Projects</a></li>
-          <li><a class="site-nav__link" href="#experience">Experience</a></li>
-          <li><a class="site-nav__link" href="#contact">Contact</a></li>
-        </ul>
-      </nav>
     </div>
   </header>
 
@@ -142,40 +134,106 @@
          HERO
          ========================================================================= -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container">
-        <p class="hero__eyebrow">Portfolio</p>
+      <!-- Cursor-reactive light and a technical dot grid -->
+      <div class="hero__field" aria-hidden="true">
+        <span class="hero__spot" id="hero-spot"></span>
+        <span class="hero__grid"></span>
+      </div>
 
-        <h1 class="hero__title" id="hero-title">Waquar Shaikh</h1>
+      <div class="container hero__inner">
+        <div class="hero__top">
+          <p class="hero__eyebrow">
+            <span class="pulse" aria-hidden="true"></span>
+            <span class="hero__eyebrow-text">Portfolio</span>
+            <span class="hero__avail">Available for opportunities</span>
+          </p>
 
-        <!-- Asymmetric split: the introduction on the left, the facts set as a
-             reference list on the right. Stacks on smaller screens. -->
-        <div class="hero__grid">
+          <!-- Rotating seal: two facts that are already on the page, spun into a
+               badge. Decorative, so it is hidden from assistive tech. -->
+          <div class="seal" aria-hidden="true">
+            <svg class="seal__ring" viewBox="0 0 200 200" focusable="false">
+              <defs>
+                <path id="seal-path" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/>
+              </defs>
+              <text class="seal__text">
+                <textPath href="#seal-path" startOffset="0">AVAILABLE FOR OPPORTUNITIES · EXPLORING TECH SINCE 2020 ·</textPath>
+              </text>
+            </svg>
+            <svg class="seal__mark" viewBox="0 0 64 64" focusable="false">
+              <path d="M13 19.5 22.5 45 32 27.5 41.5 45 51 19.5" fill="none" stroke="currentColor"
+                    stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__row">
+            <span class="hero__word" data-word="Waquar">Waquar</span>
+          </span>
+          <span class="hero__row hero__row--out">
+            <span class="hero__word hero__word--outline" data-word="Shaikh">Shaikh</span>
+            <span class="hero__slash" aria-hidden="true"></span>
+          </span>
+        </h1>
+
+        <div class="hero__body">
           <div class="hero__lead">
-            <p class="hero__subtitle">AI, software development, web and automation</p>
+            <p class="hero__subtitle">AI, software development, web <em>and automation</em></p>
+            <!-- The words that matter react to the pointer. Purely a treatment of
+                 the existing sentence - nothing is added or claimed. -->
             <p class="hero__lede">
               I have been exploring technology since 2020. What started as curiosity about how
-              things worked behind the scenes turned into building Discord bots, websites and
-              automation &mdash; and now AI-powered development.
+              things worked behind the scenes turned into building
+              <span class="tok" data-tok>Discord bots</span>,
+              <span class="tok" data-tok>websites</span> and
+              <span class="tok" data-tok>automation</span> &mdash; and now
+              <span class="tok" data-tok>AI-powered development</span>.
             </p>
+
             <div class="hero__actions">
-              <a class="btn btn--solid" href="#projects">
-                View projects
+              <a class="btn btn--solid" href="#projects" data-magnetic>
+                <span class="btn__label">View projects</span>
                 <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <use href="#icon-arrow-right"></use>
                 </svg>
               </a>
-              <a class="btn btn--outline" href="#contact">Get in touch</a>
+              <a class="btn btn--ghost" href="#contact" data-magnetic>
+                <span class="btn__label">Get in touch</span>
+              </a>
             </div>
           </div>
 
           <ul class="hero__facts">
-            <li class="hero__fact">Exploring tech since 2020</li>
-            <li class="hero__fact">Maharashtra, India</li>
-            <li class="hero__fact">
-              <a href="mailto:waquarsk1@gmail.com">waquarsk1@gmail.com</a>
-            </li>
-            <li class="hero__fact">Available for opportunities</li>
+            <li class="hero__fact"><span class="hero__fact-k">Since</span><span class="hero__fact-v">2020</span></li>
+            <li class="hero__fact"><span class="hero__fact-k">Based</span><span class="hero__fact-v">Maharashtra, India</span></li>
+            <li class="hero__fact"><span class="hero__fact-k">Email</span><span class="hero__fact-v"><a href="mailto:waquarsk1@gmail.com">waquarsk1@gmail.com</a></span></li>
+            <li class="hero__fact"><span class="hero__fact-k">Status</span><span class="hero__fact-v">Exploring tech since 2020</span></li>
           </ul>
+        </div>
+
+        <a class="scroll-cue" href="#about">
+          <span class="scroll-cue__text">Scroll</span>
+          <svg class="scroll-cue__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <use href="#icon-arrow-down"></use>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Kinetic band: the interests and tools, drawn from the page's own copy -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span class="marquee__group">
+            <span>AI</span><i class="spark"></i><span>Software development</span><i class="spark"></i>
+            <span>Web</span><i class="spark"></i><span>Automation</span><i class="spark"></i>
+            <span>Discord bots</span><i class="spark"></i><span>Minecraft servers</span><i class="spark"></i>
+            <span>Plugins</span><i class="spark"></i><span>Permissions</span><i class="spark"></i>
+          </span>
+          <span class="marquee__group">
+            <span>AI</span><i class="spark"></i><span>Software development</span><i class="spark"></i>
+            <span>Web</span><i class="spark"></i><span>Automation</span><i class="spark"></i>
+            <span>Discord bots</span><i class="spark"></i><span>Minecraft servers</span><i class="spark"></i>
+            <span>Plugins</span><i class="spark"></i><span>Permissions</span><i class="spark"></i>
+          </span>
         </div>
       </div>
     </section>
@@ -183,25 +241,24 @@
     <!-- =========================================================================
          ABOUT
          ========================================================================= -->
-    <section class="section" id="about" aria-labelledby="about-title">
+    <section class="section section--about" id="about" aria-labelledby="about-title">
       <div class="container">
         <header class="section__head" data-reveal>
+          <span class="section__ghost" aria-hidden="true">01</span>
           <p class="section__label"><span class="section__num">01</span> About</p>
           <h2 class="section__title" id="about-title">Hey, I&rsquo;m Waquar</h2>
-          <!-- PLACEHOLDER: you described yourself as a "15-year-old tech enthusiast".
-               That is added here when you say the word - just tell me and it goes in,
-               or leave it out if you would rather it was not on a public page. -->
           <p class="section__intro">
             A tech enthusiast who has been exploring the world of technology since 2020.
             What started as a simple interest in Minecraft slowly turned into something
             much bigger.
           </p>
+          <span class="section__rule" aria-hidden="true"></span>
         </header>
 
         <div class="about__grid">
-          <div class="about__body" data-reveal>
-            <article class="about__block">
-              <h3 class="about__block-title">Where it started</h3>
+          <div class="about__body">
+            <article class="about__block" data-reveal>
+              <h3 class="about__block-title"><span class="about__idx">A</span>Where it started</h3>
               <p>
                 Back then I played Minecraft, created servers, configured plugins, set up
                 permissions and experimented with features &mdash; just for fun. I was not
@@ -210,8 +267,8 @@
               </p>
             </article>
 
-            <article class="about__block">
-              <h3 class="about__block-title">From curiosity to craft</h3>
+            <article class="about__block" data-reveal>
+              <h3 class="about__block-title"><span class="about__idx">B</span>From curiosity to craft</h3>
               <p>
                 That curiosity eventually led me to Discord bot development, automation,
                 websites, and now AI-powered development. Over time technology became more
@@ -221,8 +278,8 @@
               </p>
             </article>
 
-            <article class="about__block">
-              <h3 class="about__block-title">Where I am today</h3>
+            <article class="about__block" data-reveal>
+              <h3 class="about__block-title"><span class="about__idx">C</span>Where I am today</h3>
               <p>
                 Right now I am focused on learning, building and experimenting with AI,
                 software development, web technologies and automation. I use AI tools to
@@ -231,22 +288,22 @@
               </p>
             </article>
 
-            <article class="about__block about__block--closing">
-              <h3 class="about__block-title">What&rsquo;s ahead</h3>
+            <article class="about__block" data-reveal>
+              <h3 class="about__block-title"><span class="about__idx">D</span>What&rsquo;s ahead</h3>
               <p>
                 I am still learning and I have a long way to go &mdash; but that is exactly
                 what excites me about this field. There is always something new to explore,
                 something to build, or a problem to solve. My goal is simple: keep learning,
                 keep building, and turn ideas into real products people find useful.
               </p>
-              <p class="about__pull">
+              <blockquote class="pullquote">
                 I am not here to pretend I know everything. I am here to see how far
                 curiosity, consistency and the willingness to experiment can take me.
-              </p>
+              </blockquote>
             </article>
           </div>
 
-          <aside class="about__aside" aria-label="Quick facts" data-reveal>
+          <aside class="about__aside" data-reveal aria-label="Quick facts">
             <h3 class="aside__title">Quick facts</h3>
             <dl class="facts">
               <div class="facts__row">
@@ -270,8 +327,8 @@
                 <dd class="facts__value">Available for opportunities</dd>
               </div>
             </dl>
-            <a class="link-arrow" href="#contact">
-              Let&rsquo;s work together
+            <a class="link-arrow" href="#contact" data-magnetic>
+              <span>Let&rsquo;s work together</span>
               <svg class="link-arrow__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <use href="#icon-arrow-right"></use>
               </svg>
@@ -292,13 +349,11 @@
                 Those late-night experiments with redstone-level tinkering are the reason I
                 wanted to know how everything else worked too.
               </p>
-              <!-- PLACEHOLDER: name the servers you ran, your favourite plugins, or your
-                   current setup. Anything you would rather keep private can simply go. -->
-              <ul class="tags">
-                <li class="tag">Minecraft servers</li>
-                <li class="tag">Plugins</li>
-                <li class="tag">Permissions</li>
-                <li class="tag">Tinkering</li>
+              <ul class="chips">
+                <li class="chip"><span>Minecraft servers</span></li>
+                <li class="chip"><span>Plugins</span></li>
+                <li class="chip"><span>Permissions</span></li>
+                <li class="chip"><span>Tinkering</span></li>
               </ul>
             </div>
           </div>
@@ -307,23 +362,25 @@
     </section>
 
     <!-- =========================================================================
-         SKILLS
+         SKILLS — dark band
          ========================================================================= -->
-    <section class="section section--panel" id="skills" aria-labelledby="skills-title">
+    <section class="section section--ink" id="skills" aria-labelledby="skills-title">
       <div class="container">
         <header class="section__head" data-reveal>
+          <span class="section__ghost" aria-hidden="true">02</span>
           <p class="section__label"><span class="section__num">02</span> Skills</p>
           <h2 class="section__title" id="skills-title">Tools and capabilities</h2>
           <p class="section__intro">
             Where my curiosity has taken me so far. I am still learning all of it &mdash;
             these are the areas I keep coming back to.
           </p>
+          <span class="section__rule" aria-hidden="true"></span>
         </header>
 
-        <!-- Skill areas, named as plainly as I could put them. Swap any line
-             for something more accurate and it will not disturb the layout. -->
+        <!-- Hover or tap a panel: it inverts, and the list steps in. -->
         <div class="skills">
-          <article class="skill">
+          <article class="skill" data-reveal tabindex="0">
+            <span class="skill__num" aria-hidden="true">01</span>
             <h3 class="skill__title">AI &amp; Automation</h3>
             <ul class="skill__list">
               <li>AI-assisted development</li>
@@ -331,9 +388,11 @@
               <li>Automation &amp; scripting</li>
               <li>Working with AI tools</li>
             </ul>
+            <span class="skill__glow" aria-hidden="true"></span>
           </article>
 
-          <article class="skill">
+          <article class="skill" data-reveal tabindex="0">
+            <span class="skill__num" aria-hidden="true">02</span>
             <h3 class="skill__title">Web &amp; Frontend</h3>
             <ul class="skill__list">
               <li>Websites</li>
@@ -341,9 +400,11 @@
               <li>JavaScript</li>
               <li>Responsive layouts</li>
             </ul>
+            <span class="skill__glow" aria-hidden="true"></span>
           </article>
 
-          <article class="skill">
+          <article class="skill" data-reveal tabindex="0">
+            <span class="skill__num" aria-hidden="true">03</span>
             <h3 class="skill__title">Configuration &amp; Setup</h3>
             <ul class="skill__list">
               <li>Server configuration</li>
@@ -351,39 +412,70 @@
               <li>Permissions &amp; roles</li>
               <li>Testing &amp; troubleshooting</li>
             </ul>
+            <span class="skill__glow" aria-hidden="true"></span>
           </article>
         </div>
       </div>
     </section>
 
     <!-- =========================================================================
-         PROJECTS
+         PROJECTS — coming soon, presented as an interactive plate wall
          ========================================================================= -->
-    <section class="section section--empty" id="projects" aria-labelledby="projects-title">
+    <section class="section section--projects" id="projects" aria-labelledby="projects-title">
       <div class="container">
         <header class="section__head" data-reveal>
+          <span class="section__ghost" aria-hidden="true">03</span>
           <p class="section__label">
             <span class="section__num">03</span> Projects
-            <span class="section__status">Coming soon</span>
+            <span class="stamp stamp--sm">Coming soon</span>
           </p>
           <h2 class="section__title" id="projects-title">Selected work</h2>
           <p class="section__intro">
             I am putting these together now. Write-ups of what I have built will appear
             here &mdash; until then, feel free to ask.
           </p>
+          <span class="section__rule" aria-hidden="true"></span>
         </header>
+
+        <!-- Three empty plates that lean toward the pointer, with a chip that
+             follows the cursor. Nothing here claims to be a finished project. -->
+        <div class="plates" id="plates" data-reveal>
+          <span class="plates__chip" id="plates-chip" aria-hidden="true">Coming soon</span>
+          <figure class="plate">
+            <span class="plate__frame">
+              <img src="assets/project-1.svg" alt="Placeholder plate 1" width="1200" height="750"
+                   loading="lazy" decoding="async">
+            </span>
+            <figcaption class="plate__cap"><span class="plate__idx">01</span>Plate</figcaption>
+          </figure>
+          <figure class="plate">
+            <span class="plate__frame">
+              <img src="assets/project-2.svg" alt="Placeholder plate 2" width="1200" height="750"
+                   loading="lazy" decoding="async">
+            </span>
+            <figcaption class="plate__cap"><span class="plate__idx">02</span>Plate</figcaption>
+          </figure>
+          <figure class="plate">
+            <span class="plate__frame">
+              <img src="assets/project-3.svg" alt="Placeholder plate 3" width="1200" height="750"
+                   loading="lazy" decoding="async">
+            </span>
+            <figcaption class="plate__cap"><span class="plate__idx">03</span>Plate</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
     <!-- =========================================================================
-         EXPERIENCE
+         EXPERIENCE — coming soon, as a bold ember statement
          ========================================================================= -->
-    <section class="section section--panel section--empty" id="experience" aria-labelledby="experience-title">
+    <section class="section section--ember" id="experience" aria-labelledby="experience-title">
       <div class="container">
         <header class="section__head" data-reveal>
+          <span class="section__ghost" aria-hidden="true">04</span>
           <p class="section__label">
             <span class="section__num">04</span> Experience
-            <span class="section__status">Coming soon</span>
+            <span class="stamp stamp--sm stamp--ink">Coming soon</span>
           </p>
           <h2 class="section__title" id="experience-title">Where I&rsquo;ve worked</h2>
           <p class="section__intro">
@@ -391,15 +483,24 @@
             listed as they happen.
           </p>
         </header>
+
+        <div class="await" data-reveal>
+          <p class="await__line">
+            The first entry is <em>still being written</em> &mdash; which, at this point,
+            is exactly how it should be.
+          </p>
+          <span class="await__seal" aria-hidden="true">Coming soon</span>
+        </div>
       </div>
     </section>
 
     <!-- =========================================================================
          CONTACT
          ========================================================================= -->
-    <section class="section" id="contact" aria-labelledby="contact-title">
+    <section class="section section--contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
         <header class="section__head" data-reveal>
+          <span class="section__ghost" aria-hidden="true">05</span>
           <p class="section__label"><span class="section__num">05</span> Contact</p>
           <h2 class="section__title" id="contact-title">Let&rsquo;s talk</h2>
           <p class="section__intro">
@@ -407,19 +508,19 @@
             open &mdash; whether it is about AI, web development, automation, or technology
             in general.
           </p>
+          <span class="section__rule" aria-hidden="true"></span>
         </header>
 
         <div class="contact__grid">
-          <!-- ------------------------------- Details ------------------------------- -->
           <div class="contact__details" data-reveal>
             <div class="contact__group">
               <p class="contact__label">Email</p>
-              <a class="contact__email" href="mailto:waquarsk1@gmail.com">waquarsk1@<wbr>gmail.com</a>
+              <a class="contact__email" href="mailto:waquarsk1@gmail.com"><span>waquarsk1@<wbr>gmail.com</span></a>
             </div>
 
             <div class="contact__group">
               <p class="contact__label">Email &middot; alternate</p>
-              <a class="contact__email" href="mailto:waquarsk2@gmail.com">waquarsk2@<wbr>gmail.com</a>
+              <a class="contact__email" href="mailto:waquarsk2@gmail.com"><span>waquarsk2@<wbr>gmail.com</span></a>
             </div>
 
             <div class="contact__group">
@@ -428,17 +529,16 @@
                 <li>
                   <a class="contact__link" href="https://www.instagram.com/waquarsk1"
                      target="_blank" rel="noopener noreferrer">
-                    Instagram
+                    <span class="contact__name">Instagram</span>
                     <span class="contact__handle">@waquarsk1</span>
                     <svg class="contact__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <use href="#icon-external"></use>
                     </svg>
                   </a>
                 </li>
-                <!-- PLACEHOLDER: paste your real profile URLs and drop rel="nofollow" -->
                 <li>
                   <a class="contact__link" href="[GITHUB_PROFILE_URL]" target="_blank" rel="noopener noreferrer nofollow">
-                    GitHub
+                    <span class="contact__name">GitHub</span>
                     <span class="contact__handle">[GITHUB_HANDLE]</span>
                     <svg class="contact__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <use href="#icon-external"></use>
@@ -447,23 +547,27 @@
                 </li>
                 <li>
                   <a class="contact__link" href="[LINKEDIN_PROFILE_URL]" target="_blank" rel="noopener noreferrer nofollow">
-                    LinkedIn
+                    <span class="contact__name">LinkedIn</span>
                     <span class="contact__handle">[LINKEDIN_HANDLE]</span>
                     <svg class="contact__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <use href="#icon-external"></use>
                     </svg>
                   </a>
                 </li>
-                <!-- Discord has no public profile URL, so the username is copyable -->
                 <li>
                   <button class="contact__link contact__link--copy" type="button"
                           data-copy="waquar5555" data-copy-label="Discord username"
                           aria-label="Copy Discord username waquar5555 to clipboard">
-                    Discord
+                    <span class="contact__name">Discord</span>
                     <span class="contact__handle">waquar5555</span>
-                    <svg class="contact__link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <use href="#icon-copy"></use>
-                    </svg>
+                    <span class="contact__copy-state" aria-hidden="true">
+                      <svg class="contact__link-icon contact__link-icon--copy" viewBox="0 0 24 24" focusable="false">
+                        <use href="#icon-copy"></use>
+                      </svg>
+                      <svg class="contact__link-icon contact__link-icon--done" viewBox="0 0 24 24" focusable="false">
+                        <use href="#icon-check"></use>
+                      </svg>
+                    </span>
                   </button>
                 </li>
               </ul>
@@ -472,19 +576,14 @@
             <p class="contact__note">
               Messages are delivered through Formspree; no data is stored on this site.
             </p>
-
-            <!-- Feedback for the copy-to-clipboard control -->
             <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
           </div>
 
-          <!-- -------------------------------- Form -------------------------------- -->
-          <!--
-            PLACEHOLDER: replace ACTION_ID below with your own Formspree form id
-            (https://formspree.io/f/ACTION_ID). The endpoint accepts POST only,
-            and the matching value already sits in the CSP allow-list (_headers).
-          -->
+          <!-- ------------- Form: fields, validation and endpoint unchanged ------------- -->
           <form class="contact-form" id="contact-form" data-reveal
                 action="https://formspree.io/f/[FORMSPREE_ACTION_ID]" method="POST" novalidate>
+            <p class="form__title">Send a message</p>
+
             <div class="field">
               <label class="field__label" for="name">Name</label>
               <input class="field__input" id="name" name="name" type="text"
@@ -510,28 +609,26 @@
 
             <div class="field">
               <label class="field__label" for="message">Message</label>
-              <textarea class="field__input field__input--area" id="message" name="message" rows="6"
+              <textarea class="field__input field__input--area" id="message" name="message" rows="5"
                         required aria-describedby="message-error"></textarea>
               <p class="field__error" id="message-error" role="alert" hidden>
                 Please write a message of at least 20 characters.
               </p>
             </div>
 
-            <!-- Honeypot: hidden from humans and assistive tech; bots fill it in -->
             <div class="field field--honeypot" aria-hidden="true">
               <label class="field__label" for="company">Company</label>
               <input class="field__input" id="company" name="_gotcha" type="text" tabindex="-1"
                      autocomplete="off" aria-hidden="true">
             </div>
 
-            <button class="btn btn--solid btn--block" id="submit-button" type="submit">
+            <button class="btn btn--solid btn--block" id="submit-button" type="submit" data-magnetic>
               <span class="button__label">Send message</span>
               <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <use href="#icon-send"></use>
               </svg>
             </button>
 
-            <!-- Live region: validation errors and submission results -->
             <p class="form-status" id="form-status" role="status" aria-live="polite">
               <svg class="form-status__icon form-status__icon--ok" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <use href="#icon-check-circle"></use>
@@ -552,6 +649,17 @@
        ========================================================================= -->
   <footer class="site-footer">
     <div class="container">
+      <div class="footer__cta">
+        <p class="footer__kicker">Elsewhere, or right here</p>
+        <a class="footer__headline" href="#contact">
+          <span class="footer__headline-text">Lets Connect!</span>
+          <svg class="footer__headline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <use href="#icon-arrow-up-right"></use>
+          </svg>
+        </a>
+        <p class="footer__mail"><a href="mailto:waquarsk1@gmail.com">waquarsk1@gmail.com</a></p>
+      </div>
+
       <div class="site-footer__top">
         <div class="site-footer__brand">
           <a class="brand brand--inverse" href="#top" aria-label="Waquar Shaikh — back to top">
@@ -563,7 +671,6 @@
             </span>
             <span class="brand__name">Waquar Shaikh</span>
           </a>
-          <p class="site-footer__note">[FOOTER_TAGLINE]</p>
         </div>
 
         <nav class="site-footer__nav" aria-label="Footer">
@@ -577,22 +684,14 @@
         </nav>
 
         <ul class="site-footer__social" aria-label="Social profiles">
-          <li>
-            <a href="https://www.instagram.com/waquarsk1" target="_blank" rel="noopener noreferrer">Instagram</a>
-          </li>
-          <li>
-            <a href="[GITHUB_PROFILE_URL]" target="_blank" rel="noopener noreferrer nofollow">GitHub</a>
-          </li>
-          <li>
-            <a href="[LINKEDIN_PROFILE_URL]" target="_blank" rel="noopener noreferrer nofollow">LinkedIn</a>
-          </li>
+          <li><a href="https://www.instagram.com/waquarsk1" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="[GITHUB_PROFILE_URL]" target="_blank" rel="noopener noreferrer nofollow">GitHub</a></li>
+          <li><a href="[LINKEDIN_PROFILE_URL]" target="_blank" rel="noopener noreferrer nofollow">LinkedIn</a></li>
           <li>
             <button class="site-footer__copy" type="button" data-copy="waquar5555"
                     data-copy-label="Discord username" aria-label="Copy Discord username">Discord</button>
           </li>
-          <li>
-            <a href="mailto:waquarsk1@gmail.com">Email</a>
-          </li>
+          <li><a href="mailto:waquarsk1@gmail.com">Email</a></li>
         </ul>
       </div>
 
@@ -603,14 +702,12 @@
     </div>
   </footer>
 
-  <!-- Floating back-to-top control (revealed by JavaScript) -->
   <a class="to-top" id="to-top" href="#top" aria-label="Back to top" hidden>
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"></use></svg>
   </a>
 
   <!-- =========================================================================
        SVG ICON SPRITE
-       Stroke icons inherit currentColor; brand marks are solid paths.
        ========================================================================= -->
   <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <defs>
@@ -625,16 +722,6 @@
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </g>
       </symbol>
-      <symbol id="icon-menu" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 8h16M4 16h16"/>
-        </g>
-      </symbol>
-      <symbol id="icon-close" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 6l12 12M18 6L6 18"/>
-        </g>
-      </symbol>
       <symbol id="icon-arrow-right" viewBox="0 0 24 24">
         <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14M13 6l6 6-6 6"/>
@@ -645,17 +732,25 @@
           <path d="M12 19V5M6 11l6-6 6 6"/>
         </g>
       </symbol>
+      <symbol id="icon-arrow-down" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M6 13l6 6 6-6"/>
+        </g>
+      </symbol>
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17 17 7M8 7h9v9"/>
+        </g>
+      </symbol>
       <symbol id="icon-external" viewBox="0 0 24 24">
         <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <path d="M15 3h6v6"/>
-          <path d="M10 14 21 3"/>
+          <path d="M15 3h6v6"/><path d="M10 14 21 3"/>
         </g>
       </symbol>
       <symbol id="icon-send" viewBox="0 0 24 24">
         <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 2 11 13"/>
-          <path d="M22 2 15 22l-4-9-9-4 20-7z"/>
+          <path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/>
         </g>
       </symbol>
       <symbol id="icon-copy" viewBox="0 0 24 24">
@@ -664,29 +759,20 @@
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
         </g>
       </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m5 13 4.5 4.5L19 7"/>
+        </g>
+      </symbol>
       <symbol id="icon-check-circle" viewBox="0 0 24 24">
         <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="m8.5 12.5 2.5 2.5 4.5-5"/>
+          <circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/>
         </g>
       </symbol>
       <symbol id="icon-alert" viewBox="0 0 24 24">
         <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M12 8v5M12 16h.01"/>
+          <circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>
         </g>
-      </symbol>
-      <symbol id="icon-github" viewBox="0 0 512 512">
-        <path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-47 109-113 117 12 10 20 29 20 51v59.5c0 14 9.5 20.5 24 15 54.5-21 94-77 94-141C512 155.5 397.5 40 256 40S0 155.5 0 256c0 64 39.5 120.5 94.5 141 13.5 5 24-1.5 24-15V321c-2.5 1-6 1.5-9.5 1.5-13.5 0-21.5-7.5-27-21.5-3-8.5-7-13.5-14-13.5-4 0-6.5-2-6.5-5 0-6 6.5-9.5 15.5-9.5 11.5 0 21.5 8.5 29 22.5 7 12.5 15.5 18.5 25 18.5 10 0 17-5 25.5-15.5 6.5-8.5 10.5-12 15.5-16-4-1.5-8-2.5-11.5-2.5z"/>
-      </symbol>
-      <symbol id="icon-linkedin" viewBox="0 0 448 512">
-        <path fill="currentColor" d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z"/>
-      </symbol>
-      <symbol id="icon-instagram" viewBox="0 0 448 512">
-        <path fill="currentColor" d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
-      </symbol>
-      <symbol id="icon-discord" viewBox="0 0 576 512">
-        <path fill="currentColor" d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2c-41.3 7.1-81.6 19.6-119.7 37.1-.3.1-.6.4-.8.7-76.2 113.8-97.1 224.9-86.9 334.5 0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2zm195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2z"/>
       </symbol>
     </defs>
   </svg>

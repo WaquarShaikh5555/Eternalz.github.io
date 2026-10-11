@@ -3,13 +3,20 @@
  * ---------------------------------------------------------------------------
  * All interactive behaviour for the portfolio, in plain JavaScript:
  *
- *   1. Theme toggle (light / dark, remembered in localStorage)
- *   2. Mobile navigation (hamburger, focus trap, Escape to close)
- *   3. Sticky-header state + active navigation link (scroll spy)
- *   4. Scroll-reveal animations via IntersectionObserver
- *   5. Smooth in-page scrolling that honours reduced-motion
- *   6. Footer year + back-to-top control
- *   7. Contact form: client-side validation, honeypot check, AJAX submission
+ *   1.  Theme toggle (light / dark, remembered in localStorage)
+ *   2.  Mobile navigation (full-screen overlay, focus trap, Escape, scroll lock)
+ *   3.  Sticky header, scroll spy and the sliding navigation indicator
+ *   4.  Scroll reveal via IntersectionObserver
+ *   5.  Smooth in-page scrolling that honours reduced-motion
+ *   6.  Footer year + back-to-top control
+ *   7.  Contact form: validation, honeypot check, AJAX submission
+ *   8.  Copy-to-clipboard (Discord username)
+ *   9.  Pointer-reactive layer: hero spotlight, magnetic controls, project
+ *       plate tilt + cursor chip, ghost-numeral parallax, reading progress
+ *
+ * Everything in 9 is an enhancement layered on top of a page that already
+ * works without it: each guard checks for the element, for a fine pointer and
+ * for the visitor's motion preference before doing anything at all.
  *
  * Progressive enhancement throughout: with JavaScript disabled the site still
  * renders, navigates and submits the form (plain POST to Formspree).
@@ -17,16 +24,11 @@
 (function () {
   "use strict";
 
-  /* ========================================================================
-     Shared helpers
-     ======================================================================== */
-
   var root = document.documentElement;
 
-  /** Respect the visitor's motion preference. */
-  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-  /** querySelector / querySelectorAll shortcuts. */
   function get(selector, scope) {
     return (scope || document).querySelector(selector);
   }
@@ -53,6 +55,11 @@
     }
   };
 
+  /** Effects are only worth running for a fine pointer with motion allowed. */
+  function motionOK() {
+    return !reduceMotion.matches && finePointer.matches;
+  }
+
   /* ========================================================================
      1. Theme toggle
      ======================================================================== */
@@ -66,7 +73,6 @@
     var metaThemeColor = get('meta[name="theme-color"]:not([media])');
 
     function currentTheme() {
-      // The saved value wins; otherwise follow the operating system.
       var saved = root.getAttribute("data-theme");
       if (saved === "light" || saved === "dark") {
         return saved;
@@ -77,12 +83,10 @@
     function apply(theme, persist) {
       root.setAttribute("data-theme", theme);
 
-      // Keep the browser UI (mobile address bar) in step with the theme.
       if (metaThemeColor) {
-        metaThemeColor.setAttribute("content", theme === "light" ? "#f4f2ec" : "#171815");
+        metaThemeColor.setAttribute("content", theme === "light" ? "#efe9dc" : "#0f0f0c");
       }
 
-      // The control describes the action it performs.
       var label = theme === "light" ? "Switch to dark theme" : "Switch to light theme";
       toggle.setAttribute("aria-label", label);
       toggle.setAttribute("title", label);
@@ -99,7 +103,6 @@
       apply(currentTheme() === "light" ? "dark" : "light", true);
     });
 
-    // Follow the OS live, but only while the visitor has made no choice.
     var onSystemChange = function (event) {
       if (!store.read("theme")) {
         apply(event.matches ? "light" : "dark", false);
@@ -134,12 +137,16 @@
 
     function open() {
       nav.classList.add("is-open");
+      header.classList.add("is-nav-open");
+      document.body.classList.add("is-nav-open");
       toggle.setAttribute("aria-expanded", "true");
       toggle.setAttribute("aria-label", "Close navigation menu");
     }
 
     function close(returnFocus) {
       nav.classList.remove("is-open");
+      header.classList.remove("is-nav-open");
+      document.body.classList.remove("is-nav-open");
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open navigation menu");
 
@@ -148,17 +155,14 @@
       }
     }
 
-    function toggleMenu() {
+    toggle.addEventListener("click", function () {
       if (isOpen()) {
         close(true);
       } else {
         open();
       }
-    }
+    });
 
-    toggle.addEventListener("click", toggleMenu);
-
-    // Following a link closes the panel so the target section is visible.
     links.forEach(function (link) {
       link.addEventListener("click", function () {
         if (isOpen()) {
@@ -167,7 +171,6 @@
       });
     });
 
-    // Escape closes the panel, Tab is kept inside it while it is open.
     document.addEventListener("keydown", function (event) {
       if (!isOpen() || desktop.matches) {
         return;
@@ -193,7 +196,6 @@
       }
     });
 
-    // A click anywhere outside the open panel dismisses it.
     document.addEventListener("click", function (event) {
       if (!isOpen() || desktop.matches) {
         return;
@@ -203,7 +205,6 @@
       }
     });
 
-    // Never leave the panel open when the viewport grows into the desktop nav.
     var onBreakpoint = function (event) {
       if (event.matches && isOpen()) {
         close(false);
@@ -218,12 +219,15 @@
   }
 
   /* ========================================================================
-     3. Sticky header state + active navigation link (scroll spy)
+     3. Sticky header, scroll spy, sliding indicator, progress, parallax
      ======================================================================== */
   function initScrollState() {
     var header = get("#site-header");
     var nav = get("#site-nav");
     var toTop = get("#to-top");
+    var progress = get("#progress-bar");
+    var indicator = get("#nav-indicator");
+    var ghosts = getAll(".section__ghost");
 
     if (!header) {
       return;
@@ -236,29 +240,58 @@
       })
       .filter(Boolean);
 
-    var latest = null;
+    var queued = null;
 
-    /** Runs at most once per animation frame. */
+    /** Park the indicator under whichever link is current. */
+    function positionIndicator(link) {
+      if (!indicator || !nav) {
+        return;
+      }
+      if (!link) {
+        nav.classList.remove("has-active");
+        return;
+      }
+      var navBox = nav.getBoundingClientRect();
+      var box = link.getBoundingClientRect();
+      indicator.style.setProperty("--ind-x", (box.left - navBox.left + nav.scrollLeft) + "px");
+      indicator.style.setProperty("--ind-w", box.width + "px");
+      nav.classList.add("has-active");
+    }
+
     function update() {
-      latest = null;
+      queued = null;
 
       // Matches the scroll target used by initSmoothScroll, plus 1px of slack
       // for sub-pixel rounding, so a clicked link always lights up.
       var offset = header.offsetHeight + 17;
 
-      // Sticky styling + back-to-top visibility.
       header.classList.toggle("is-stuck", window.scrollY > 8);
+
       if (toTop) {
         toTop.hidden = window.scrollY < 600;
       }
 
-      // Highlight the section currently occupying the top of the viewport.
+      if (progress) {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        var ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+        progress.style.transform = "scaleX(" + ratio.toFixed(4) + ")";
+      }
+
+      // Ghost numerals drift a little against the scroll for depth.
+      if (ghosts.length && motionOK()) {
+        var vh = window.innerHeight;
+        ghosts.forEach(function (ghost) {
+          var box = ghost.getBoundingClientRect();
+          var descend = (box.top + box.height / 2 - vh / 2) / vh;
+          ghost.style.setProperty("--ghost-shift", (descend * -34).toFixed(1) + "px");
+        });
+      }
+
       var active = "";
       var atBottom = window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 2;
 
       if (atBottom) {
-        // The last section wins at the very bottom of the page.
         active = sections.length ? "#" + sections[sections.length - 1].id : "";
       } else {
         sections.forEach(function (section) {
@@ -268,29 +301,49 @@
         });
       }
 
+      var activeLink = null;
       navLinks.forEach(function (link) {
         var isActive = link.getAttribute("href") === active;
         if (isActive) {
           link.setAttribute("aria-current", "true");
+          activeLink = link;
         } else {
           link.removeAttribute("aria-current");
         }
       });
+
+      positionIndicator(activeLink);
     }
 
-    /** Coalesce scroll events into one update per frame. */
     function schedule() {
-      if (latest === null) {
-        latest = window.requestAnimationFrame(update);
+      if (queued === null) {
+        queued = window.requestAnimationFrame(update);
       }
     }
 
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
+
+    // The indicator has to follow hover as well as scroll, so the header feels
+    // like one object rather than five separate links.
+    navLinks.forEach(function (link) {
+      link.addEventListener("pointerenter", function () {
+        positionIndicator(link);
+      });
+    });
+    if (nav) {
+      nav.addEventListener("pointerleave", function () {
+        var current = get('.site-nav__link[aria-current="true"]', nav);
+        positionIndicator(current);
+      });
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(schedule);
+    }
+
     update();
 
-    // Retire the back-to-top control once the footer is on screen: it would
-    // otherwise sit on top of the footer text, and it has no value there.
     var footer = get(".site-footer");
     if (toTop && footer && "IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
@@ -311,8 +364,7 @@
       return;
     }
 
-    // Reduced motion or no IntersectionObserver: show everything at once.
-    if (prefersReducedMotion.matches || !("IntersectionObserver" in window)) {
+    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
       items.forEach(function (item) {
         item.classList.add("is-visible");
       });
@@ -339,8 +391,7 @@
       });
     }, {
       // threshold 0 with a shrunken root: the element reveals as soon as it is
-      // meaningfully on screen, whatever its height. Using a percentage
-      // threshold instead would miss elements taller than the viewport.
+      // meaningfully on screen, whatever its height.
       rootMargin: "0px 0px -12% 0px",
       threshold: 0
     });
@@ -371,7 +422,6 @@
         return;
       }
 
-      // Modified clicks (new tab, download, ...) keep their native behaviour.
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
         return;
       }
@@ -384,10 +434,9 @@
 
       window.scrollTo({
         top: top < 0 ? 0 : top,
-        behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+        behavior: reduceMotion.matches ? "auto" : "smooth"
       });
 
-      // Keep the URL shareable, and move focus so keyboard users follow along.
       if (window.history && window.history.replaceState) {
         window.history.replaceState(null, "", hash);
       }
@@ -395,7 +444,6 @@
       target.setAttribute("tabindex", "-1");
       target.focus({ preventScroll: true });
 
-      // Restore the natural focus target for subsequent Tab presses.
       target.addEventListener("blur", function onBlur() {
         target.removeAttribute("tabindex");
         target.removeEventListener("blur", onBlur);
@@ -404,7 +452,7 @@
   }
 
   /* ========================================================================
-     6. Footer year + back-to-top
+     6. Footer year
      ======================================================================== */
   function initFooterMeta() {
     var year = get("#copyright-year");
@@ -429,10 +477,7 @@
       if (!status) {
         return;
       }
-
       status.textContent = message;
-
-      // Clear the message after a moment so it never lingers stale.
       window.clearTimeout(resetTimer);
       resetTimer = window.setTimeout(function () {
         status.textContent = "";
@@ -447,8 +492,13 @@
           return;
         }
 
-        // The clipboard API needs a secure context; on plain HTTP (local
-        // previews) it is unavailable, so fall back to simply showing it.
+        // The tick replaces the copy glyph for a moment, so the control itself
+        // confirms the action rather than only the live region.
+        button.classList.add("is-copied");
+        window.setTimeout(function () {
+          button.classList.remove("is-copied");
+        }, 2000);
+
         if (navigator.clipboard && window.isSecureContext) {
           navigator.clipboard.writeText(value).then(function () {
             announce(label + " copied to clipboard: " + value);
@@ -474,11 +524,6 @@
     var status = get("#form-status", form);
     var submit = get("#submit-button", form);
 
-    /**
-     * Validation rules, kept in one place so they are easy to change.
-     * The form posts to Formspree with `novalidate`, so these checks always
-     * run - and the errors are announced through the live region below.
-     */
     var rules = {
       name: {
         test: function (value) {
@@ -540,7 +585,6 @@
       input.removeAttribute("aria-invalid");
     }
 
-    /** Validates one field and returns true when it passes. */
     function validate(name) {
       var input = form.elements[name];
       var rule = rules[name];
@@ -573,14 +617,12 @@
       return invalid;
     }
 
-    /** Shows a message in the live region, or hides it when text is empty. */
     function showStatus(message, state) {
       if (!status) {
         return;
       }
 
       var text = get(".form-status__text", status);
-
       status.classList.remove("is-success", "is-error", "is-visible");
 
       if (!message) {
@@ -593,7 +635,6 @@
       status.classList.add("is-visible", state === "success" ? "is-success" : "is-error");
     }
 
-    // Re-validate on blur, and clear the error as soon as the input is fixed.
     Object.keys(rules).forEach(function (name) {
       var input = form.elements[name];
       if (!input) {
@@ -616,7 +657,6 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      // Honeypot: a real visitor never fills this hidden field in.
       var honeypot = form.elements["_gotcha"];
       if (honeypot && honeypot.value !== "") {
         showStatus("Your message could not be sent. Please email waquarsk1@gmail.com instead.", "error");
@@ -678,6 +718,160 @@
   }
 
   /* ========================================================================
+     9. Pointer-reactive layer
+     ======================================================================== */
+
+  /** A warm light plus a slowly drifting grid, both following the pointer. */
+  function initHeroField() {
+    var hero = get(".hero");
+    var field = get(".hero__field");
+    if (!hero || !field || !motionOK()) {
+      return;
+    }
+
+    var frame = null;
+    var spot = get("#hero-spot");
+    var grid = get(".hero__grid");
+
+    hero.addEventListener("pointermove", function (event) {
+      if (frame) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(function () {
+        frame = null;
+        var box = hero.getBoundingClientRect();
+        var x = event.clientX - box.left;
+        var y = event.clientY - box.top;
+
+        // Also lights on move, not only on enter, so the effect is never missed
+        // by a pointer that was already inside when the listener attached.
+        hero.classList.add("is-lit");
+
+        if (spot) {
+          spot.style.setProperty("--mx", x.toFixed(1) + "px");
+          spot.style.setProperty("--my", y.toFixed(1) + "px");
+        }
+
+        if (grid) {
+          // A few pixels of counter-drift: the grid feels like a surface
+          // sitting slightly behind the page rather than a painted pattern.
+          var gx = ((x / box.width) - 0.5) * -22;
+          var gy = ((y / box.height) - 0.5) * -14;
+          grid.style.setProperty("--gx", gx.toFixed(1) + "px");
+          grid.style.setProperty("--gy", gy.toFixed(1) + "px");
+        }
+      });
+    }, { passive: true });
+
+    hero.addEventListener("pointerenter", function () {
+      hero.classList.add("is-lit");
+    });
+    hero.addEventListener("pointerleave", function () {
+      hero.classList.remove("is-lit");
+    });
+  }
+
+  /** Controls that lean a few pixels toward the cursor. */
+  function initMagnetic() {
+    if (!motionOK()) {
+      return;
+    }
+
+    var strength = 7;
+
+    getAll("[data-magnetic]").forEach(function (el) {
+      var frame = null;
+
+      el.addEventListener("pointermove", function (event) {
+        if (frame) {
+          return;
+        }
+        frame = window.requestAnimationFrame(function () {
+          frame = null;
+          var box = el.getBoundingClientRect();
+          var dx = (event.clientX - (box.left + box.width / 2)) / (box.width / 2);
+          var dy = (event.clientY - (box.top + box.height / 2)) / (box.height / 2);
+          el.style.transform = "translate(" + (dx * strength).toFixed(2) + "px," + (dy * strength).toFixed(2) + "px)";
+        });
+      }, { passive: true });
+
+      el.addEventListener("pointerleave", function () {
+        el.style.transform = "";
+      });
+    });
+  }
+
+  /** Plates lean toward the pointer, and a chip rides along with the cursor. */
+  function initPlates() {
+    var plates = get("#plates");
+    if (!plates) {
+      return;
+    }
+
+    var chip = get("#plates-chip");
+
+    if (!motionOK()) {
+      return; // Static plates and no chip: nothing is lost.
+    }
+
+    var frame = null;
+
+    plates.addEventListener("pointermove", function (event) {
+      if (frame) {
+        return;
+      }
+      frame = window.requestAnimationFrame(function () {
+        frame = null;
+        var box = plates.getBoundingClientRect();
+        var x = event.clientX - box.left;
+        var y = event.clientY - box.top;
+
+        plates.classList.add("is-hot");
+
+        if (chip) {
+          chip.style.setProperty("--chip-x", x.toFixed(1) + "px");
+          chip.style.setProperty("--chip-y", y.toFixed(1) + "px");
+        }
+      });
+    }, { passive: true });
+
+    plates.addEventListener("pointerenter", function () {
+      plates.classList.add("is-hot");
+    });
+    plates.addEventListener("pointerleave", function () {
+      plates.classList.remove("is-hot");
+      getAll(".plate", plates).forEach(function (plate) {
+        plate.style.removeProperty("--rx");
+        plate.style.removeProperty("--ry");
+      });
+    });
+
+    getAll(".plate", plates).forEach(function (plate) {
+      var tiltFrame = null;
+
+      plate.addEventListener("pointermove", function (event) {
+        if (tiltFrame) {
+          return;
+        }
+        tiltFrame = window.requestAnimationFrame(function () {
+          tiltFrame = null;
+          var box = plate.getBoundingClientRect();
+          var relX = (event.clientX - box.left) / box.width - 0.5;
+          var relY = (event.clientY - box.top) / box.height - 0.5;
+          plate.style.setProperty("--ry", (relX * 9).toFixed(2) + "deg");
+          plate.style.setProperty("--rx", (-relY * 9).toFixed(2) + "deg");
+        });
+      }, { passive: true });
+
+      plate.addEventListener("pointerleave", function () {
+        plate.style.removeProperty("--rx");
+        plate.style.removeProperty("--ry");
+      });
+    });
+  }
+
+  /* ========================================================================
      Boot
      ======================================================================== */
   function init() {
@@ -689,6 +883,9 @@
     initFooterMeta();
     initCopyControls();
     initContactForm();
+    initHeroField();
+    initMagnetic();
+    initPlates();
   }
 
   if (document.readyState === "loading") {

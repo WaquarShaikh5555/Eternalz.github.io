@@ -19,7 +19,7 @@ and no package manager, so the repository deploys exactly as it sits.
 │   ├── theme-init.js   Pre-paint colour-scheme switch (blocking, ~20 lines)
 │   └── main.js         Menu, scroll spy, reveal, smooth scroll, form validation
 ├── assets/
-│   ├── favicon.svg     Ink-tile monogram (scales to any size)
+│   ├── favicon.svg     Ember-tile monogram (scales to any size)
 │   ├── favicon-32.png  Raster fallback for older browsers
 │   ├── apple-touch-icon.png
 │   ├── icon-192.png / icon-512.png   PWA / manifest icons
@@ -84,11 +84,12 @@ the About quick-facts list and the structured data. Availability reads
 if you would rather say something more specific, such as "open to
 collaborations", "open to freelance work" or "just here to learn".
 
-`assets/project-1.svg`, `project-2.svg` and `project-3.svg` are abstract cover
-plates drawn for the old project cards. They are **not referenced by the page at
-the moment**, but they are kept so there is something ready to drop into a real
-project entry — swap them for screenshots at 1200×750, keeping the
-`width`/`height` attributes so the layout does not shift while loading.
+`assets/project-1.svg`, `project-2.svg` and `project-3.svg` are the abstract
+plates in the projects band. They are deliberately labelled "Plate 01/02/03"
+rather than pretending to be finished work — swap them for real screenshots at
+1200×750 when the projects are written up, keeping the `width`/`height`
+attributes so the layout does not shift while loading. The plate frames tilt and
+raise a "Coming soon" bar on hover, so they work as either.
 
 ### Connecting the contact form
 
@@ -175,39 +176,59 @@ Same story: no build command, output directory `.`. Cloudflare Pages honours
 
 ---
 
-## Design system
+## Design system — "Signal & Grain"
 
-An editorial system rather than a component kit: warm paper, ink text and one
-restrained vermilion accent, with hierarchy carried by typography and rules
-instead of cards, shadows or colour washes. Geist and Geist Mono are the only
-typefaces; the whole scale is tokenised in `css/style.css`.
+The page is art-directed like a printed object: warm bone paper, deep ink, one
+hot ember accent, an acid highlight used only as a spark, and a film-grain
+texture over everything. Type is the loudest thing on the page; colour is the
+second loudest. Motion responds to the pointer and to scroll.
 
-Everything is defined once in `:root` and re-pointed for the ink theme, which
-means the theme switch changes about twenty custom properties and nothing else.
+Everything is defined once in `:root` and re-pointed for the ink theme. The two
+loud bands are token scopes: `.section--ink` and `.section--ember` each redefine
+`--fg`, `--muted`, `--line`, `--accent-text` and `--ghost-line`, so every
+component inside them flips automatically — in the ink theme the skills band
+inverts to bone-on-black, so the page keeps its rhythm whichever theme you land
+in.
 
 | Token | Paper theme | Ink theme |
 | --- | --- | --- |
-| `--bg` | `#f4f2ec` | `#171815` |
-| `--fg` | `#171815` | `#f4f2ec` |
-| `--fg-muted` | `#686a61` | `#a8a99f` |
-| `--panel` | `#ece9e1` | `#1d1e19` |
-| `--rule` | `#d8d5cc` | `#33342e` |
-| `--accent` | `#c34f32` | `#c34f32` |
-| `--accent-text` | `#b0452b` | `#e87a55` |
+| `--bg` | `#efe9dc` | `#0f0f0c` |
+| `--fg` | `#15140f` | `#f3efe6` |
+| `--muted` | `#665f53` | `#a6a294` |
+| `--card` | `#f7f3ea` | `#1b1a14` |
+| `--accent` (ember) | `#f04e23` | `#ff6b3d` |
+| `--accent-text` | `#ae3510` | `#ff6b3d` |
+| `--acid` | `#d4f04a` | `#d4f04a` |
 
-**Why the accent is split in two.** `#C34F32` is the brand colour, but as *text*
-it only reaches 4.18:1 on the paper ground — below AA. It therefore stays the
-decorative colour (rules, the hero mark, `::selection`, fills) while `--accent-text`
-carries every case where the accent has to be read: links, hover states, the
-section indices and status messages. On the ink theme the accent is lifted to
-`#e87a55`. Both are paired in the table above so the substitution is visible.
+**Why the accent splits in two.** `#F04E23` is the brand colour, but as text on
+the bone ground it only reaches 2.98:1. It therefore stays the decorative colour
+(rules, wipes, fills, the marquee) while `--accent-text` carries links, indices
+and status text at 5.23:1. On the ember band the relationship flips: ink on
+ember is 5.11:1.
 
-**Hierarchy without a third grey.** The paper ground has no headroom for a text
-tier lighter than `--fg-muted` — anything lighter drops below 4.5:1. Quiet text
-is therefore differentiated by size, case and letter-spacing (12px tracked mono)
-rather than by being washed out.
+**Type.** Geist for everything structural, Geist Mono for labels and numerals,
+Instrument Serif italic for the two editorial registers — inline emphasis in the
+hero subtitle and the "Lets Connect!" footer headline. Hero display is 152px at
+desktop, `clamp()` all the way down.
 
-**Layout.** A 1180px content column, an 8px spacing scale, fluid `clamp()`
-section rhythm, and three composition breakpoints: 640px (two-up groupings),
-900px (full navigation, the project ledger becomes plate / copy / links, periods
-move into the margin), 1120px (three-column skills).
+**Interactions** (all of them additive, and all switched off for a coarse
+pointer or `prefers-reduced-motion`):
+
+- hero spotlight and a dot grid that counter-drifts with the pointer
+- words in the intro that fill with ember on hover
+- magnetic buttons that lean a few pixels toward the cursor
+- project plates that tilt toward the pointer, with a cursor chip and a status
+  bar that rises out of the plate edge on hover
+- skill panels that flood with ember and step their list in on hover or
+  keyboard focus
+- a sliding nav indicator that follows hover and scroll
+- a reading-progress bar, ghost numerals that drift against the scroll, and a
+  marquee band whose colour comes from the page's own copy
+- a full-screen clip-path navigation overlay with staggered links on mobile
+
+All of it is measured at 60fps-friendly cost: transforms and opacity only, one
+`requestAnimationFrame` per gesture, and a single scroll listener.
+
+**Layout.** 1240px content column, an 8px spacing scale, fluid `clamp()` rhythm,
+and composition breakpoints at 480 / 600 / 768 / 900 / 1120px.
+

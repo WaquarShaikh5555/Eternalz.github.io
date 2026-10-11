@@ -1,204 +1,217 @@
 /* ==========================================================================
-   Waquar Shaikh — portfolio stylesheet
-   "An independent technologist's portfolio, art-directed with the precision
-   of a premium editorial publication."
+   Waquar Shaikh — portfolio
+   --------------------------------------------------------------------------
+   Art direction: "Signal & Grain".
+
+   A creative technologist's page built like a printed object: warm bone paper
+   and deep ink, one hot ember accent, an acid highlight used only as a spark,
+   a film-grain texture over everything, and motion that responds to the
+   pointer and to scroll. Type is the loudest thing on the page; colour is the
+   second loudest.
 
    --------------------------------------------------------------------------
    Contents
-     01. Design tokens
-     02. Theme: ink (dark)
+     01. Tokens
+     02. Themes (ink / light)
      03. Reset & base
-     04. Accessibility helpers
-     05. Typography
-     06. Layout primitives (page, section, masthead)
-     07. Controls (buttons, links, icon buttons)
-     08. Header & navigation
-     09. Hero
-     10. About
-     11. Skills
-     12. Contact & form
-     13. Footer & back-to-top
-     14. Responsive composition
-     15. Motion preferences
-     16. Print
-   --------------------------------------------------------------------------
-   Mobile-first: base rules assume a narrow viewport, composition changes are
-   introduced from 640px, 900px and 1120px upwards.
+     04. Texture & depth
+     05. Accessibility
+     06. Type
+     07. Layout primitives
+     08. Controls
+     09. Header & navigation
+     10. Hero
+     11. Marquee
+     12. About
+     13. Skills (inverting band)
+     14. Projects (plates)
+     15. Experience (ember band)
+     16. Contact & form
+     17. Footer
+     18. Back to top & progress
+     19. Reveal & parallax
+     20. Responsive
+     21. Motion preferences
+     22. Print
    ========================================================================== */
 
 /* ==========================================================================
-   01. DESIGN TOKENS
-   --------------------------------------------------------------------------
-   One warm editorial palette. The accent is a restrained vermilion used for
-   emphasis only - indices, rules, hover states and one control - never as a
-   surface wash.
-
-   Contrast (verified against WCAG 2.1):
-     ink on paper .............. 15.93:1
-     secondary on paper .........  4.91:1   body-size minimum
-     accent-text on paper .......  5.03:1   the specified #C34F32 measures
-                                            4.18:1, so text uses this
-                                            deepened step; #C34F32 is kept
-                                            for rules, marks and fills.
-     accent on ink (dark) .......  6.24:1
+   01. TOKENS
    ========================================================================== */
 :root {
-  /* --- Palette --------------------------------------------------------- */
-  --paper: #f4f2ec;
-  --ink: #171815;
-  --secondary: #686a61;
-  --surface: #ece9e1;
-  --line: #d8d5cc;
-  --accent: #c34f32;
+  /* --- Raw palette ------------------------------------------------------ */
+  --bone: #efe9dc;
+  --bone-deep: #e5decc;
+  --bone-card: #f7f3ea;
+  --ink: #15140f;
+  --ink-soft: #1d1c15;
+  --ember: #f04e23;
+  --ember-bright: #ff6b3d;
+  --ember-text: #ae3510;
+  --acid: #d4f04a;
 
-  /* --- Semantic roles: paper (default) --------------------------------- */
-  --bg: var(--paper);
+  /* --- Semantic (light / bone theme is the base) ------------------------ */
+  --bg: var(--bone);
+  --bg-deep: var(--bone-deep);
+  --card: var(--bone-card);
   --fg: var(--ink);
-  --fg-muted: var(--secondary);
-  /* The paper ground has no headroom for a third text tier: anything lighter
-     than #686a61 drops below 4.5:1 on both the page and the panel. Quiet text
-     is therefore distinguished by size, case and tracking - not by being
-     washed out. (The ink theme does have headroom, and uses it.) */
-  --fg-quiet: var(--secondary);
-  --rule: var(--line);
-  --rule-strong: #c9c6bc;
-  --panel: var(--surface);
-  --accent-text: #b0452b;
-  --accent-soft: rgba(195, 79, 50, 0.12);
-  --field-bg: #fbfaf6;
-  /* 3.6:1 on the field fill and 3.1:1 on the panel behind it, so the input
-     boundary clears the 3:1 non-text contrast requirement in both directions */
-  --field-border: #86837b;
+  --muted: #665f53;
+  --quiet: #665f53;
+  --line: rgba(21, 20, 15, 0.14);
+  --line-strong: rgba(21, 20, 15, 0.28);
+  --accent: var(--ember);
+  --accent-text: var(--ember-text);
+  --accent-soft: rgba(240, 78, 35, 0.14);
+  --ghost-line: rgba(21, 20, 15, 0.16);
 
-  /* Ring colour for :focus-visible. Overridden on the dark footer slab, where
-     the paper-theme accent would only reach 3.2:1. */
-  --focus-ring: var(--accent-text);
+  /* Inverted band: deep ink with bone type. Reverses in the ink theme. */
+  --band-bg: var(--ink);
+  --band-fg: var(--bone);
+  --band-muted: rgba(239, 233, 220, 0.64);
+  --band-line: rgba(239, 233, 220, 0.18);
+  --band-accent: var(--ember-bright);
+  --band-invert-bg: var(--ember);
+  --band-invert-fg: var(--ink);
 
-  /* Solid control: ink block in paper theme, paper block in ink theme */
+  /* Footer slab (always deep) */
+  --slab-bg: #100f0b;
+  --slab-fg: var(--bone);
+  --slab-muted: rgba(239, 233, 220, 0.6);
+  --slab-line: rgba(239, 233, 220, 0.16);
+
+  /* Controls */
   --ctl-bg: var(--ink);
-  --ctl-fg: var(--paper);
-  --ctl-hover-bg: #b0452b;
-  --ctl-hover-fg: var(--paper);
+  --ctl-fg: var(--bone);
+  --ctl-hover-bg: var(--ember);
+  --ctl-hover-fg: var(--ink);
+  --field-bg: var(--bone-card);
+  --field-line: #8d8574;
 
-  /* Inverted slab (footer) */
-  --slab-bg: #171815;
-  --slab-fg: #f4f2ec;
-  --slab-muted: rgba(244, 242, 236, 0.64);
-  --slab-rule: rgba(244, 242, 236, 0.16);
+  --header-bg: rgba(239, 233, 220, 0.86);
+  --header-h: 68px;
+  --focus-ring: var(--ember-text);
 
-  /* Header */
-  --header-bg: var(--paper);
-  --header-h: 64px;
+  /* --- Type ------------------------------------------------------------- */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
 
-  /* --- Typography ------------------------------------------------------ */
-  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-               Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
-               Consolas, monospace;
-
-  --fs-display: clamp(2.5rem, 1.35rem + 5.2vw, 5.25rem);
-  --fs-h2: clamp(1.875rem, 1.25rem + 2.2vw, 3.125rem);
-  --fs-h3: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --fs-display: clamp(2.75rem, 1rem + 11vw, 9.5rem);
+  --fs-h2: clamp(2rem, 1.1rem + 3.6vw, 4.25rem);
+  --fs-h3: clamp(1.25rem, 1.05rem + 0.9vw, 1.875rem);
   --fs-lead: clamp(1.0625rem, 1rem + 0.5vw, 1.3125rem);
   --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
-  --fs-small: 0.875rem;
+  --fs-small: 0.9375rem;
   --fs-micro: 0.75rem;
 
-  --lh-display: 0.95;
-  --lh-heading: 1.1;
-  --lh-body: 1.65;
+  --lh-display: 0.86;
+  --lh-body: 1.62;
+  --ls-display: -0.045em;
+  --ls-label: 0.16em;
 
-  --ls-display: -0.035em;
-  --ls-heading: -0.02em;
-  --ls-label: 0.14em;
+  /* --- Space ------------------------------------------------------------ */
+  --s-1: 0.25rem;  --s-2: 0.5rem;  --s-3: 1rem;   --s-4: 1.5rem;
+  --s-5: 2rem;     --s-6: 3rem;    --s-7: 4.5rem; --s-8: 6rem;  --s-9: 8rem;
 
-  /* --- Spacing scale (8px rhythm) -------------------------------------- */
-  --s-1: 0.25rem;   /*  4 */
-  --s-2: 0.5rem;    /*  8 */
-  --s-3: 1rem;      /* 16 */
-  --s-4: 1.5rem;    /* 24 */
-  --s-5: 2rem;      /* 32 */
-  --s-6: 3rem;      /* 48 */
-  --s-7: 4rem;      /* 64 */
-  --s-8: 6rem;      /* 96 */
+  /* --- Layout ----------------------------------------------------------- */
+  --page: 1240px;
+  --gutter: clamp(1.25rem, 4.5vw, 3.5rem);
+  --section-y: clamp(4.5rem, 10vw, 9rem);
 
-  /* --- Layout ---------------------------------------------------------- */
-  --page: 1180px;
-  --gutter: clamp(1.25rem, 4vw, 3rem);
-  --section-y: clamp(4rem, 9vw, 8rem);
+  --r-1: 2px;  --r-2: 4px;  --r-3: 10px;  --r-4: 18px;
 
-  /* --- Radii: restrained, never pill-shaped ---------------------------- */
-  --r-1: 3px;
-  --r-2: 5px;
-  --r-3: 8px;
-
-  /* --- Motion ---------------------------------------------------------- */
-  --dur: 180ms;
-  --dur-slow: 320ms;
-  --ease: cubic-bezier(0.2, 0.6, 0.3, 1);
+  /* --- Motion ----------------------------------------------------------- */
+  --dur-fast: 130ms;
+  --dur: 200ms;
+  --dur-slow: 420ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ==========================================================================
-   02. THEME: INK
+   02. THEMES
    --------------------------------------------------------------------------
-   The supplied accent and secondary colours are tuned for a paper ground. On
-   ink they fall below 4.5:1, so this theme lifts both: the accent to #e87a55
-   (6.24:1) while #c34f32 remains the decorative mark colour.
+   Both themes are fully art-directed rather than one being a washed-out echo
+   of the other: the ink theme inverts the skills band to bone on black, so the
+   page keeps its loud/quiet rhythm whichever theme you land in.
    ========================================================================== */
 :root[data-theme="dark"] {
-  --bg: #171815;
-  --fg: #f4f2ec;
-  --fg-muted: #a8a99f;
-  --fg-quiet: #8c8e84;
-  --rule: #33342e;
-  --rule-strong: #45463f;
-  --panel: #1d1e19;
-  --accent-text: #e87a55;
-  --accent-soft: rgba(232, 122, 85, 0.14);
-  --field-bg: #1f201b;
-  --field-border: #6e6f66;
+  --bg: #0f0f0c;
+  --bg-deep: #191813;
+  --card: #1b1a14;
+  --fg: #f3efe6;
+  --muted: #a6a294;
+  --quiet: #a6a294;
+  --line: rgba(243, 239, 230, 0.16);
+  --line-strong: rgba(243, 239, 230, 0.32);
+  --accent: var(--ember-bright);
+  --accent-text: var(--ember-bright);
+  --accent-soft: rgba(255, 107, 61, 0.18);
+  --ghost-line: rgba(243, 239, 230, 0.14);
 
-  --ctl-bg: #f4f2ec;
-  --ctl-fg: #171815;
-  --ctl-hover-bg: #e87a55;
-  --ctl-hover-fg: #171815;
+  --band-bg: #f3efe6;
+  --band-fg: var(--ink);
+  --band-muted: rgba(21, 20, 15, 0.66);
+  --band-line: rgba(21, 20, 15, 0.16);
+  --band-accent: var(--ember-text);
+  --band-invert-bg: var(--ink);
+  --band-invert-fg: #f3efe6;
 
-  --slab-bg: #101109;
-  --slab-fg: #f4f2ec;
-  --slab-muted: rgba(244, 242, 236, 0.6);
-  --slab-rule: rgba(244, 242, 236, 0.14);
+  --slab-bg: #080806;
+  --slab-fg: #f3efe6;
+  --slab-muted: rgba(243, 239, 230, 0.6);
+  --slab-line: rgba(243, 239, 230, 0.16);
 
-  --header-bg: #171815;
+  --ctl-bg: #f3efe6;
+  --ctl-fg: var(--ink);
+  --ctl-hover-bg: var(--ember-bright);
+  --ctl-hover-fg: var(--ink);
+  --field-bg: #1b1a14;
+  --field-line: #6e6f66;
+
+  --header-bg: rgba(15, 15, 12, 0.86);
+  --focus-ring: var(--ember-bright);
 
   color-scheme: dark;
 }
 
-/* Before a choice is made, follow the operating system. The theme script only
-   writes an explicit choice, so this rule stays in charge of the default. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --bg: #171815;
-    --fg: #f4f2ec;
-    --fg-muted: #a8a99f;
-    --fg-quiet: #8c8e84;
-    --rule: #33342e;
-    --rule-strong: #45463f;
-    --panel: #1d1e19;
-  --accent-text: #e87a55;
-  --accent-soft: rgba(232, 122, 85, 0.14);
-  --field-bg: #1f201b;
-  --field-border: #6e6f66;
+    --bg: #0f0f0c;
+    --bg-deep: #191813;
+    --card: #1b1a14;
+    --fg: #f3efe6;
+    --muted: #a6a294;
+    --quiet: #a6a294;
+    --line: rgba(243, 239, 230, 0.16);
+    --line-strong: rgba(243, 239, 230, 0.32);
+    --accent: var(--ember-bright);
+    --accent-text: var(--ember-bright);
+    --accent-soft: rgba(255, 107, 61, 0.18);
+    --ghost-line: rgba(243, 239, 230, 0.14);
 
-  --ctl-bg: #f4f2ec;
-  --ctl-fg: #171815;
-  --ctl-hover-bg: #e87a55;
-  --ctl-hover-fg: #171815;
+    --band-bg: #f3efe6;
+    --band-fg: var(--ink);
+    --band-muted: rgba(21, 20, 15, 0.66);
+    --band-line: rgba(21, 20, 15, 0.16);
+    --band-accent: var(--ember-text);
+    --band-invert-bg: var(--ink);
+    --band-invert-fg: #f3efe6;
 
-  --slab-bg: #101109;
-  --slab-muted: rgba(244, 242, 236, 0.6);
-    --slab-rule: rgba(244, 242, 236, 0.14);
+    --slab-bg: #080806;
+    --slab-fg: #f3efe6;
+    --slab-muted: rgba(243, 239, 230, 0.6);
+    --slab-line: rgba(243, 239, 230, 0.16);
 
-    --header-bg: #171815;
+    --ctl-bg: #f3efe6;
+    --ctl-fg: var(--ink);
+    --ctl-hover-bg: var(--ember-bright);
+    --ctl-hover-fg: var(--ink);
+    --field-bg: #1b1a14;
+    --field-line: #6e6f66;
+
+    --header-bg: rgba(15, 15, 12, 0.86);
+    --focus-ring: var(--ember-bright);
 
     color-scheme: dark;
   }
@@ -209,17 +222,12 @@
 /* ==========================================================================
    03. RESET & BASE
    ========================================================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  /* Matches the offset used by the smooth-scroll handler in main.js, so a
-     native hash jump and a scripted one land in the same place. */
+  /* Matches the smooth-scroll offset in main.js */
   scroll-padding-top: calc(var(--header-h) + var(--s-3));
 }
 
@@ -231,77 +239,53 @@ body {
   color: var(--fg);
   font-family: var(--font-sans);
   font-size: var(--fs-body);
-  font-weight: 400;
   line-height: var(--lh-body);
   font-feature-settings: "kern" 1, "liga" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Long words, URLs and unbroken placeholder tokens such as
-     [COMPANY_OR_ORGANISATION_1] never widen a grid track: `anywhere` is the
-     only value that also reduces min-content, which is what grid sizing uses. */
   overflow-wrap: anywhere;
-  transition: background-color var(--dur-slow) var(--ease),
-              color var(--dur-slow) var(--ease);
+  transition: background-color var(--dur-slow) var(--ease), color var(--dur-slow) var(--ease);
 }
 
-body,
-h1, h2, h3, h4,
-p, figure, blockquote, dl, dd, ol, ul {
-  margin: 0;
-}
+/* Locked while the mobile navigation overlay is open */
+body.is-nav-open { overflow: hidden; }
 
-ul, ol {
-  padding: 0;
-  list-style: none;
-}
-
-img, svg, picture, video {
-  display: block;
-  max-width: 100%;
-}
-
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ol, ul { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img, svg, picture, video { display: block; max-width: 100%; }
 img { height: auto; }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-  color: inherit;
-}
-
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; color: inherit; }
 button {
+  padding: 0;          /* browsers add default inline padding; every control here sets its own */
   border: 0;
   background: none;
   cursor: pointer;
 }
-
 [hidden] { display: none !important; }
 
-::selection {
-  background: var(--accent-soft);
-  color: var(--fg);
-}
+::selection { background: var(--ember); color: var(--ink); }
 
-/* The sprite is referenced through <use>, never displayed directly */
-.icon-sprite {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
+.icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ==========================================================================
+   04. TEXTURE & DEPTH
+   ========================================================================== */
+/* Film grain over the entire page. Fixed, so it reads as the surface the
+   page is printed on rather than as page content. */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.42;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ==========================================================================
-   04. ACCESSIBILITY HELPERS
+   05. ACCESSIBILITY
    ========================================================================== */
-/* A single, consistent focus ring for every interactive element. The colour is
-   a token so the dark footer slab can swap in a ring that stays visible
-   against its ground. */
 :focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
@@ -312,342 +296,319 @@ button {
   position: absolute;
   top: var(--s-2);
   left: var(--s-2);
-  z-index: 200;
+  z-index: 300;
   padding: var(--s-2) var(--s-3);
-  border: 1px solid var(--rule-strong);
   border-radius: var(--r-2);
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--ink);
+  color: var(--bone);
   font-size: var(--fs-small);
   font-weight: 500;
-  transform: translateY(-200%);
+  transform: translateY(-250%);
   transition: transform var(--dur) var(--ease);
 }
-
-.skip-link:focus {
-  transform: translateY(0);
-}
-
-/* --- Scroll reveal ------------------------------------------------------
-   Armed only when JavaScript runs (`.js` is set by theme-init.js), so a
-   failed script can never leave content hidden. */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(14px);
-}
-
-.js [data-reveal].is-visible {
-  opacity: 1;
-  transform: none;
-  transition: opacity 380ms var(--ease), transform 380ms var(--ease);
-}
+.skip-link:focus { transform: translateY(0); }
 
 /* ==========================================================================
-   05. TYPOGRAPHY
+   06. TYPE
    ========================================================================== */
 h1, h2, h3, h4 {
   font-weight: 600;
-  line-height: var(--lh-heading);
-  letter-spacing: var(--ls-heading);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
-
 p { text-wrap: pretty; }
+em { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
 
-/* Uppercase monospace label used for section indices, field groups and
-   metadata. Always subordinate to the heading beside it. */
-.label {
+.mono {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   font-weight: 500;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--fg-muted);
 }
 
 /* ==========================================================================
-   06. LAYOUT PRIMITIVES
+   07. LAYOUT PRIMITIVES
    ========================================================================== */
 .container {
+  position: relative;
+  z-index: 2;
   width: 100%;
   max-width: calc(var(--page) + var(--gutter) * 2);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
 
-/* Grid children may shrink below their content width, so one long unbreakable
-   string can never widen a track past the container. */
-.about__grid > *,
-.skills > *,
-.contact__grid > * {
-  min-width: 0;
-}
+.about__grid > *, .skills > *, .plates > *, .contact__grid > * { min-width: 0; }
 
-.section {
-  padding-block: var(--section-y);
-}
+.section { padding-block: var(--section-y); position: relative; }
 
-/* A ruled band, used to give the long page a rhythm */
-.section--panel {
-  background: var(--panel);
-  border-block: 1px solid var(--rule);
-}
-
-/* --- Section masthead ---------------------------------------------------
-   Label and heading on the left, standfirst on the right, sharing a baseline
-   once there is room for two columns. */
+/* --- Section masthead --------------------------------------------------- */
 .section__head {
+  position: relative;
   display: grid;
   gap: var(--s-3);
-  margin-bottom: var(--s-6);
+  margin-bottom: var(--s-7);
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.section__label { grid-column: 1; }
+.section__title, .section__intro, .section__rule { grid-column: 1 / -1; }
+
+/* Oversized outlined numeral. It is a real grid item beside the section label
+   - the space next to a short label is otherwise empty, and this way it can
+   never collide with the standfirst. */
+.section__ghost {
+  justify-self: end;
+  align-self: end;
+  font-family: var(--font-sans);
+  font-size: clamp(3.25rem, 8vw, 6.5rem);
+  font-weight: 800;
+  line-height: 0.78;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ghost-line);
+  pointer-events: none;
+  user-select: none;
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  .section__ghost { color: var(--ghost-line); -webkit-text-stroke: 0; }
 }
 
 .section__label {
   display: flex;
-  align-items: baseline;
-  gap: var(--s-2);
+  align-items: center;
+  gap: var(--s-3);
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   font-weight: 500;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--fg-muted);
+  color: var(--muted);
 }
 
-/* The index is text, so it takes the accessible accent step (5.03:1 on paper,
-   6.24:1 on ink) rather than the brand mark colour used for rules and fills. */
-.section__num {
-  color: var(--accent-text);
-  font-weight: 500;
-}
-
-/* "Coming soon" marker: a small rule then the words, set in the accent so it
-   reads as a status rather than as another nav item. */
-.section__status {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  color: var(--accent-text);
-}
-
-.section__status::before {
-  content: "";
-  width: 20px;
-  height: 1px;
-  flex: none;
-  background: currentColor;
-}
+.section__num { color: var(--accent-text); font-weight: 500; }
 
 .section__title {
   font-size: var(--fs-h2);
-  max-width: 22ch;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  max-width: 20ch;
 }
 
 .section__intro {
-  max-width: 52ch;
-  color: var(--fg-muted);
+  max-width: 54ch;
+  color: var(--muted);
   font-size: var(--fs-lead);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
-/* A section that holds a masthead and nothing else yet (see the coming-soon
-   note). Its rhythm is tightened so it reads as a deliberate status band
-   rather than a section that failed to load. */
-.section--empty {
-  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+/* A short rule that draws itself in when the masthead arrives */
+.section__rule {
+  display: block;
+  height: 2px;
+  margin-top: var(--s-2);
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
 }
+.is-visible > .section__rule,
+.section__head.is-visible .section__rule { transform: scaleX(1); transition: transform 900ms var(--ease-out); }
+.section__rule { width: min(120px, 30%); }
 
-.section--empty .section__head {
-  margin-bottom: 0;
+/* "Coming soon" marker */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.28em 0.6em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-text);
 }
+.stamp--sm { transform: rotate(-2deg); }
+.stamp--ink { color: var(--fg); }
 
 /* ==========================================================================
-   07. CONTROLS
+   08. CONTROLS
    ========================================================================== */
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--s-2);
-  padding: 0.7rem 1.1rem;
-  border: 1px solid transparent;
+  min-height: 48px;
+  padding: 0.8rem 1.4rem;
+  border: 2px solid transparent;
   border-radius: var(--r-2);
   font-size: var(--fs-small);
-  font-weight: 500;
-  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
   white-space: nowrap;
-  transition: background-color var(--dur) var(--ease),
-              border-color var(--dur) var(--ease),
-              color var(--dur) var(--ease);
+  overflow: hidden;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  will-change: transform;
 }
 
+.btn__label, .btn__icon { position: relative; z-index: 1; }
+
 .btn__icon {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   flex: none;
   transition: transform var(--dur) var(--ease);
+}
+
+/* Ember wipe that rises from the bottom edge */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--accent);
+  transform: translateY(101%);
+  transition: transform var(--dur-slow) var(--ease-out);
 }
 
 .btn--solid {
   background: var(--ctl-bg);
   color: var(--ctl-fg);
 }
+.btn--solid:hover { color: var(--ctl-hover-fg); }
+.btn--solid:hover::after { transform: translateY(0); }
+.btn--solid:hover .btn__icon { transform: translateX(4px); }
 
-.btn--solid:hover {
-  background: var(--ctl-hover-bg);
-  color: var(--ctl-hover-fg);
-}
-
-.btn--solid:hover .btn__icon {
-  transform: translateX(3px);
-}
-
-.btn--outline {
-  border-color: var(--rule-strong);
+.btn--ghost {
+  border-color: var(--line-strong);
   color: var(--fg);
 }
-
-.btn--outline:hover {
-  border-color: var(--fg);
-  background: var(--panel);
-}
+.btn--ghost:hover { border-color: var(--accent); color: var(--fg); }
+.btn--ghost:hover::after { transform: translateY(0); opacity: 0.14; }
 
 .btn--block { width: 100%; }
 
-.btn[disabled] {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+.btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+.btn[disabled]::after { transform: translateY(101%); }
 
-/* --- Text link with a trailing icon ------------------------------------ */
+/* --- Text link ---------------------------------------------------------- */
 .link-arrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  /* 24px floor: the minimum target size for a standalone link */
+  gap: 0.5rem;
   min-height: 24px;
   font-size: var(--fs-small);
-  font-weight: 500;
-  color: var(--fg);
-  transition: color var(--dur) var(--ease);
-}
-
-.link-arrow__icon {
-  width: 14px;
-  height: 14px;
-  flex: none;
-  color: var(--accent-text);
-  transition: transform var(--dur) var(--ease);
-}
-
-.link-arrow:hover {
-  color: var(--accent-text);
-}
-
-.link-arrow:hover .link-arrow__icon {
-  transform: translate(2px, -2px);
-}
-
-.link-arrow--quiet {
-  color: var(--fg-muted);
-}
-
-.link-arrow--quiet:hover {
+  font-weight: 600;
   color: var(--fg);
 }
+.link-arrow svg { width: 15px; height: 15px; flex: none; transition: transform var(--dur) var(--ease); }
+.link-arrow:hover { color: var(--accent-text); }
+.link-arrow:hover svg { transform: translateX(4px); }
 
-.link-arrow--quiet .link-arrow__icon {
-  color: var(--fg-quiet);
-}
-
-.link-arrow--quiet:hover .link-arrow__icon {
-  transform: none;
-}
-
-/* --- Icon buttons (theme switch, menu) --------------------------------- */
-.icon-btn,
-.nav-toggle {
+/* --- Icon buttons ------------------------------------------------------- */
+.icon-btn, .nav-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  /* 44px keeps the tap target at the accessible minimum */
   width: 44px;
   height: 44px;
   flex: none;
-  border: 1px solid transparent;
-  border-radius: var(--r-2);
-  color: var(--fg-muted);
-  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
-}
-
-.icon-btn:hover,
-.nav-toggle:hover {
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
   color: var(--fg);
-  border-color: var(--rule);
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease),
+              color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-
-.icon-btn__icon,
-.nav-toggle__icon {
-  width: 19px;
-  height: 19px;
+.icon-btn:hover, .nav-toggle:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+  transform: rotate(-8deg);
 }
+.icon-btn__icon { width: 18px; height: 18px; }
 
-/* Theme switch: show the icon representing the theme you would switch to */
-.icon-btn__icon--sun,
-.icon-btn__icon--moon { display: none; }
-
+.icon-btn__icon--sun, .icon-btn__icon--moon { display: none; }
 :root[data-theme="dark"] .icon-btn__icon--sun,
 :root:not([data-theme]) .icon-btn__icon--sun { display: block; }
-
 :root[data-theme="light"] .icon-btn__icon--moon { display: block; }
-
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .icon-btn__icon--sun { display: none; }
   :root:not([data-theme]) .icon-btn__icon--moon { display: block; }
 }
 
-.nav-toggle__icon--close { display: none; }
-.nav-toggle[aria-expanded="true"] .nav-toggle__icon--open { display: none; }
-.nav-toggle[aria-expanded="true"] .nav-toggle__icon--close { display: block; }
-
-/* --- Tags --------------------------------------------------------------
-   Small technical labels beside project and entry copy. Square-ish corners;
-   nothing here is a pill. */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-2);
+/* Hamburger that morphs */
+.nav-toggle__bars {
+  display: grid;
+  gap: 5px;
+  width: 18px;
 }
+.nav-toggle__bars i {
+  display: block;
+  height: 2px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars i:first-child { transform: translateY(3.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars i:last-child { transform: translateY(-3.5px) rotate(-45deg); }
 
-.tag {
-  padding: 2px 7px;
-  border: 1px solid var(--rule);
-  border-radius: var(--r-1);
+/* --- Chips -------------------------------------------------------------- */
+.chips { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+
+.chip {
+  padding: 0.4em 0.75em;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  letter-spacing: 0.02em;
-  color: var(--fg-muted);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.chip:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* Acid spark used as a separator in the marquee and the seal */
+.spark {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  flex: none;
+  background: var(--acid);
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
 }
 
 /* ==========================================================================
-   08. HEADER & NAVIGATION
+   09. HEADER & NAVIGATION
    ========================================================================== */
-/* A flat, opaque bar - no frosted glass. At the top of the page it is seamless
-   with the hero; the hairline rule appears as soon as content scrolls under it,
-   so the bar reads as a rule rather than a floating card. */
 .site-header {
   position: fixed;
+  /* Re-resolve colour here so the overlay's inverted tokens reach the brand
+     and the controls, instead of inheriting an already-computed value. */
+  color: var(--fg);
   inset-block-start: 0;
   inset-inline: 0;
   z-index: 100;
-  background: var(--header-bg);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--dur) var(--ease);
+  background: transparent;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
-
-/* Added by JavaScript once the page is scrolled */
 .site-header.is-stuck {
-  border-bottom-color: var(--rule);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .site-header__inner {
@@ -657,226 +618,444 @@ p { text-wrap: pretty; }
   min-height: var(--header-h);
 }
 
-/* --- Wordmark ---------------------------------------------------------- */
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-
+.brand { display: inline-flex; align-items: center; gap: var(--s-2); font-weight: 700; letter-spacing: -0.02em; }
 .brand__mark {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   flex: none;
-  border-radius: var(--r-1);
-  background: var(--ink);
-  color: var(--paper);
+  border-radius: var(--r-2);
+  background: var(--accent);
+  color: var(--ink);
+  transition: transform var(--dur-slow) var(--ease-out), background-color var(--dur) var(--ease);
 }
+.brand:hover .brand__mark { transform: rotate(-10deg) scale(1.06); }
+.brand__mark svg { width: 22px; height: 22px; }
+.brand__name { font-size: var(--fs-small); white-space: nowrap; }
 
-.brand__mark svg { width: 20px; height: 20px; }
+.site-header__actions { display: flex; align-items: center; gap: var(--s-2); margin-inline-start: auto; }
 
-.brand__name {
-  font-size: var(--fs-small);
-  white-space: nowrap;
-}
-
-.site-header__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--s-1);
-  margin-inline-start: auto;
-  order: 2;
-}
-
-/* --- Navigation panel (mobile) ----------------------------------------- */
+/* --- Navigation --------------------------------------------------------- */
 .site-nav {
-  position: absolute;
-  inset-block-start: 100%;
-  inset-inline: 0;
-  order: 1;
-  max-height: 0;
-  overflow: hidden auto;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: grid;
+  align-content: center;
+  padding: calc(var(--header-h) + var(--s-5)) var(--gutter) var(--s-7);
+  background: var(--band-bg);
+  color: var(--band-fg);
+  clip-path: inset(0 0 100% 0);
+  /* Hidden from keyboard and screen readers while closed, but the clip-path
+     keeps the panel animatable in both directions. */
   visibility: hidden;
-  opacity: 0;
-  overscroll-behavior: contain;
-  background: var(--bg);
-  border-bottom: 1px solid var(--rule);
-  transition: max-height var(--dur-slow) var(--ease),
-              opacity var(--dur-slow) var(--ease),
-              visibility var(--dur-slow) var(--ease);
+  transition: clip-path 520ms var(--ease-out), visibility 0s linear 520ms;
 }
-
 .site-nav.is-open {
-  /* Plain value first: if `svh` is unsupported the rule below is dropped and
-     the menu must still open. */
-  max-height: 460px;
-  max-height: min(70svh, 460px);
+  clip-path: inset(0 0 0 0);
   visibility: visible;
-  opacity: 1;
+  transition: clip-path 520ms var(--ease-out), visibility 0s;
 }
 
-.site-nav__list {
-  display: flex;
-  flex-direction: column;
-  padding: var(--s-2) var(--gutter) var(--s-4);
-}
+.site-nav__list { display: grid; gap: var(--s-1); }
 
 .site-nav__link {
   position: relative;
   display: block;
-  padding: var(--s-2) 0;
-  border-bottom: 1px solid var(--rule);
-  color: var(--fg-muted);
-  font-size: var(--fs-body);
-  font-weight: 500;
-  transition: color var(--dur) var(--ease);
+  padding-block: var(--s-2);
+  font-size: clamp(2rem, 9vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--band-fg);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), color var(--dur) var(--ease);
 }
+.site-nav.is-open .site-nav__link { opacity: 1; transform: none; }
+.site-nav.is-open .site-nav__item:nth-child(1) .site-nav__link { transition-delay: 120ms; }
+.site-nav.is-open .site-nav__item:nth-child(2) .site-nav__link { transition-delay: 165ms; }
+.site-nav.is-open .site-nav__item:nth-child(3) .site-nav__link { transition-delay: 210ms; }
+.site-nav.is-open .site-nav__item:nth-child(4) .site-nav__link { transition-delay: 255ms; }
+.site-nav.is-open .site-nav__item:nth-child(5) .site-nav__link { transition-delay: 300ms; }
 
-.site-nav__link:hover,
-.site-nav__link:focus-visible {
-  color: var(--fg);
-}
-
-/* ==========================================================================
-   09. HERO
-   ========================================================================== */
-.hero {
-  padding-block: calc(var(--header-h) + clamp(3.5rem, 8vw, 7rem)) clamp(2.5rem, 6vw, 5rem);
-  border-bottom: 1px solid var(--rule);
-}
-
-/* A short accent rule standing in front of the label - the one piece of
-   ornament on the page, and it carries brand colour at a glance. */
-.hero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  margin-bottom: var(--s-5);
+.site-nav__text { display: inline-block; transition: transform var(--dur) var(--ease); }
+.site-nav__link::before {
+  content: attr(data-label);
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: 62%;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   font-weight: 500;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--fg-muted);
+  color: var(--band-accent);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+.site-nav__link:hover::before,
+.site-nav__link:focus-visible::before { opacity: 1; }
+
+.site-nav__indicator { display: none; }
+
+/* While the overlay is open the header sits on the inverted band, so it borrows
+   that band's tokens and every control inside it flips automatically. */
+.site-header.is-nav-open {
+  --fg: var(--band-fg);
+  --muted: var(--band-muted);
+  --line: var(--band-line);
+  --line-strong: var(--band-line);
+  --accent: var(--band-accent);
+  background: var(--band-bg);
 }
 
-.hero__eyebrow::before {
-  content: "";
-  width: 32px;
-  height: 2px;
-  flex: none;
-  background: var(--accent);
+/* ==========================================================================
+   10. HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  padding-block: calc(var(--header-h) + clamp(2rem, 6vw, 4.5rem)) 0;
+  overflow: hidden;
 }
 
-.hero__title {
-  font-size: var(--fs-display);
-  font-weight: 600;
-  line-height: var(--lh-display);
-  letter-spacing: var(--ls-display);
-  max-width: 16ch;
+/* Cursor-reactive field: a warm light that follows the pointer, over a
+   technical dot grid. Both purely decorative. */
+.hero__field { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+.hero__spot {
+  position: absolute;
+  inset: -10%;
+  opacity: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 35%), rgba(240, 78, 35, 0.22), transparent 68%);
+  transition: opacity var(--dur-slow) var(--ease);
 }
+.hero.is-lit .hero__spot { opacity: 1; }
 
 .hero__grid {
-  display: grid;
-  gap: var(--s-6);
-  margin-top: var(--s-6);
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.55;
+  color: var(--ghost-line);
+  -webkit-mask-image: radial-gradient(120% 80% at 30% 20%, #000 25%, transparent 75%);
+  mask-image: radial-gradient(120% 80% at 30% 20%, #000 25%, transparent 75%);
+  transform: translate3d(var(--gx, 0), var(--gy, 0), 0);
 }
+
+.hero__inner { position: relative; z-index: 2; }
+
+.hero__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 0 0 var(--acid);
+}
+.pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--acid);
+  animation: pulse 2.4s var(--ease-out) infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+.hero__eyebrow-text { color: var(--fg); }
+.hero__avail {
+  padding-inline-start: var(--s-3);
+  border-inline-start: 1px solid var(--line-strong);
+  color: var(--accent-text);
+  display: none;
+}
+
+/* Rotating seal */
+.seal {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(88px, 11vw, 132px);
+  height: clamp(88px, 11vw, 132px);
+  flex: none;
+}
+.seal__ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 26s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.seal__text {
+  font-family: var(--font-mono);
+  font-size: 11.6px;
+  font-weight: 500;
+  letter-spacing: 1.05px;
+  fill: var(--muted);
+}
+.seal__mark {
+  width: 32%;
+  height: 32%;
+  color: var(--accent);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.seal:hover .seal__mark { transform: scale(1.15) rotate(-12deg); }
+
+/* --- Title -------------------------------------------------------------- */
+.hero__title {
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+}
+
+.hero__row { display: block; overflow: hidden; padding-block: 0.04em; }
+.hero__row--out { display: flex; align-items: center; gap: clamp(0.5rem, 2vw, 1.5rem); }
+
+.hero__word {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: rise 1000ms var(--ease-out) forwards;
+  cursor: default;
+  transition: color var(--dur) var(--ease), -webkit-text-stroke-color var(--dur) var(--ease);
+}
+.hero__row:first-of-type .hero__word { animation-delay: 120ms; }
+.hero__row:last-of-type .hero__word { animation-delay: 240ms; }
+
+@keyframes rise { to { transform: translateY(0); } }
+
+/* The second name is drawn as an outline, then fills with ember on hover */
+.hero__word--outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--fg);
+}
+.hero__word--outline:hover,
+.hero__word--outline:focus-visible {
+  color: var(--accent);
+  -webkit-text-stroke-color: var(--accent);
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  .hero__word--outline { color: var(--fg); }
+}
+
+/* Ember slash beside the outlined name */
+.hero__slash {
+  display: inline-block;
+  width: clamp(14px, 3vw, 34px);
+  height: clamp(28px, 6vw, 64px);
+  flex: none;
+  background: var(--accent);
+  transform: skewX(-18deg) scaleY(0);
+  transform-origin: bottom;
+  animation: slash 900ms var(--ease-out) 620ms forwards;
+}
+@keyframes slash { to { transform: skewX(-18deg) scaleY(1); } }
+
+/* --- Body --------------------------------------------------------------- */
+.hero__body { display: grid; gap: var(--s-6); }
 
 .hero__subtitle {
   font-size: var(--fs-lead);
   font-weight: 500;
-  line-height: 1.4;
-  max-width: 28ch;
+  max-width: 26ch;
+  line-height: 1.35;
 }
 
 .hero__lede {
   margin-top: var(--s-3);
   max-width: 46ch;
-  color: var(--fg-muted);
+  color: var(--muted);
 }
 
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-3);
-  margin-top: var(--s-5);
-}
-
-/* Facts presented as a reference list: a rule above each row, no icons. */
-.hero__facts {
-  display: grid;
-  align-content: start;
-  /* The closing rule lives on the list, so it stays true whether the facts
-     run in one column or two. */
-  border-bottom: 1px solid var(--rule);
-}
-
-.hero__fact {
-  padding-block: var(--s-3);
-  border-top: 1px solid var(--rule);
-  color: var(--fg-muted);
-  font-size: var(--fs-small);
-}
-
-.hero__fact a {
-  display: inline-block;
-  /* Padding grows the tap target without disturbing the row rhythm */
-  padding-block: 5px;
-  margin-block: -5px;
+/* Words that react to the pointer */
+.tok {
+  position: relative;
   color: var(--fg);
+  font-weight: 500;
+  cursor: default;
   transition: color var(--dur) var(--ease);
 }
+.tok::after {
+  content: "";
+  position: absolute;
+  inset-inline: -2px;
+  inset-block-end: 0.02em;
+  height: 0.55em;
+  z-index: -1;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.tok:hover { color: var(--ink); }
+.tok:hover::after { transform: scaleX(1); }
 
-.hero__fact a:hover {
-  color: var(--accent-text);
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-5); }
+
+/* --- Facts -------------------------------------------------------------- */
+.hero__facts { display: grid; align-content: start; border-top: 1px solid var(--line); }
+
+.hero__fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-small);
+  transition: padding-inline var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.hero__fact:hover { padding-inline: var(--s-2); background: var(--bg-deep); }
+
+.hero__fact-k {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  flex: none;
+}
+.hero__fact-v { font-weight: 500; text-align: end; }
+.hero__fact-v a { display: inline-block; padding-block: 5px; margin-block: -5px; transition: color var(--dur) var(--ease); }
+.hero__fact-v a:hover { color: var(--accent-text); }
+
+/* --- Scroll cue --------------------------------------------------------- */
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  /* 24px floor for a standalone link */
+  min-height: 24px;
+  padding-block: 2px;
+  margin-top: var(--s-6);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color var(--dur) var(--ease);
+}
+.scroll-cue:hover { color: var(--fg); }
+.scroll-cue__icon { width: 15px; height: 15px; animation: nudge 2.6s var(--ease) infinite; }
+@keyframes nudge {
+  0%, 60%, 100% { transform: translateY(0); }
+  75% { transform: translateY(5px); }
 }
 
 /* ==========================================================================
-   10. ABOUT
+   11. MARQUEE
    ========================================================================== */
-.about__grid {
-  display: grid;
-  gap: var(--s-7);
+.marquee {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-block: clamp(0.75rem, 1.6vw, 1.15rem);
+  background: var(--band-bg);
+  color: var(--band-fg);
+  border-block: 1px solid var(--band-line);
+  overflow: hidden;
+  transform: rotate(-1.4deg) scaleX(1.04);
 }
 
-/* Each part of the narrative gets a heading and space to breathe - the
-   separation is typographic, not a stack of cards. */
-.about__body {
-  display: grid;
-  gap: var(--s-6);
-  max-width: 68ch;
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
 }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.25rem);
+  padding-inline-end: clamp(1rem, 3vw, 2.25rem);
+  font-size: clamp(0.9rem, 1.6vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ==========================================================================
+   12. ABOUT
+   ========================================================================== */
+.about__grid { display: grid; gap: var(--s-7); }
+
+.about__body { display: grid; gap: var(--s-6); max-width: 66ch; }
+
+.about__block { position: relative; padding-inline-start: var(--s-5); }
+.about__block::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 0.35em auto;
+  width: 2px;
+  height: 0;
+  background: var(--accent);
+  transition: height 620ms var(--ease-out);
+}
+.about__block.is-visible::before { height: calc(100% - 0.7em); }
 
 .about__block-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
   margin-bottom: var(--s-2);
   font-size: var(--fs-h3);
 }
-
-.about__block p {
-  color: var(--fg-muted);
+.about__idx {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  color: var(--accent-text);
 }
+.about__block p { color: var(--muted); }
 
-/* The closing note, set apart by a rule rather than a container */
-.about__pull {
-  margin-top: var(--s-4);
-  padding-inline-start: var(--s-4);
-  border-inline-start: 2px solid var(--accent);
-  color: var(--fg) !important;
-  font-size: var(--fs-lead);
-  line-height: 1.5;
+/* Pull quote, set in the serif */
+.pullquote {
+  margin-top: var(--s-5);
+  padding-block: var(--s-4);
+  border-block: 1px solid var(--line);
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 1rem + 1.8vw, 2.1rem);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+  color: var(--fg);
 }
+.pullquote::before { content: "“"; color: var(--accent); }
+.pullquote::after { content: "”"; color: var(--accent); }
 
-/* --- Quick facts ------------------------------------------------------- */
+/* --- Quick facts -------------------------------------------------------- */
 .about__aside {
   align-self: start;
-  padding-top: var(--s-4);
-  border-top: 2px solid var(--fg);
+  padding: var(--s-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-3);
+  background: var(--card);
 }
-
 .aside__title {
   margin-bottom: var(--s-3);
   font-family: var(--font-mono);
@@ -884,40 +1063,25 @@ p { text-wrap: pretty; }
   font-weight: 500;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--fg-muted);
+  color: var(--muted);
 }
-
 .facts__row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
   gap: var(--s-3);
   padding-block: var(--s-2);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
+.facts__term { font-size: var(--fs-small); color: var(--muted); }
+.facts__value { margin: 0; font-size: var(--fs-small); font-weight: 600; text-align: end; }
+.about__aside .link-arrow { margin-top: var(--s-4); }
 
-.facts__term {
-  font-size: var(--fs-small);
-  color: var(--fg-quiet);
-}
-
-.facts__value {
-  margin: 0;
-  font-size: var(--fs-small);
-  font-weight: 500;
-  text-align: end;
-}
-
-.about__aside .link-arrow {
-  margin-top: var(--s-4);
-}
-
-/* --- Gaming & tinkering ------------------------------------------------ */
+/* --- Gaming ------------------------------------------------------------- */
 .gaming {
-  margin-top: var(--s-7);
+  margin-top: var(--s-8);
   padding-top: var(--s-5);
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--line);
 }
-
 .gaming__label {
   margin-bottom: var(--s-3);
   font-family: var(--font-mono);
@@ -927,69 +1091,224 @@ p { text-wrap: pretty; }
   text-transform: uppercase;
   color: var(--accent-text);
 }
-
-.gaming__title {
-  font-size: var(--fs-h3);
-}
-
-.gaming__body {
-  max-width: 68ch;
-}
-
-.gaming__body p {
-  margin-top: var(--s-3);
-  color: var(--fg-muted);
-}
-
-.gaming__body .tags {
-  margin-top: var(--s-4);
-}
+.gaming__title { font-size: var(--fs-h3); }
+.gaming__body { max-width: 66ch; }
+.gaming__body p { margin-top: var(--s-3); color: var(--muted); }
+.gaming__body .chips { margin-top: var(--s-4); }
 
 /* ==========================================================================
-   11. SKILLS
+   13. SKILLS — inverting band
+   --------------------------------------------------------------------------
+   The whole band carries its own token scope, so every component inside it
+   (buttons, chips, numerals, rules) flips automatically.
    ========================================================================== */
-.skills {
-  display: grid;
-  gap: var(--s-6);
+.section--ink {
+  background: var(--band-bg);
+  color: var(--band-fg);
+  --fg: var(--band-fg);
+  --muted: var(--band-muted);
+  --quiet: var(--band-muted);
+  --line: var(--band-line);
+  --line-strong: var(--band-line);
+  --accent-text: var(--band-accent);
+  --ghost-line: var(--band-line);
+  --card: rgba(255, 255, 255, 0.04);
 }
 
-/* Columns open with a rule and a heading - a specification sheet rather
-   than a row of cards. */
+.skills { display: grid; gap: var(--s-4); }
+
 .skill {
-  padding-top: var(--s-4);
-  border-top: 2px solid var(--fg);
+  position: relative;
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-3);
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color var(--dur) var(--ease), transform var(--dur-slow) var(--ease-out);
 }
+.skill:hover, .skill:focus-visible { transform: translateY(-6px); border-color: var(--accent); }
 
-.skill__title {
-  font-size: var(--fs-h3);
+/* The wipe that floods the panel on hover / keyboard focus */
+.skill__glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--band-invert-bg);
+  transform: translateY(100%);
+  transition: transform var(--dur-slow) var(--ease-out);
 }
+.skill:hover .skill__glow,
+.skill:focus-visible .skill__glow { transform: translateY(0); }
 
-.skill__list {
-  margin-top: var(--s-4);
+.skill:hover, .skill:focus-visible { color: var(--band-invert-fg); }
+
+.skill__num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  color: var(--accent-text);
+  transition: color var(--dur) var(--ease);
 }
+.skill:hover .skill__num,
+.skill:focus-visible .skill__num { color: var(--band-invert-fg); }
 
+.skill__title { font-size: var(--fs-h3); font-weight: 700; }
+
+.skill__list { display: grid; margin-top: var(--s-2); }
 .skill__list li {
   padding-block: var(--s-2);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
   font-size: var(--fs-small);
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out),
+              border-color var(--dur) var(--ease);
+}
+.skill:hover .skill__list li, .skill:focus-visible .skill__list li { transform: translateX(6px); }
+.skill:hover .skill__list li:nth-child(2) { transition-delay: 40ms; }
+.skill:hover .skill__list li:nth-child(3) { transition-delay: 80ms; }
+.skill:hover .skill__list li:nth-child(4) { transition-delay: 120ms; }
+.skill:hover .skill__list li { border-color: rgba(21, 20, 15, 0.18); }
+
+/* ==========================================================================
+   14. PROJECTS — plate wall
+   ========================================================================== */
+.plates {
+  position: relative;
+  display: grid;
+  gap: var(--s-5);
+}
+
+.plates__chip {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 5;
+  padding: 0.5em 0.85em;
+  border-radius: 999px;
+  background: var(--ember);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(var(--chip-x, 0), var(--chip-y, 0)) translate(-50%, -50%) scale(var(--chip-s, 0.6));
+  transition: opacity var(--dur) var(--ease), transform var(--dur-slow) var(--ease-out);
+  pointer-events: none;
+  will-change: transform;
+}
+.plates.is-hot .plates__chip { --chip-s: 1; opacity: 1; }
+
+.plate { display: grid; gap: var(--s-2); }
+
+.plate__frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-3);
+  background: var(--card);
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform var(--dur-slow) var(--ease-out), border-color var(--dur) var(--ease);
+  will-change: transform;
+}
+.plate:hover .plate__frame { border-color: var(--accent); }
+.plate__frame img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 700ms var(--ease-out); }
+.plate:hover .plate__frame img { transform: scale(1.04); }
+
+/* The status band that rises out of the plate edge on hover */
+.plate__frame::after {
+  content: "Coming soon";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  padding: 0.7em 1em;
+  background: var(--ember);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: translateY(100%);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.plate:hover .plate__frame::after { transform: translateY(0); }
+
+.plate__cap {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.plate__idx { color: var(--accent-text); }
+
+/* ==========================================================================
+   15. EXPERIENCE — ember band
+   ========================================================================== */
+.section--ember {
+  background: var(--ember);
+  color: var(--ink);
+  --fg: var(--ink);
+  /* 0.90 rather than a lighter tint: on the ember ground anything more
+     transparent drops this text below 4.5:1. */
+  --muted: rgba(21, 20, 15, 0.9);
+  --quiet: rgba(21, 20, 15, 0.9);
+  --line: rgba(21, 20, 15, 0.22);
+  --line-strong: rgba(21, 20, 15, 0.34);
+  --accent-text: var(--ink);
+  --ghost-line: rgba(21, 20, 15, 0.2);
+  --accent: var(--ink);
+}
+.section--ember .section__rule { background: var(--ink); }
+.section--ember ::selection { background: var(--ink); color: var(--ember); }
+
+.await {
+  display: grid;
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 2px solid var(--ink);
+}
+
+.await__line {
+  max-width: 30ch;
+  font-size: clamp(1.35rem, 1rem + 2.2vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+}
+.await__line em { font-family: var(--font-serif); font-style: italic; }
+
+.await__seal {
+  justify-self: start;
+  padding: 0.55em 1.1em;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
 }
 
 /* ==========================================================================
-   12. CONTACT & FORM
+   16. CONTACT & FORM
    ========================================================================== */
-.contact__grid {
-  display: grid;
-  gap: var(--s-7);
-}
+.contact__grid { display: grid; gap: var(--s-7); }
 
-.contact__group {
-  padding-top: var(--s-3);
-  border-top: 1px solid var(--rule);
-}
-
-.contact__group + .contact__group {
-  margin-top: var(--s-5);
-}
+.contact__group { padding-top: var(--s-3); border-top: 1px solid var(--line); }
+.contact__group + .contact__group { margin-top: var(--s-5); }
 
 .contact__label {
   margin-bottom: var(--s-2);
@@ -998,25 +1317,25 @@ p { text-wrap: pretty; }
   font-weight: 500;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--fg-quiet);
+  color: var(--muted);
 }
 
 .contact__email {
   display: inline-block;
-  padding-block: 5px;
-  margin-block: -5px;
-  font-size: var(--fs-lead);
-  font-weight: 500;
-  transition: color var(--dur) var(--ease);
+  padding-block: 4px;
+  margin-block: -4px;
+  font-size: clamp(1.25rem, 1rem + 1.6vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 2px;
+  transition: background-size var(--dur-slow) var(--ease-out), color var(--dur) var(--ease);
 }
+.contact__email:hover { background-size: 100% 2px; color: var(--accent-text); }
 
-.contact__email:hover {
-  color: var(--accent-text);
-}
-
-.contact__links {
-  display: grid;
-}
+.contact__links { display: grid; }
 
 .contact__link {
   display: flex;
@@ -1024,122 +1343,93 @@ p { text-wrap: pretty; }
   gap: var(--s-3);
   width: 100%;
   padding-block: var(--s-3);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
   font-size: var(--fs-small);
-  font-weight: 500;
+  font-weight: 600;
   text-align: start;
-  transition: color var(--dur) var(--ease);
+  transition: color var(--dur) var(--ease), padding-inline var(--dur) var(--ease);
 }
+.contact__link:hover { color: var(--accent-text); padding-inline-start: var(--s-2); }
 
-.contact__link:hover {
-  color: var(--accent-text);
-}
-
+.contact__name { flex: none; }
 .contact__handle {
   margin-inline-start: auto;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   font-weight: 400;
-  color: var(--fg-quiet);
+  color: var(--muted);
 }
-
 .contact__link-icon {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   flex: none;
-  color: var(--fg-quiet);
-  transition: color var(--dur) var(--ease);
+  color: var(--muted);
+  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
+.contact__link:hover .contact__link-icon { color: var(--accent-text); transform: translate(2px, -2px); }
 
-.contact__link:hover .contact__link-icon {
-  color: var(--accent-text);
-}
+/* Copy control: the tick replaces the copy glyph once it succeeds */
+.contact__copy-state { position: relative; width: 15px; height: 15px; flex: none; }
+.contact__copy-state .contact__link-icon { position: absolute; inset: 0; }
+.contact__link-icon--done { opacity: 0; color: var(--acid); }
+.contact__link--copy.is-copied .contact__link-icon--copy { opacity: 0; }
+.contact__link--copy.is-copied .contact__link-icon--done { opacity: 1; transform: none; }
+.contact__link--copy.is-copied { color: var(--accent-text); }
 
-.contact__note {
-  margin-top: var(--s-4);
-  color: var(--fg-quiet);
-  font-size: var(--fs-small);
-}
-
-.copy-status {
-  margin-top: var(--s-2);
-  color: var(--accent-text);
-  font-size: var(--fs-small);
-  font-weight: 500;
-}
-
+.contact__note { margin-top: var(--s-4); color: var(--muted); font-size: var(--fs-small); }
+.copy-status { margin-top: var(--s-2); color: var(--accent-text); font-size: var(--fs-small); font-weight: 600; }
 .copy-status:empty { display: none; }
 
-/* --- Form -------------------------------------------------------------- */
+/* --- Form --------------------------------------------------------------- */
 .contact-form {
   position: relative;
   display: grid;
   align-content: start;
   gap: var(--s-4);
-  padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--rule);
-  border-radius: var(--r-3);
-  background: var(--panel);
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-4);
+  background: var(--card);
 }
 
-.field {
-  display: grid;
-  gap: var(--s-2);
-}
-
-.field__label {
-  font-size: var(--fs-small);
+.form__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
   font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--line);
 }
 
-.field__optional {
-  color: var(--fg-quiet);
-  font-weight: 400;
-}
+.field { display: grid; gap: var(--s-2); position: relative; }
+.field__label { font-size: var(--fs-small); font-weight: 600; }
+.field__optional { color: var(--muted); font-weight: 400; }
 
 .field__input {
   width: 100%;
-  padding: 0.7rem 0.85rem;
-  border: 1px solid var(--field-border);
-  border-radius: var(--r-2);
+  padding: 0.8rem 0.9rem;
+  border: 2px solid var(--field-line);
+  border-radius: var(--r-3);
   background: var(--field-bg);
   color: var(--fg);
   font-size: var(--fs-small);
-  transition: border-color var(--dur) var(--ease),
-              box-shadow var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
 }
-
-/* Hover sharpens the boundary in whichever direction is more prominent for the
-   active theme (darker on paper, lighter on ink). */
-.field__input:hover {
-  border-color: var(--fg-muted);
-}
-
+.field__input:hover { border-color: var(--fg); }
 .field__input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  transform: translateY(-1px);
 }
+.field__input--area { min-height: 7.5rem; resize: vertical; line-height: 1.6; }
 
-.field__input--area {
-  min-height: 8rem;
-  resize: vertical;
-  line-height: 1.6;
-}
+.field__error { color: var(--accent-text); font-size: var(--fs-small); font-weight: 600; }
+.field.is-invalid .field__input { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
 
-.field__error {
-  color: var(--accent-text);
-  font-size: var(--fs-small);
-  font-weight: 500;
-}
-
-/* Invalid state is applied by JavaScript after the first validation pass */
-.field.is-invalid .field__input {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-/* Honeypot: removed from the visual flow but still submitted */
 .field--honeypot {
   position: absolute;
   width: 1px;
@@ -1156,112 +1446,130 @@ p { text-wrap: pretty; }
   align-items: flex-start;
   gap: var(--s-2);
   padding: var(--s-3);
-  border: 1px solid var(--rule);
-  border-radius: var(--r-2);
-  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: var(--r-3);
   font-size: var(--fs-small);
+  color: var(--accent-text);
 }
-
 .form-status.is-visible { display: flex; }
-
-.form-status.is-success {
-  border-color: var(--accent);
-  color: var(--accent-text);
-}
-
-.form-status.is-error {
-  border-color: var(--accent);
-  color: var(--accent-text);
-}
-
-.form-status__icon {
-  display: none;
-  width: 16px;
-  height: 16px;
-  flex: none;
-  margin-top: 3px;
-}
-
+.form-status__icon { display: none; width: 17px; height: 17px; flex: none; margin-top: 2px; }
 .form-status.is-success .form-status__icon--ok,
 .form-status.is-error .form-status__icon--error { display: block; }
+.form-status__icon--ok { color: var(--acid); }
 
 /* ==========================================================================
-   13. FOOTER & BACK-TO-TOP
+   17. FOOTER
    ========================================================================== */
-/* The slab is dark in both themes, so it carries its own focus ring colour:
-   the paper-theme accent would only manage 3.2:1 against it. */
 .site-footer {
-  --focus-ring: #e87a55;
-
+  position: relative;
+  overflow: hidden;
+  padding-block-start: clamp(3rem, 8vw, 6rem);
   background: var(--slab-bg);
   color: var(--slab-fg);
+  --focus-ring: var(--ember-bright);
 }
+.site-footer ::selection { background: var(--acid); color: var(--ink); }
+
+.footer__cta {
+  padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  border-bottom: 1px solid var(--slab-line);
+}
+
+.footer__kicker {
+  margin-bottom: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--acid);
+}
+
+.footer__headline {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.25rem);
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 1.2rem + 9vw, 8rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--slab-fg);
+  transition: color var(--dur) var(--ease);
+}
+.footer__headline:hover { color: var(--ember); }
+
+.footer__headline-icon {
+  width: clamp(28px, 4vw, 56px);
+  height: clamp(28px, 4vw, 56px);
+  flex: none;
+  color: var(--ember);
+  transition: transform var(--dur-slow) var(--ease-out), color var(--dur) var(--ease);
+}
+.footer__headline:hover .footer__headline-icon { transform: translate(8px, -8px); color: var(--acid); }
+
+.footer__mail { margin-top: var(--s-5); font-size: var(--fs-lead); }
+.footer__mail a {
+  display: inline-block;
+  padding-block: 5px;
+  margin-block: -5px;
+  border-bottom: 1px solid var(--slab-line);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.footer__mail a:hover { color: var(--ember); border-color: var(--ember); }
 
 .site-footer__top {
   display: grid;
   gap: var(--s-6);
-  padding-block: var(--s-7);
+  padding-block: var(--s-7) var(--s-6);
 }
 
-.brand--inverse .brand__mark {
-  background: var(--paper);
-  color: var(--ink);
-}
+.brand--inverse .brand__mark { background: var(--ember); color: var(--ink); }
 
-.site-footer__note {
-  margin-top: var(--s-3);
-  max-width: 34ch;
-  color: var(--slab-muted);
-  font-size: var(--fs-small);
-}
+.site-footer__nav, .site-footer__social { display: flex; flex-direction: column; gap: var(--s-1); }
+.site-footer__links { display: flex; flex-direction: column; gap: var(--s-1); }
 
-.site-footer__nav,
-.site-footer__social {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-2);
-}
-
-.site-footer__links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-1);
-}
-
-.site-footer__links,
-.site-footer__social {
-  align-items: flex-start;
-  gap: 0;
-}
-
-.site-footer__links a,
-.site-footer__social a,
-.site-footer__copy {
+.site-footer__links a, .site-footer__social a, .site-footer__copy {
   display: inline-block;
   padding-block: 3px;
   color: var(--slab-muted);
   font-size: var(--fs-small);
-  transition: color var(--dur) var(--ease);
+  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-
-.site-footer__links a:hover,
-.site-footer__social a:hover,
-.site-footer__copy:hover {
+.site-footer__links a:hover, .site-footer__social a:hover, .site-footer__copy:hover {
   color: var(--slab-fg);
+  transform: translateX(3px);
 }
 
 .site-footer__bottom {
   display: grid;
   gap: var(--s-2);
   padding-block: var(--s-4) var(--s-5);
-  border-top: 1px solid var(--slab-rule);
+  border-top: 1px solid var(--slab-line);
   color: var(--slab-muted);
   font-size: var(--fs-micro);
 }
 
-/* Switched on at 900px (see the responsive section): below that a floating
-   control lands on top of body copy, and the fixed header already carries a
-   "back to top" link in the wordmark. */
+/* ==========================================================================
+   18. BACK TO TOP & PROGRESS
+   ========================================================================== */
+.progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 120;
+  height: 3px;
+  pointer-events: none;
+}
+.progress__bar {
+  display: block;
+  height: 100%;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
 .to-top {
   position: fixed;
   inset-block-end: var(--s-4);
@@ -1269,176 +1577,190 @@ p { text-wrap: pretty; }
   z-index: 90;
   display: none;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--rule-strong);
-  border-radius: var(--r-2);
-  background: var(--bg);
-  color: var(--fg-muted);
-  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
-              opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
-}
-
-.to-top:hover {
+  width: 46px;
+  height: 46px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--card);
   color: var(--fg);
-  border-color: var(--fg);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease), opacity var(--dur) var(--ease),
+              transform var(--dur) var(--ease), visibility var(--dur) var(--ease);
 }
-
+.to-top:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); transform: translateY(-3px); }
 .to-top svg { width: 18px; height: 18px; }
-
-/* Retired once the footer is on screen: it would otherwise cover the footer
-   text, and "back to top" has no value at the end of a page. The class is
-   applied by an IntersectionObserver in main.js. */
-.to-top.is-suppressed {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+.to-top.is-suppressed { opacity: 0; visibility: hidden; pointer-events: none; }
 
 /* ==========================================================================
-   14. RESPONSIVE COMPOSITION
+   19. REVEAL & PARALLAX
    --------------------------------------------------------------------------
-   Each breakpoint changes the composition rather than simply shrinking it.
+   Armed only when JavaScript runs, so a failed script never hides content.
    ========================================================================== */
-
-/* --- 640px: two-up groupings ------------------------------------------ */
-@media (min-width: 640px) {
-  .skills {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--s-6) var(--s-5);
-  }
-
-  .site-footer__top {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .site-footer__brand {
-    grid-column: 1 / -1;
-  }
-
-  .hero__facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: var(--s-5);
-  }
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 620ms var(--ease-out), transform 700ms var(--ease-out);
 }
 
-/* --- 900px: full navigation, editorial project rows ------------------- */
-@media (min-width: 900px) {
-  :root {
-    --header-h: 72px;
-  }
+/* Ghost numerals drift slightly against the scroll */
+.section__ghost { transform: translate3d(0, var(--ghost-shift, 0px), 0); }
 
-  /* The panel becomes an ordinary inline navigation */
+/* ==========================================================================
+   20. RESPONSIVE
+   ========================================================================== */
+@media (min-width: 600px) {
+  .hero__avail { display: inline; }
+  .hero__grid { opacity: 1; }
+}
+
+@media (min-width: 480px) {
+  /* The footer link lists read better as two short columns than one long stack */
+  .site-footer__nav, .site-footer__social { grid-column: 1 / -1; }
+  .site-footer__links { flex-direction: row; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+  .site-footer__social { flex-direction: row; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+  .site-footer__links .site-footer__social { gap: var(--s-2) var(--s-5); }
+}
+
+@media (min-width: 768px) {
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); }
+  .plates { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); }
+  .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-footer__brand { grid-column: 1 / -1; }
+}
+
+@media (min-width: 900px) {
+  :root { --header-h: 76px; }
+
+  /* Navigation becomes a quiet inline row again */
   .nav-toggle { display: none; }
 
   .site-nav {
     position: static;
-    order: 2;
-    max-height: none;
-    overflow: visible;
+    z-index: auto;
+    display: block;
+    clip-path: none;
     visibility: visible;
-    opacity: 1;
+    transition: none;
+    padding: 0;
     margin-inline-start: auto;
     background: none;
-    border-bottom: 0;
+    color: inherit;
   }
 
   .site-nav__list {
-    flex-direction: row;
+    display: flex;
     align-items: center;
     gap: var(--s-5);
-    padding: 0;
   }
+
+  .site-nav__item { position: relative; }
 
   .site-nav__link {
-    /* Padding brings the text link to a 27px target; the negative margin keeps
-       the header's vertical rhythm unchanged. */
-    padding-block: 2px;
-    margin-block: -2px;
-    border-bottom: 0;
+    /* Clipping is what makes the roll work: the duplicate waits just below the
+       box and the real label leaves through the top. */
+    overflow: hidden;
+    padding-block: 6px;
+    margin-block: -6px;
     font-size: var(--fs-small);
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    opacity: 1;
+    transform: none;
   }
 
-  /* Active and hovered links are marked with an accent rule that grows from
-     the left - the one animation in the header. */
-  .site-nav__link::after {
-    content: "";
-    position: absolute;
-    inset-inline: 0;
-    inset-block-end: -4px;
-    height: 1px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
+  /* The label rolls up and its duplicate rolls in - a small, precise detail */
+  .site-nav__link::before {
+    inset-block-end: 0;
+    inset-block-start: 0;
+    display: grid;
+    align-content: center;
+    font-family: var(--font-sans);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--accent-text);
+    opacity: 1;
+    transform: translateY(110%);
     transition: transform var(--dur) var(--ease);
+    overflow: hidden;
   }
+  .site-nav__link:hover::before,
+  .site-nav__link:focus-visible::before { transform: translateY(0); }
+  .site-nav__link:hover .site-nav__text,
+  .site-nav__link:focus-visible .site-nav__text { transform: translateY(-110%); }
 
-  .site-nav__link:hover::after,
-  .site-nav__link:focus-visible::after,
-  .site-nav__link[aria-current="true"]::after {
-    transform: scaleX(1);
+  /* Sliding indicator, positioned from JS */
+  .site-nav__indicator {
+    display: block;
+    position: absolute;
+    inset-block-end: -8px;
+    inset-inline-start: 0;
+    width: var(--ind-w, 0px);
+    height: 2px;
+    background: var(--accent);
+    transform: translateX(var(--ind-x, 0px));
+    transition: transform 380ms var(--ease-out), width 380ms var(--ease-out), opacity var(--dur) var(--ease);
+    opacity: 0;
   }
+  .site-nav.has-active .site-nav__indicator { opacity: 1; }
 
-  .site-header__actions {
-    margin-inline-start: 0;
-    order: 3;
-    padding-inline-start: var(--s-3);
-    border-inline-start: 1px solid var(--rule);
-  }
+  .site-header__actions { padding-inline-start: var(--s-4); margin-inline-start: 0; border-inline-start: 1px solid var(--line); }
 
-  /* Hero: name over a two-column body, introduction left, facts right */
-  .hero__grid {
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  /* Hero: asymmetric split - headline block, then lead + facts */
+  .hero__body {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
     column-gap: var(--s-8);
     align-items: start;
   }
 
-  .hero__facts {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  /* Mastheads put the standfirst beside the heading, sharing a baseline */
   .section__head {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
     column-gap: var(--s-7);
     align-items: end;
-    margin-bottom: var(--s-7);
+    grid-template-rows: auto auto auto;
   }
-
-  .section__label { grid-column: 1 / -1; }
-  .section__title { grid-column: 1; }
-  .section__intro { grid-column: 2; }
+  /* Row 1: label on the left, outlined numeral on the right.
+     Row 2: heading on the left, standfirst on the right. */
+  .section__label { grid-column: 1; grid-row: 1; }
+  .section__ghost { grid-column: 2; grid-row: 1; }
+  .section__title { grid-column: 1; grid-row: 2; font-size: var(--fs-h2); }
+  .section__intro { grid-column: 2; grid-row: 2; }
+  .section__rule { grid-column: 1 / -1; grid-row: 3; }
 
   .about__grid {
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     column-gap: var(--s-8);
     align-items: start;
   }
+  .about__aside { position: sticky; top: calc(var(--header-h) + var(--s-5)); }
 
-  .about__aside {
-    position: sticky;
-    top: calc(var(--header-h) + var(--s-5));
+  .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); }
+  .plates { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); }
+
+  .await {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: center;
+    column-gap: var(--s-7);
   }
+  .await__seal { justify-self: end; }
 
   .contact__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
     column-gap: var(--s-8);
     align-items: start;
   }
 
-  .site-footer__top {
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--s-6);
-  }
-
+  .site-footer__top { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-6); }
   .site-footer__brand { grid-column: auto; }
-
-  /* Below this width the control sits on top of body copy (measured), so it
-     stays off and the header wordmark carries "back to top" instead. From
-     here up the text column clears it. */
-  .to-top {
-    display: grid;
-  }
+  .site-footer__nav, .site-footer__social { grid-column: auto; }
+  .site-footer__links, .site-footer__social { flex-direction: column; flex-wrap: nowrap; gap: var(--s-1); }
 
   .site-footer__bottom {
     display: flex;
@@ -1446,102 +1768,69 @@ p { text-wrap: pretty; }
     justify-content: space-between;
     gap: var(--s-4);
   }
+
+  /* Floating control only where the text column clears it (measured) */
+  .to-top { display: grid; }
 }
 
-/* --- 1120px: full three-column skills and more air -------------------- */
 @media (min-width: 1120px) {
-  .skills {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--s-6);
-  }
-
+  .skills { gap: var(--s-6); }
+  .skill { padding: var(--s-6); }
 }
 
 /* ==========================================================================
-   15. MOTION PREFERENCES
+   21. MOTION PREFERENCES
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
 
-  /* Content is shown immediately - no reveal animation at all */
-  .js [data-reveal] {
-    opacity: 1;
-    transform: none;
-  }
+  /* Everything is simply present, in its final state */
+  .js [data-reveal] { opacity: 1; transform: none; }
 
+  .hero__word, .hero__slash { transform: none; }
+  .hero__slash { transform: skewX(-18deg); }
+  .hero__spot { display: none; }
+  .hero__grid { transform: none; }
+  .section__rule { transform: scaleX(1); }
+  .about__block::before { height: calc(100% - 0.7em); }
+  .marquee__track { animation: none; }
+  .seal__ring { animation: none; }
+  .scroll-cue__icon { animation: none; }
+  .plate__frame { transform: none; }
+  .skill__glow { display: none; }
 }
 
 /* ==========================================================================
-   16. PRINT
-   --------------------------------------------------------------------------
-   The page is a document first: on paper, everything is revealed and the
-   interactive chrome steps aside.
+   22. PRINT
    ========================================================================== */
 @media print {
   :root {
-    --bg: #fff;
-    --fg: #000;
-    --fg-muted: #333;
-    --fg-quiet: #444;
-    --rule: #bbb;
-    --rule-strong: #999;
-    --panel: #fff;
-    --slab-bg: #fff;
-    --slab-fg: #000;
-    --slab-muted: #333;
-    --slab-rule: #bbb;
-    --accent-text: #000;
+    --bg: #fff; --fg: #000; --muted: #333; --line: #bbb; --line-strong: #999;
+    --card: #fff; --slab-bg: #fff; --slab-fg: #000; --slab-muted: #333;
+    --slab-line: #bbb; --band-bg: #fff; --band-fg: #000; --band-muted: #333;
+    --band-line: #bbb; --accent: #000; --accent-text: #000; --ghost-line: #ddd;
   }
 
-  body {
-    font-size: 11pt;
-    background: #fff;
-    color: #000;
-  }
+  .grain, .progress, .site-header, .nav-toggle, .icon-btn, .skip-link, .to-top,
+  .scroll-cue, .marquee, .contact-form, .site-footer__nav, .site-footer__social,
+  .plates__chip, .hero__field, .await__seal { display: none !important; }
 
-  /* Never let a reveal hide content from the printer */
-  .js [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
-  }
+  body { font-size: 11pt; background: #fff; color: #000; }
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; }
 
-  .site-header,
-  .nav-toggle,
-  .icon-btn,
-  .skip-link,
-  .to-top,
-  .site-footer__nav,
-  .site-footer__social,
-  .contact-form {
-    display: none !important;
-  }
+  .section { padding-block: 1.25rem; }
+  .section--ink, .section--ember { background: #fff !important; color: #000 !important; }
+  .hero__title { font-size: 3rem; }
+  .hero__word { transform: none; }
 
-  .section {
-    padding-block: 1.5rem;
-  }
+  .about__block, .skill, .plate { break-inside: avoid; }
 
-  .section--panel {
-    background: #fff;
-  }
-
-  .skill,
-  .about__block {
-    break-inside: avoid;
-  }
-
-  a[href^="http"]::after,
-  a[href^="mailto"]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-    color: #444;
-  }
+  a[href^="http"]::after, a[href^="mailto"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; }
 }

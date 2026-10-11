@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Waquar Shaikh monogram">
-  <!-- Ink tile: legible against both light and dark browser chrome -->
-  <rect width="64" height="64" rx="9" fill="#171815"/>
-  <!-- Stylised "W" monogram -->
+  <!-- Ember tile with an ink monogram: recognisable at 16px, and it reads as
+       the brand's colour even in a crowded tab strip -->
+  <rect width="64" height="64" rx="14" fill="#F04E23"/>
   <path d="M13 19.5 22.5 45 32 27.5 41.5 45 51 19.5"
-        fill="none" stroke="#F4F2EC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        fill="none" stroke="#15140F" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

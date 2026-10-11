@@ -1,23 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract placeholder cover graphic">
-  <!-- Plate 02: contour study on paper, one arc carrying the accent -->
-  <rect width="1200" height="750" fill="#F4F2EC"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract placeholder plate, contour arcs on bone">
+  <!-- Plate 02: contour study on bone, ember arc leading, acid point -->
+  <rect width="1200" height="750" fill="#EFE9DC"/>
 
-  <!-- Contour arcs radiating from the lower left -->
-  <g fill="none" stroke="#171815" stroke-linecap="round">
-    <path d="M60 750a300 300 0 0 0 300-300" stroke-opacity="0.85" stroke-width="3"/>
-    <path d="M60 750a420 420 0 0 0 420-420" stroke-opacity="0.45" stroke-width="2"/>
-    <path d="M60 750a540 540 0 0 0 540-540" stroke-opacity="0.3" stroke-width="2"/>
-    <path d="M60 750a660 660 0 0 0 660-660" stroke-opacity="0.18" stroke-width="2"/>
+  <g fill="none" stroke="#15140F" stroke-linecap="round">
+    <path d="M60 750a300 300 0 0 0 300-300" stroke-opacity="0.9" stroke-width="4"/>
+    <path d="M60 750a420 420 0 0 0 420-420" stroke-opacity="0.5" stroke-width="3"/>
+    <path d="M60 750a540 540 0 0 0 540-540" stroke-opacity="0.32" stroke-width="2"/>
+    <path d="M60 750a660 660 0 0 0 660-660" stroke-opacity="0.2" stroke-width="2"/>
     <path d="M60 750a780 780 0 0 0 780-780" stroke-opacity="0.12" stroke-width="2"/>
   </g>
-  <path d="M60 750a180 180 0 0 0 180-180" fill="none" stroke="#C34F32" stroke-width="4" stroke-linecap="round"/>
+  <path d="M60 750a180 180 0 0 0 180-180" fill="none" stroke="#F04E23" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="240" cy="570" r="9" fill="#D4F04A"/>
 
   <!-- Measured block, upper right -->
-  <rect x="880" y="240" width="240" height="150" rx="4" fill="none" stroke="#171815" stroke-opacity="0.35" stroke-width="2"/>
-  <path d="M880 315h240M1000 240v150" stroke="#171815" stroke-opacity="0.2" stroke-width="2"/>
-  <rect x="910" y="270" width="80" height="12" fill="#C34F32"/>
-  <rect x="910" y="345" width="140" height="10" fill="#171815" fill-opacity="0.45"/>
+  <rect x="860" y="220" width="260" height="170" rx="6" fill="none" stroke="#15140F" stroke-opacity="0.4" stroke-width="2"/>
+  <path d="M860 305h260M990 220v170" stroke="#15140F" stroke-opacity="0.22" stroke-width="2"/>
+  <rect x="895" y="252" width="92" height="14" fill="#F04E23"/>
+  <rect x="895" y="340" width="150" height="11" fill="#15140F" fill-opacity="0.5"/>
 
-  <!-- Baseline -->
-  <path d="M60 706h1080" stroke="#171815" stroke-opacity="0.16" stroke-width="2"/>
+  <path d="M60 706h1080" stroke="#15140F" stroke-opacity="0.18" stroke-width="2"/>
 </svg>

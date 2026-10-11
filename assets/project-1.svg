@@ -1,27 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract placeholder cover graphic">
-  <!-- Plate 01: an ink ground with a technical drawing of an interface -->
-  <rect width="1200" height="750" fill="#171815"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract placeholder plate, ink ground with ember accent">
+  <!-- Plate 01: ink ground, a technical drawing of an interface, acid tick -->
+  <rect width="1200" height="750" fill="#15140F"/>
 
   <!-- Hairline measuring grid -->
-  <g stroke="#F4F2EC" stroke-opacity="0.07" stroke-width="1">
+  <g stroke="#EFE9DC" stroke-opacity="0.08" stroke-width="1">
     <path d="M100 0v750M250 0v750M400 0v750M550 0v750M700 0v750M850 0v750M1000 0v750M1150 0v750"/>
     <path d="M0 120h1200M0 270h1200M0 420h1200M0 570h1200M0 690h1200"/>
   </g>
 
   <!-- Outlined panel -->
-  <rect x="140" y="130" width="620" height="480" rx="4" fill="none" stroke="#F4F2EC" stroke-opacity="0.28" stroke-width="2"/>
+  <rect x="140" y="130" width="620" height="480" rx="6" fill="none" stroke="#EFE9DC" stroke-opacity="0.3" stroke-width="2"/>
 
-  <!-- Signal line -->
-  <rect x="200" y="196" width="168" height="12" fill="#C34F32"/>
-  <rect x="200" y="248" width="320" height="12" fill="#F4F2EC" fill-opacity="0.55"/>
-  <rect x="200" y="300" width="256" height="12" fill="#F4F2EC" fill-opacity="0.32"/>
-  <rect x="200" y="352" width="392" height="12" fill="#F4F2EC" fill-opacity="0.18"/>
+  <!-- Content bars: ember signal, then bone that fades back -->
+  <rect x="200" y="196" width="196" height="14" fill="#F04E23"/>
+  <rect x="200" y="250" width="330" height="13" fill="#EFE9DC" fill-opacity="0.6"/>
+  <rect x="200" y="302" width="262" height="13" fill="#EFE9DC" fill-opacity="0.34"/>
+  <rect x="200" y="354" width="404" height="13" fill="#EFE9DC" fill-opacity="0.18"/>
 
   <!-- Baseline rule -->
-  <path d="M200 512h500" stroke="#F4F2EC" stroke-opacity="0.24" stroke-width="2"/>
+  <path d="M200 512h500" stroke="#EFE9DC" stroke-opacity="0.26" stroke-width="2"/>
 
-  <!-- Detail callout -->
-  <rect x="880" y="196" width="140" height="140" rx="4" fill="none" stroke="#C34F32" stroke-width="2"/>
-  <circle cx="950" cy="266" r="30" fill="none" stroke="#F4F2EC" stroke-opacity="0.5" stroke-width="2"/>
-  <path d="M880 336h140" stroke="#F4F2EC" stroke-opacity="0.28" stroke-width="2"/>
+  <!-- Detail callout: ember square, bone circle, acid dot -->
+  <rect x="880" y="196" width="150" height="150" rx="6" fill="none" stroke="#F04E23" stroke-width="3"/>
+  <circle cx="955" cy="271" r="32" fill="none" stroke="#EFE9DC" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="955" cy="271" r="7" fill="#D4F04A"/>
+  <path d="M880 366h150" stroke="#EFE9DC" stroke-opacity="0.3" stroke-width="2"/>
 </svg>
