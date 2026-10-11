@@ -37,7 +37,8 @@ and no package manager, so the repository deploys exactly as it sits.
 Your real content is live in these places:
 
 - **Hero** — name, tagline ("AI, software development, web and automation"), intro
-  paragraph, and an "Exploring tech since 2020" fact.
+  paragraph, and quick facts: exploring tech since 2020, Maharashtra (India), email,
+  and availability.
 - **About** — the full story in four parts (where it started, from curiosity to
   craft, where you are today, what is ahead), the closing note about curiosity and
   consistency, and a **Gaming & tinkering** card that carries the Minecraft and
@@ -47,7 +48,7 @@ Your real content is live in these places:
   clipboard, since Discord has no public profile URL.
 - **Footer** — Instagram, Discord copy button and email alongside the icon links.
 - **SEO** — description, Open Graph copy, the social card image, and the
-  `Person` structured data now include the Instagram URL.
+  `Person` structured data now include the Instagram URL and the address region.
 
 ## Before you publish
 
@@ -55,7 +56,6 @@ Remaining placeholders, all marked in `index.html`. Search for `[` and replace:
 
 | Placeholder | Where |
 | --- | --- |
-| `[LOCATION]`, `[AVAILABILITY_STATUS]` | Hero quick facts and the About "Quick facts" list — or delete those rows |
 | `[SKILLS_INTRO_TEXT]`, `[SKILL_GROUP_1..3_TITLE/DESCRIPTION]`, `[SKILL_1_1]` … | Skills |
 | `[PROJECTS_INTRO_TEXT]`, `[PROJECT_1..3_TITLE/DESCRIPTION]`, `[TAG]` | Projects |
 | `[EXPERIENCE_INTRO_TEXT]`, `[ROLE_TITLE_1..3]`, `[COMPANY_OR_ORGANISATION_1..3]`, `[WORK_TYPE_1..3]`, `[START_DATE]`, `[END_DATE]`, `[EDUCATION_QUALIFICATION]`, `[INSTITUTION_NAME]`, `[EDUCATION_TYPE]`, `[EDUCATION_DESCRIPTION]` | Experience |
@@ -70,6 +70,12 @@ would rather not publish your age, which is a perfectly sensible choice. The
 Skills, Projects and Experience sections still hold neutral placeholders because
 you have not sent that content yet; nothing about your work history has been
 invented.
+
+Location shows as **Maharashtra, India** (state level, not a city) in the hero,
+the About quick-facts list and the structured data. Availability reads
+**"Available for opportunities"** in the hero and the quick-facts list — tell me
+if you would rather say something more specific, such as "open to
+collaborations", "open to freelance work" or "just here to learn".
 
 Project covers are abstract SVG placeholders — swap in real screenshots at
 1200×750 if you prefer, keeping the `width`/`height` attributes so the layout
