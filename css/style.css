@@ -16,12 +16,11 @@
      09. Hero
      10. About
      11. Skills
-     12. Projects (editorial ledger)
-     13. Experience (ruled entries)
-     14. Contact & form
-     15. Footer & back-to-top
-     16. Responsive composition
-     17. Motion preferences
+     12. Contact & form
+     13. Footer & back-to-top
+     14. Responsive composition
+     15. Motion preferences
+     16. Print
    --------------------------------------------------------------------------
    Mobile-first: base rules assume a narrow viewport, composition changes are
    introduced from 640px, 900px and 1120px upwards.
@@ -380,8 +379,6 @@ p { text-wrap: pretty; }
    string can never widen a track past the container. */
 .about__grid > *,
 .skills > *,
-.projects > *,
-.entries > *,
 .contact__grid > * {
   min-width: 0;
 }
@@ -424,6 +421,23 @@ p { text-wrap: pretty; }
   font-weight: 500;
 }
 
+/* "Coming soon" marker: a small rule then the words, set in the accent so it
+   reads as a status rather than as another nav item. */
+.section__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--accent-text);
+}
+
+.section__status::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  flex: none;
+  background: currentColor;
+}
+
 .section__title {
   font-size: var(--fs-h2);
   max-width: 22ch;
@@ -434,6 +448,17 @@ p { text-wrap: pretty; }
   color: var(--fg-muted);
   font-size: var(--fs-lead);
   line-height: 1.5;
+}
+
+/* A section that holds a masthead and nothing else yet (see the coming-soon
+   note). Its rhythm is tightened so it reads as a deliberate status band
+   rather than a section that failed to load. */
+.section--empty {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.section--empty .section__head {
+  margin-bottom: 0;
 }
 
 /* ==========================================================================
@@ -939,12 +964,6 @@ p { text-wrap: pretty; }
   font-size: var(--fs-h3);
 }
 
-.skill__desc {
-  margin-top: var(--s-2);
-  color: var(--fg-muted);
-  font-size: var(--fs-small);
-}
-
 .skill__list {
   margin-top: var(--s-4);
 }
@@ -956,122 +975,7 @@ p { text-wrap: pretty; }
 }
 
 /* ==========================================================================
-   12. PROJECTS — editorial ledger
-   --------------------------------------------------------------------------
-   Each project is a ruled entry: plate on the left, copy in the middle,
-   links on the right. No floating cards, no drop shadows.
-   ========================================================================== */
-.projects {
-  display: grid;
-  border-top: 1px solid var(--rule-strong);
-}
-
-.project {
-  display: grid;
-  gap: var(--s-4);
-  padding-block: var(--s-6);
-  border-bottom: 1px solid var(--rule-strong);
-}
-
-.project__media {
-  display: block;
-  overflow: hidden;
-  border: 1px solid var(--rule);
-  border-radius: var(--r-2);
-  background: var(--panel);
-}
-
-.project__media img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  transition: transform var(--dur-slow) var(--ease);
-}
-
-.project:hover .project__media img {
-  transform: scale(1.015);
-}
-
-.project__index {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--fg-quiet);
-}
-
-.project__title {
-  margin-top: var(--s-2);
-  font-size: var(--fs-h3);
-}
-
-.project__desc {
-  margin-top: var(--s-2);
-  max-width: 52ch;
-  color: var(--fg-muted);
-  font-size: var(--fs-small);
-}
-
-.project__body .tags {
-  margin-top: var(--s-3);
-}
-
-.project__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-3) var(--s-4);
-  align-content: start;
-}
-
-/* ==========================================================================
-   13. EXPERIENCE — ruled entries
-   ========================================================================== */
-.entries {
-  display: grid;
-  border-top: 1px solid var(--rule-strong);
-}
-
-.entry {
-  display: grid;
-  gap: var(--s-2);
-  padding-block: var(--s-5);
-  border-bottom: 1px solid var(--rule-strong);
-}
-
-/* The period reads as a timestamp in the margin, not a badge */
-.entry__period {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-quiet);
-}
-
-.entry__role {
-  font-size: var(--fs-h3);
-}
-
-.entry__org {
-  margin-top: var(--s-1);
-  color: var(--fg-muted);
-  font-size: var(--fs-small);
-}
-
-.entry__desc {
-  margin-top: var(--s-3);
-  max-width: 62ch;
-  color: var(--fg-muted);
-  font-size: var(--fs-small);
-}
-
-.entry__body .tags {
-  margin-top: var(--s-3);
-}
-
-/* ==========================================================================
-   14. CONTACT & FORM
+   12. CONTACT & FORM
    ========================================================================== */
 .contact__grid {
   display: grid;
@@ -1282,7 +1186,7 @@ p { text-wrap: pretty; }
 .form-status.is-error .form-status__icon--error { display: block; }
 
 /* ==========================================================================
-   15. FOOTER & BACK-TO-TOP
+   13. FOOTER & BACK-TO-TOP
    ========================================================================== */
 /* The slab is dark in both themes, so it carries its own focus ring colour:
    the paper-theme accent would only manage 3.2:1 against it. */
@@ -1355,12 +1259,15 @@ p { text-wrap: pretty; }
   font-size: var(--fs-micro);
 }
 
+/* Switched on at 900px (see the responsive section): below that a floating
+   control lands on top of body copy, and the fixed header already carries a
+   "back to top" link in the wordmark. */
 .to-top {
   position: fixed;
   inset-block-end: var(--s-4);
   inset-inline-end: var(--s-4);
   z-index: 90;
-  display: grid;
+  display: none;
   place-items: center;
   width: 44px;
   height: 44px;
@@ -1389,7 +1296,7 @@ p { text-wrap: pretty; }
 }
 
 /* ==========================================================================
-   16. RESPONSIVE COMPOSITION
+   14. RESPONSIVE COMPOSITION
    --------------------------------------------------------------------------
    Each breakpoint changes the composition rather than simply shrinking it.
    ========================================================================== */
@@ -1513,25 +1420,6 @@ p { text-wrap: pretty; }
     top: calc(var(--header-h) + var(--s-5));
   }
 
-  /* Project ledger: plate, copy, links */
-  .project {
-    grid-template-columns: 15rem minmax(0, 1fr) 10rem;
-    column-gap: var(--s-6);
-    align-items: start;
-  }
-
-  .project__links {
-    flex-direction: column;
-    gap: var(--s-3);
-  }
-
-  /* Experience: period in the margin */
-  .entry {
-    grid-template-columns: 12rem minmax(0, 1fr);
-    column-gap: var(--s-6);
-    padding-block: var(--s-6);
-  }
-
   .contact__grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     column-gap: var(--s-8);
@@ -1544,6 +1432,13 @@ p { text-wrap: pretty; }
   }
 
   .site-footer__brand { grid-column: auto; }
+
+  /* Below this width the control sits on top of body copy (measured), so it
+     stays off and the header wordmark carries "back to top" instead. From
+     here up the text column clears it. */
+  .to-top {
+    display: grid;
+  }
 
   .site-footer__bottom {
     display: flex;
@@ -1560,14 +1455,10 @@ p { text-wrap: pretty; }
     gap: var(--s-6);
   }
 
-  .project {
-    grid-template-columns: 17rem minmax(0, 1fr) 11rem;
-    column-gap: var(--s-7);
-  }
 }
 
 /* ==========================================================================
-   17. MOTION PREFERENCES
+   15. MOTION PREFERENCES
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1587,13 +1478,10 @@ p { text-wrap: pretty; }
     transform: none;
   }
 
-  .project:hover .project__media img {
-    transform: none;
-  }
 }
 
 /* ==========================================================================
-   18. PRINT
+   16. PRINT
    --------------------------------------------------------------------------
    The page is a document first: on paper, everything is revealed and the
    interactive chrome steps aside.
@@ -1645,8 +1533,6 @@ p { text-wrap: pretty; }
     background: #fff;
   }
 
-  .project,
-  .entry,
   .skill,
   .about__block {
     break-inside: avoid;

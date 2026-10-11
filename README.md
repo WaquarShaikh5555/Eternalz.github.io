@@ -56,20 +56,27 @@ Remaining placeholders, all marked in `index.html`. Search for `[` and replace:
 
 | Placeholder | Where |
 | --- | --- |
-| `[SKILLS_INTRO_TEXT]`, `[SKILL_GROUP_1..3_TITLE/DESCRIPTION]`, `[SKILL_1_1]` … | Skills |
-| `[PROJECTS_INTRO_TEXT]`, `[PROJECT_1..3_TITLE/DESCRIPTION]`, `[TAG]` | Projects |
-| `[EXPERIENCE_INTRO_TEXT]`, `[ROLE_TITLE_1..3]`, `[COMPANY_OR_ORGANISATION_1..3]`, `[WORK_TYPE_1..3]`, `[START_DATE]`, `[END_DATE]`, `[EDUCATION_QUALIFICATION]`, `[INSTITUTION_NAME]`, `[EDUCATION_TYPE]`, `[EDUCATION_DESCRIPTION]` | Experience |
 | `[FOOTER_TAGLINE]` | Footer |
 | `[GITHUB_PROFILE_URL]`, `[GITHUB_HANDLE]`, `[LINKEDIN_PROFILE_URL]`, `[LINKEDIN_HANDLE]` | Contact, footer, structured data |
 | `[FORMSPREE_ACTION_ID]` | Contact form `action` (see below) |
 
+Once those are in, there is nothing else left to fill in.
+
 **Two things left out on purpose.** You described yourself as a 15-year-old tech
 enthusiast; that detail is *not* on the page. There is a marked comment in the
 About section where it would go — tell me and it goes in, or leave it out if you
-would rather not publish your age, which is a perfectly sensible choice. The
-Skills, Projects and Experience sections still hold neutral placeholders because
-you have not sent that content yet; nothing about your work history has been
-invented.
+would rather not publish your age, which is a perfectly sensible choice.
+
+Nothing about your work history has been invented. **Projects** and
+**Experience** hold no entries at all — each is a single "coming soon" band
+(the mono `COMING SOON` marker beside the section label), so they read as
+deliberate rather than unfinished. Both keep their section id, their numbering
+and their place in the navigation, so real entries can drop straight in later.
+
+**Skills** are three areas named as plainly as they could be — *AI & Automation*,
+*Web & Frontend*, *Configuration & Setup*. These were phrased from the areas you
+gave me and the vocabulary already in your About text; every line is a one-word
+edit if something reads wrong.
 
 Location shows as **Maharashtra, India** (state level, not a city) in the hero,
 the About quick-facts list and the structured data. Availability reads
@@ -77,9 +84,11 @@ the About quick-facts list and the structured data. Availability reads
 if you would rather say something more specific, such as "open to
 collaborations", "open to freelance work" or "just here to learn".
 
-Project covers are abstract SVG placeholders — swap in real screenshots at
-1200×750 if you prefer, keeping the `width`/`height` attributes so the layout
-does not shift while loading.
+`assets/project-1.svg`, `project-2.svg` and `project-3.svg` are abstract cover
+plates drawn for the old project cards. They are **not referenced by the page at
+the moment**, but they are kept so there is something ready to drop into a real
+project entry — swap them for screenshots at 1200×750, keeping the
+`width`/`height` attributes so the layout does not shift while loading.
 
 ### Connecting the contact form
 
@@ -155,8 +164,10 @@ Same story: no build command, output directory `.`. Cloudflare Pages honours
 - **No-JavaScript fallback.** `<html>` is only flagged `.js` by the theme
   script, so with scripting disabled nothing is hidden, and the contact form
   falls back to a normal POST.
-- **Age and privacy.** No personal details were invented or inferred: dates,
-  employers, qualifications and handles are all still explicit placeholders.
+- **Age and privacy.** No personal details were invented or inferred. There are
+  no dates, employers or qualifications on the page at all: Projects and
+  Experience are explicitly marked as coming soon, and the four remaining
+  placeholders are all external identifiers you have not sent yet.
 - **Theming.** The paper theme is the identity and the default; the ink theme
   follows `prefers-color-scheme` and the visitor's explicit choice is remembered
   in `localStorage`. Because the toggle only ever records a preference, the page
