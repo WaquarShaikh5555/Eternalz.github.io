@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-labelledby="title desc">
+  <title id="title">Analytics dashboard</title>
+  <desc id="desc">Abstract charts and analytics dashboard interface</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#31d1ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="440" rx="26" fill="url(#bg2)"/>
+  <rect x="48" y="44" width="542" height="352" rx="24" fill="#0b1220" stroke="#334155"/>
+  <rect x="74" y="72" width="150" height="15" rx="7" fill="#334155"/>
+  <rect x="74" y="100" width="110" height="10" rx="5" fill="#475569"/>
+  <rect x="74" y="148" width="160" height="206" rx="18" fill="#111827"/>
+  <rect x="254" y="148" width="300" height="120" rx="18" fill="#111827"/>
+  <rect x="254" y="284" width="300" height="70" rx="18" fill="#111827"/>
+  <path d="M90 320c30-50 48-80 86-98 34-17 72-16 118 10 21 12 40 32 63 41l57-51 33 52 44 14" fill="none" stroke="url(#line)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="90" y="874" width="10" height="10" fill="none"/>
+</svg>

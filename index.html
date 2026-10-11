@@ -1,597 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Meta: Character Set & Viewport -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Meta: Security & Content Policy -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https://formspree.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    
-    <!-- Meta: SEO -->
-    <title>Waquar Shaikh - Full Stack Web Developer & UI/UX Expert</title>
-    <meta name="description" content="Premium portfolio of Waquar Shaikh. Full-stack web developer specializing in modern, secure, high-performance applications. Based in Bangalore, India.">
-    <meta name="keywords" content="web developer, full stack, UI/UX, portfolio, Waquar Shaikh">
-    <meta name="author" content="Waquar Shaikh">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://eternalz.me/">
-    
-    <!-- Meta: Open Graph (Social Media) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://eternalz.me/">
-    <meta property="og:title" content="Waquar Shaikh - Full Stack Developer & UI/UX Expert">
-    <meta property="og:description" content="Explore my portfolio and see how I build premium, secure, high-performance web applications.">
-    <meta property="og:image" content="https://eternalz.me/assets/og-image.png">
-    <meta property="og:site_name" content="Waquar Shaikh Portfolio">
-    
-    <!-- Meta: Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://eternalz.me/">
-    <meta name="twitter:title" content="Waquar Shaikh - Full Stack Developer">
-    <meta name="twitter:description" content="Explore my premium portfolio and latest projects.">
-    <meta name="twitter:image" content="https://eternalz.me/assets/og-image.png">
-    <meta name="twitter:creator" content="@waquarsk">
-    
-    <!-- Meta: Theme Color & Favicon -->
-    <meta name="theme-color" content="#0f172a">
-    <link rel="icon" type="image/png" href="./assets/favicon.png">
-    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/variables.css">
-    <link rel="stylesheet" href="./css/typography.css">
-    <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/components.css">
-    <link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/animations.css">
-    <link rel="stylesheet" href="./css/responsive.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preload" as="style" href="./css/global.css">
-    <link rel="preload" as="script" href="./js/main.js">
-</head>
-<body>
-    <!-- Skip to Main Content Link (Accessibility) -->
-    <a href="#main-content" class="skip-to-main">Skip to main content</a>
-    
-    <!-- Navigation Bar -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="navbar-container">
-            <div class="navbar-brand">
-                <a href="#hero" aria-label="Home">
-                    <span class="logo">WS</span>
-                    <span class="logo-text">Waquar</span>
-                </a>
-            </div>
-            
-            <!-- Mobile Menu Toggle -->
-            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar-menu">
-                <span class="hamburger"></span>
-                <span class="hamburger"></span>
-                <span class="hamburger"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self'; script-src-elem 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io; media-src 'self'; manifest-src 'self';" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
+    <meta http-equiv="Cross-Origin-Resource-Policy" content="same-origin" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+
+    <title>Waquar Shaikh | Full Stack Developer & UI/UX Expert</title>
+    <meta name="description" content="Waquar Shaikh is a full-stack web developer and UI/UX expert building premium, secure, and high-performance digital experiences." />
+    <meta name="keywords" content="Waquar Shaikh, Full Stack Developer, UI/UX expert, Web Developer, Portfolio" />
+    <meta name="author" content="Waquar Shaikh" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0c1224" />
+    <link rel="canonical" href="https://eternalz.me/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Waquar Shaikh | Full Stack Developer" />
+    <meta property="og:description" content="Premium, secure, high-performance web experiences crafted with modern design and code." />
+    <meta property="og:url" content="https://eternalz.me/" />
+    <meta property="og:image" content="https://eternalz.me/assets/og-image.svg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Waquar Shaikh | Full Stack Developer" />
+    <meta property="twitter:description" content="Premium, secure, high-performance web experiences crafted with modern design and code." />
+    <meta property="twitter:image" content="https://eternalz.me/assets/og-image.svg" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <script defer src="js/main.js"></script>
+    <script defer src="js/form-handler.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <div class="page-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation">
+          <div class="container nav-container">
+            <a class="brand" href="#hero" aria-label="Go to home section">
+              <span class="brand-mark">WS</span>
+              <span class="brand-text">Waquar</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+              <span></span>
+              <span></span>
+              <span></span>
             </button>
-            
-            <!-- Navigation Links -->
-            <ul class="navbar-menu" id="navbar-menu">
-                <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
-                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-                <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
-                <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-                <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
-                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
-            </ul>
-            
-            <!-- Theme Toggle -->
-            <button class="theme-toggle" aria-label="Toggle dark/light mode" aria-pressed="true">
-                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
+
+            <div class="nav-menu-wrap">
+              <ul class="nav-menu" id="main-menu">
+                <li><a class="nav-link active" href="#hero">Home</a></li>
+                <li><a class="nav-link" href="#about">About</a></li>
+                <li><a class="nav-link" href="#skills">Skills</a></li>
+                <li><a class="nav-link" href="#projects">Projects</a></li>
+                <li><a class="nav-link" href="#experience">Experience</a></li>
+                <li><a class="nav-link" href="#contact">Contact</a></li>
+              </ul>
+            </div>
+
+            <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="true">
+              <span class="icon icon-sun" aria-hidden="true">☀</span>
+              <span class="icon icon-moon" aria-hidden="true">☾</span>
             </button>
+          </div>
+        </nav>
+      </header>
+
+      <main id="main-content">
+        <section id="hero" class="hero section">
+          <div class="hero-glow hero-glow-one"></div>
+          <div class="hero-glow hero-glow-two"></div>
+          <div class="floating-orb orb-one"></div>
+          <div class="floating-orb orb-two"></div>
+          <div class="floating-orb orb-three"></div>
+
+          <div class="container hero-grid">
+            <div class="hero-copy reveal">
+              <p class="eyebrow">Full-stack developer • UI/UX expert</p>
+              <h1>
+                Hi, I'm <span class="gradient-text">Waquar Shaikh</span>
+              </h1>
+
+              <p class="typing-line" aria-live="polite">
+                I build <span class="typing-text" data-words="premium web experiences,secure applications,high-performance products,modern user interfaces"></span>
+              </p>
+
+              <p class="lead">
+                Designing and engineering digital experiences that are elegant, scalable, and secure.
+                I help businesses turn ideas into polished platforms that users love.
+              </p>
+
+              <div class="cta-row">
+                <a class="btn btn-primary" href="#projects">View Work</a>
+                <a class="btn btn-secondary" href="#contact">Contact Me</a>
+              </div>
+
+              <ul class="mini-metrics" aria-label="Career stats">
+                <li><strong>10+</strong><span>Years Experience</span></li>
+                <li><strong>50+</strong><span>Projects</span></li>
+                <li><strong>100%</strong><span>Commitment</span></li>
+              </ul>
+            </div>
+
+            <div class="hero-visual reveal">
+              <div class="portrait-card">
+                <div class="portrait-ring"></div>
+                <img src="assets/avatar-placeholder.svg" alt="Waquar Shaikh portrait placeholder" loading="eager" width="420" height="420" />
+              </div>
+            </div>
+          </div>
+
+          <div class="scroll-cue" aria-label="Scroll down">
+            <span></span>
+          </div>
+        </section>
+
+        <section id="about" class="section about">
+          <div class="container">
+            <header class="section-heading reveal">
+              <p class="eyebrow">About me</p>
+              <h2>Crafting premium digital experiences</h2>
+            </header>
+
+            <div class="about-grid">
+              <div class="about-copy reveal">
+                <p>
+                  I’m a senior full-stack web developer and UI/UX specialist focused on building clean,
+                  secure, high-performing products that look premium and work beautifully on every screen.
+                </p>
+                <p>
+                  My work blends technical precision with design thinking. I’ve spent years turning product ideas into
+                  scalable web platforms, from strategic front-end systems to robust back-end infrastructure.
+                </p>
+                <p class="placeholder-note">
+                  Replace this with your personal bio later: a short paragraph about your journey, your values, your strengths,
+                  and what you’re passionate about building.
+                </p>
+              </div>
+
+              <div class="about-panel reveal">
+                <img src="assets/about-placeholder.svg" alt="About Waquar Shaikh illustration" loading="lazy" width="500" height="420" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="section skills">
+          <div class="container">
+            <header class="section-heading reveal">
+              <p class="eyebrow">Skills</p>
+              <h2>Core strengths and toolset</h2>
+            </header>
+
+            <div class="skills-grid">
+              <article class="skill-card reveal">
+                <div class="skill-icon" aria-hidden="true">⚙</div>
+                <h3>Frontend</h3>
+                <p>HTML5, CSS3, JavaScript, React, TypeScript, UI systems, responsive design.</p>
+                <div class="progress-bar" aria-label="Frontend skill level 95 percent">
+                  <span style="width: 95%">95%</span>
+                </div>
+              </article>
+
+              <article class="skill-card reveal">
+                <div class="skill-icon" aria-hidden="true">🧠</div>
+                <h3>UX / Design</h3>
+                <p>Wireframing, design systems, accessibility, usability testing, interaction design.</p>
+                <div class="progress-bar" aria-label="UX skill level 90 percent">
+                  <span style="width: 90%">90%</span>
+                </div>
+              </article>
+
+              <article class="skill-card reveal">
+                <div class="skill-icon" aria-hidden="true">🔐</div>
+                <h3>Security</h3>
+                <p>Secure coding, CSP, validation, CSRF protection, OWASP best practices, performance hardening.</p>
+                <div class="progress-bar" aria-label="Security skill level 92 percent">
+                  <span style="width: 92%">92%</span>
+                </div>
+              </article>
+
+              <article class="skill-card reveal">
+                <div class="skill-icon" aria-hidden="true">☁</div>
+                <h3>Backend & Cloud</h3>
+                <p>Node.js, APIs, databases, deployments, Docker, CI/CD, cloud hosting, observability.</p>
+                <div class="progress-bar" aria-label="Backend and cloud skill level 88 percent">
+                  <span style="width: 88%">88%</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="section projects">
+          <div class="container">
+            <header class="section-heading reveal">
+              <p class="eyebrow">Work</p>
+              <h2>Selected projects</h2>
+            </header>
+
+            <div class="project-grid">
+              <article class="project-card reveal">
+                <div class="project-media">
+                  <img src="assets/project-1.svg" alt="E-commerce platform project preview" loading="lazy" width="640" height="440" />
+                  <div class="project-overlay">
+                    <a href="#" aria-label="View project case study">View Case Study</a>
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3>E-commerce Platform</h3>
+                  <p>Scalable storefront experience with conversion-driven UX, secure checkout flow, and data-rich dashboards.</p>
+                  <div class="tag-list">
+                    <span>React</span>
+                    <span>Node.js</span>
+                    <span>MongoDB</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card reveal">
+                <div class="project-media">
+                  <img src="assets/project-2.svg" alt="Analytics dashboard project preview" loading="lazy" width="640" height="440" />
+                  <div class="project-overlay">
+                    <a href="#" aria-label="View analytics dashboard project">View Case Study</a>
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3>Analytics Dashboard</h3>
+                  <p>Interactive reporting and decision-support dashboards built for fast, data-driven business decisions.</p>
+                  <div class="tag-list">
+                    <span>Vue.js</span>
+                    <span>Charting</span>
+                    <span>PostgreSQL</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card reveal">
+                <div class="project-media">
+                  <img src="assets/project-3.svg" alt="Social app project preview" loading="lazy" width="640" height="440" />
+                  <div class="project-overlay">
+                    <a href="#" aria-label="View social app project">View Case Study</a>
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3>Social Networking App</h3>
+                  <p>A community-driven platform focused on engagement, real-time notifications, and clean mobile-first UX.</p>
+                  <div class="tag-list">
+                    <span>React Native</span>
+                    <span>Firebase</span>
+                    <span>Realtime</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" class="section experience">
+          <div class="container">
+            <header class="section-heading reveal">
+              <p class="eyebrow">Experience</p>
+              <h2>Career timeline</h2>
+            </header>
+
+            <div class="timeline">
+              <article class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <span class="timeline-date">2022 — Present</span>
+                  <h3>Senior Full-Stack Developer</h3>
+                  <p class="timeline-company">Tech Innovations Inc.</p>
+                  <ul>
+                    <li>Led full-stack delivery of customer-facing product experiences.</li>
+                    <li>Architected scalable systems and performance improvements.</li>
+                    <li>Mentored engineering teams and improved delivery workflows.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <span class="timeline-date">2019 — 2022</span>
+                  <h3>Full-Stack Developer</h3>
+                  <p class="timeline-company">Digital Solutions Studio</p>
+                  <ul>
+                    <li>Built responsive platforms across healthcare and SaaS domains.</li>
+                    <li>Developed APIs, dashboards, and business-critical dashboards.</li>
+                    <li>Optimized front-end experiences and reduced friction for users.</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <span class="timeline-date">2015 — 2019</span>
+                  <h3>Frontend Developer</h3>
+                  <p class="timeline-company">Creative Web Lab</p>
+                  <ul>
+                    <li>Created visually polished, high-UX interfaces for client brands.</li>
+                    <li>Collaborated closely with designers and content teams.</li>
+                    <li>Improved accessibility, responsiveness, and performance across builds.</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="section contact">
+          <div class="container">
+            <header class="section-heading reveal">
+              <p class="eyebrow">Contact</p>
+              <h2>Let’s build something meaningful</h2>
+            </header>
+
+            <div class="contact-grid">
+              <div class="contact-card reveal">
+                <form id="contact-form" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+                  <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
+                  <input type="text" name="honeypot" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                  <input type="hidden" name="_captcha" value="false" />
+
+                  <div class="field-group">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your name" minlength="2" maxlength="100" required />
+                    <small class="error-message" aria-live="polite"></small>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                    <small class="error-message" aria-live="polite"></small>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." minlength="10" maxlength="2000" required></textarea>
+                    <small class="error-message" aria-live="polite"></small>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Send Message</button>
+                  <p class="form-status" aria-live="polite"></p>
+                </form>
+              </div>
+
+              <div class="contact-info reveal">
+                <div class="info-block">
+                  <h3>Email</h3>
+                  <a href="mailto:waquarsk1@gmail.com">waquarsk1@gmail.com</a>
+                </div>
+
+                <div class="info-block">
+                  <h3>Location</h3>
+                  <p>Bangalore, India</p>
+                </div>
+
+                <div class="info-block">
+                  <h3>Social</h3>
+                  <div class="social-links">
+                    <a href="https://github.com/WaquarShaikh5555" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-row">
+          <p>© 2024 Waquar Shaikh. All rights reserved.</p>
+          <button type="button" class="back-to-top" aria-label="Back to top">↑</button>
         </div>
-    </nav>
-    
-    <!-- Main Content -->
-    <main id="main-content" role="main">
-        
-        <!-- =============== HERO SECTION =============== -->
-        <section id="hero" class="hero" role="region" aria-label="Hero section">
-            <div class="hero-background">
-                <div class="animated-gradient"></div>
-                <div class="floating-shape shape-1"></div>
-                <div class="floating-shape shape-2"></div>
-                <div class="floating-shape shape-3"></div>
-            </div>
-            
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title" role="heading" aria-level="1">
-                        Hi, I'm <span class="gradient-text">Waquar Shaikh</span>
-                    </h1>
-                    
-                    <p class="hero-subtitle">
-                        I build <span class="typing-wrapper">
-                            <span class="typing" data-words="premium web experiences|secure applications|high-performance solutions|modern user interfaces"></span>
-                        </span>
-                    </p>
-                    
-                    <p class="hero-description">
-                        Full-stack web developer and UI/UX expert with 10+ years of crafting elegant, scalable, and secure digital products.
-                    </p>
-                    
-                    <div class="hero-cta">
-                        <a href="#projects" class="btn btn-primary" role="button">
-                            <span>View My Work</span>
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                        <a href="#contact" class="btn btn-secondary" role="button">
-                            <span>Get in Touch</span>
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="hero-visual">
-                    <div class="avatar-container">
-                        <div class="avatar-placeholder">
-                            <img src="./assets/avatar-placeholder.png" alt="Waquar Shaikh" loading="lazy" width="300" height="300">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator" aria-label="Scroll to explore more">
-                <div class="scroll-dot"></div>
-            </div>
-        </section>
-        
-        <!-- =============== ABOUT SECTION =============== -->
-        <section id="about" class="about" role="region" aria-label="About me section">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know me better</p>
-                
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            I'm a passionate full-stack web developer and UI/UX enthusiast dedicated to creating premium, secure, and high-performance digital experiences. 
-                            With over a decade of professional experience, I've worked with startups and established companies to build scalable applications that solve real-world problems.
-                        </p>
-                        <p>
-                            My expertise spans modern web technologies, cloud architecture, and user-centered design principles. 
-                            I'm committed to writing clean, maintainable code and staying at the forefront of web development trends.
-                        </p>
-                        <p class="about-placeholder">
-                            <strong>📝 Placeholder:</strong> Replace this section with your personal bio and story. 
-                            Tell us about your journey, what drives you, and your professional philosophy.
-                        </p>
-                        
-                        <div class="about-highlights">
-                            <div class="highlight">
-                                <span class="highlight-number">10+</span>
-                                <span class="highlight-label">Years Experience</span>
-                            </div>
-                            <div class="highlight">
-                                <span class="highlight-number">50+</span>
-                                <span class="highlight-label">Projects Completed</span>
-                            </div>
-                            <div class="highlight">
-                                <span class="highlight-number">30+</span>
-                                <span class="highlight-label">Happy Clients</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="about-image">
-                        <img src="./assets/about-placeholder.png" alt="Waquar Shaikh working" loading="lazy" width="400" height="400">
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- =============== SKILLS SECTION =============== -->
-        <section id="skills" class="skills" role="region" aria-label="Technical skills section">
-            <div class="container">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">Tools and technologies I work with</p>
-                
-                <div class="skills-grid">
-                    <!-- Frontend Skills -->
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2">
-                                <polygon points="12 2 22 8 22 16 12 22 2 16 2 8 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <h3>Frontend Development</h3>
-                        <p>HTML5, CSS3, JavaScript, React, Vue.js, TypeScript</p>
-                        <div class="skill-progress">
-                            <div class="progress-bar" style="--progress: 95%">
-                                <span class="progress-label">95%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Backend Skills -->
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="14" width="7" height="7"></rect>
-                                <rect x="3" y="14" width="7" height="7"></rect>
-                            </svg>
-                        </div>
-                        <h3>Backend Development</h3>
-                        <p>Node.js, Python, Express, Django, PostgreSQL, MongoDB</p>
-                        <div class="skill-progress">
-                            <div class="progress-bar" style="--progress: 90%">
-                                <span class="progress-label">90%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- UI/UX Design -->
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
-                            </svg>
-                        </div>
-                        <h3>UI/UX Design</h3>
-                        <p>Figma, Adobe XD, User Research, Prototyping, Accessibility</p>
-                        <div class="skill-progress">
-                            <div class="progress-bar" style="--progress: 85%">
-                                <span class="progress-label">85%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- DevOps & Cloud -->
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-                                <path d="M21 3v5h-5"></path>
-                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
-                                <path d="M3 21v-5h5"></path>
-                            </svg>
-                        </div>
-                        <h3>DevOps & Cloud</h3>
-                        <p>Docker, Kubernetes, AWS, GCP, CI/CD, GitHub Actions</p>
-                        <div class="skill-progress">
-                            <div class="progress-bar" style="--progress: 80%">
-                                <span class="progress-label">80%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- =============== PROJECTS SECTION =============== -->
-        <section id="projects" class="projects" role="region" aria-label="Project portfolio section">
-            <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Explore my recent work and case studies</p>
-                
-                <div class="projects-grid">
-                    <!-- Project Card 1 -->
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="./assets/project-1-placeholder.png" alt="Project 1 - E-Commerce Platform" loading="lazy" width="400" height="280">
-                            <div class="project-overlay">
-                                <a href="#" class="project-link" aria-label="View Project 1 details">
-                                    <span>View Case Study</span>
-                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3>E-Commerce Platform</h3>
-                            <p>A modern, scalable e-commerce solution built with React and Node.js, featuring real-time inventory management and payment integration.</p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">Node.js</span>
-                                <span class="tag">MongoDB</span>
-                                <span class="tag">Stripe</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- Project Card 2 -->
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="./assets/project-2-placeholder.png" alt="Project 2 - Analytics Dashboard" loading="lazy" width="400" height="280">
-                            <div class="project-overlay">
-                                <a href="#" class="project-link" aria-label="View Project 2 details">
-                                    <span>View Case Study</span>
-                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Analytics Dashboard</h3>
-                            <p>Real-time data visualization tool with interactive charts, filtering, and export capabilities for business intelligence and reporting.</p>
-                            <div class="project-tags">
-                                <span class="tag">Vue.js</span>
-                                <span class="tag">D3.js</span>
-                                <span class="tag">PostgreSQL</span>
-                                <span class="tag">GraphQL</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- Project Card 3 -->
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="./assets/project-3-placeholder.png" alt="Project 3 - Mobile App" loading="lazy" width="400" height="280">
-                            <div class="project-overlay">
-                                <a href="#" class="project-link" aria-label="View Project 3 details">
-                                    <span>View Case Study</span>
-                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Social Networking App</h3>
-                            <p>Cross-platform mobile application with real-time messaging, push notifications, and user engagement features powered by Firebase.</p>
-                            <div class="project-tags">
-                                <span class="tag">React Native</span>
-                                <span class="tag">Firebase</span>
-                                <span class="tag">Redux</span>
-                                <span class="tag">WebSocket</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                
-                <div class="projects-cta">
-                    <a href="#" class="btn btn-outline" role="button">See All Projects</a>
-                </div>
-            </div>
-        </section>
-        
-        <!-- =============== EXPERIENCE SECTION =============== -->
-        <section id="experience" class="experience" role="region" aria-label="Work experience timeline">
-            <div class="container">
-                <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">My professional journey</p>
-                
-                <div class="timeline">
-                    <!-- Timeline Item 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Senior Full-Stack Developer</h3>
-                            <p class="timeline-company">Tech Innovations Inc.</p>
-                            <p class="timeline-date">2022 - Present</p>
-                            <ul class="timeline-description">
-                                <li>Led development of customer-facing applications serving 100k+ users</li>
-                                <li>Architected microservices infrastructure using Docker and Kubernetes</li>
-                                <li>Mentored junior developers and established coding best practices</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Full-Stack Developer</h3>
-                            <p class="timeline-company">Digital Solutions Ltd.</p>
-                            <p class="timeline-date">2019 - 2022</p>
-                            <ul class="timeline-description">
-                                <li>Built responsive web applications using React and Vue.js</li>
-                                <li>Designed and implemented RESTful APIs with Node.js and Python</li>
-                                <li>Improved application performance by 40% through optimization</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Frontend Developer</h3>
-                            <p class="timeline-company">Web Design Studio</p>
-                            <p class="timeline-date">2017 - 2019</p>
-                            <ul class="timeline-description">
-                                <li>Developed pixel-perfect UI components and maintained design systems</li>
-                                <li>Collaborated with UX designers to implement intuitive user interfaces</li>
-                                <li>Achieved 95+ Lighthouse scores across all projects</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- =============== CONTACT SECTION =============== -->
-        <section id="contact" class="contact" role="region" aria-label="Contact me section">
-            <div class="container">
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="section-subtitle">Have a project in mind? Let's talk</p>
-                
-                <div class="contact-content">
-                    <div class="contact-form-wrapper">
-                        <form class="contact-form" id="contact-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID" novalidate>
-                            <!-- Honeypot Field (Hidden) -->
-                            <input type="hidden" name="_honeypot" value="">
-                            <input type="hidden" name="_captcha" value="false">
-                            
-                            <!-- Name Field -->
-                            <div class="form-group">
-                                <label for="form-name">Your Name *</label>
-                                <input 
-                                    type="text" 
-                                    id="form-name" 
-                                    name="name" 
-                                    class="form-input" 
-                                    placeholder="John Doe"
-                                    required
-                                    minlength="2"
-                                    maxlength="100"
-                                    autocomplete="name"
-                                    aria-required="true"
-                                    aria-describedby="form-name-error">
-                                <span id="form-name-error" class="form-error" role="alert"></span>
-                            </div>
-                            
-                            <!-- Email Field -->
-                            <div class="form-group">
-                                <label for="form-email">Your Email *</label>
-                                <input 
-                                    type="email" 
-                                    id="form-email" 
-                                    name="email" 
-                                    class="form-input" 
-                                    placeholder="john@example.com"
-                                    required
-                                    autocomplete="email"
-                                    aria-required="true"
-                                    aria-describedby="form-email-error">
-                                <span id="form-email-error" class="form-error" role="alert"></span>
-                            </div>
-                            
-                            <!-- Subject Field -->
-                            <div class="form-group">
-                                <label for="form-subject">Subject</label>
-                                <input 
-                                    type="text" 
-                                    id="form-subject" 
-                                    name="subject" 
-                                    class="form-input" 
-                                    placeholder="Project Inquiry"
-                                    maxlength="100"
-                                    autocomplete="off">
-                            </div>
-                            
-                            <!-- Message Field -->
-                            <div class="form-group">
-                                <label for="form-message">Message *</label>
-                                <textarea 
-                                    id="form-message" 
-                                    name="message" 
-                                    class="form-input form-textarea" 
-                                    placeholder="Tell me about your project..."
-                                    required
-                                    minlength="10"
-                                    maxlength="5000"
-                                    rows="5"
-                                    aria-required="true"
-                                    aria-describedby="form-message-error"></textarea>
-                                <span id="form-message-error" class="form-error" role="alert"></span>
-                            </div>
-                            
-                            <!-- Submit Button -->
-                            <button type="submit" class="btn btn-primary form-submit" aria-label="Send message">
-                                <span>Send Message</span>
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
-                                </svg>
-                            </button>
-                            
-                            <!-- Form Messages -->
-                            <div id="form-success" class="form-message form-success" role="alert" style="display: none;">
-                                ✓ Thank you! I'll get back to you soon.
-                            </div>
-                            <div id="form-error" class="form-message form-error-msg" role="alert" style="display: none;">
-                                ✗ Something went wrong. Please try again.
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <div class="contact-method">
-                            <h3>Email</h3>
-                            <a href="mailto:waquarsk1@gmail.com" class="contact-link" rel="noopener noreferrer">
-                                waquarsk1@gmail.com
-                            </a>
-                        </div>
-                        
-                        <div class="contact-method">
-                            <h3>Location</h3>
-                            <p>Bangalore, India</p>
-                        </div>
-                        
-                        <div class="contact-method">
-                            <h3>Social Links</h3>
-                            <div class="social-links">
-                                <a href="https://github.com/WaquarShaikh5555" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
-                                    </svg>
-                                    <span>GitHub</span>
-                                </a>
-                                <a href="https://linkedin.com/in/waquarshaikh" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path>
-                                    </svg>
-                                    <span>LinkedIn</span>
-                                </a>
-                                <a href="https://twitter.com/waquarsk" class="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7a10.6 10.6 0 01-9-5.5z"></path>
-                                    </svg>
-                                    <span>Twitter</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="footer-content">
-            <p>&copy; 2024 Waquar Shaikh. All rights reserved.</p>
-            <p>Built with <span class="heart">❤️</span> using HTML, CSS & JavaScript</p>
-        </div>
-        
-        <button class="back-to-top" aria-label="Back to top" title="Back to top">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="18 15 12 9 6 15"></polyline>
-            </svg>
-        </button>
-    </footer>
-    
-    <!-- Scripts -->
-    <script src="./js/main.js" defer></script>
-    <script src="./js/form-handler.js" defer></script>
-</body>
+      </footer>
+    </div>
+  </body>
 </html>
