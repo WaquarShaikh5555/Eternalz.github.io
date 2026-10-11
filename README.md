@@ -41,8 +41,11 @@ Your real content is live in these places:
   and availability.
 - **About** — the full story in four parts (where it started, from curiosity to
   craft, where you are today, what is ahead), the closing note about curiosity and
-  consistency, and a **Gaming & tinkering** subsection that carries the Minecraft
-  and server/plugin/permissions part separately from the developer story.
+  consistency, a **Gaming & tinkering** subsection that carries the Minecraft
+  and server/plugin/permissions part separately from the developer story, and a
+  closing **Eternalz** subsection explaining the brand name: a name for
+  everything you build, drawn as a ladder of what exists (solid) and what does
+  not exist yet (hollow and dashed) — Eternalz, Eternalz Studios, Eternalz Tech.
 - **Contact** — both addresses (`waquarsk1@gmail.com`, `waquarsk2@gmail.com`),
   Instagram (`@waquarsk1`), and a Discord row that copies `waquar5555` to the
   clipboard, since Discord has no public profile URL.
