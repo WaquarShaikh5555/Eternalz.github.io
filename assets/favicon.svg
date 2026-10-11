@@ -1,13 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Waquar Shaikh monogram">
-  <defs>
-    <linearGradient id="faviconAccent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#6366f1"/>
-      <stop offset="1" stop-color="#8b5cf6"/>
-    </linearGradient>
-  </defs>
-  <!-- Rounded gradient tile -->
-  <rect width="64" height="64" rx="15" fill="url(#faviconAccent)"/>
+  <!-- Ink tile: legible against both light and dark browser chrome -->
+  <rect width="64" height="64" rx="9" fill="#171815"/>
   <!-- Stylised "W" monogram -->
   <path d="M13 19.5 22.5 45 32 27.5 41.5 45 51 19.5"
-        fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        fill="none" stroke="#F4F2EC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

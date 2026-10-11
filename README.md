@@ -19,12 +19,12 @@ and no package manager, so the repository deploys exactly as it sits.
 │   ├── theme-init.js   Pre-paint colour-scheme switch (blocking, ~20 lines)
 │   └── main.js         Menu, scroll spy, reveal, smooth scroll, form validation
 ├── assets/
-│   ├── favicon.svg     Indigo→violet monogram (scales to any size)
+│   ├── favicon.svg     Ink-tile monogram (scales to any size)
 │   ├── favicon-32.png  Raster fallback for older browsers
 │   ├── apple-touch-icon.png
 │   ├── icon-192.png / icon-512.png   PWA / manifest icons
-│   ├── og-image.png    1200×630 Open Graph card
-│   └── project-1|2|3.svg   Abstract cover art for the three project cards
+│   ├── og-image.png    1200×630 Open Graph card, set in Geist
+│   └── project-1|2|3.svg   Abstract plates for the three project entries
 ├── _headers            Netlify / Cloudflare Pages security + cache headers
 ├── site.webmanifest    PWA metadata
 ├── robots.txt
@@ -41,8 +41,8 @@ Your real content is live in these places:
   and availability.
 - **About** — the full story in four parts (where it started, from curiosity to
   craft, where you are today, what is ahead), the closing note about curiosity and
-  consistency, and a **Gaming & tinkering** card that carries the Minecraft and
-  server/plugin/permissions part separately from the developer story.
+  consistency, and a **Gaming & tinkering** subsection that carries the Minecraft
+  and server/plugin/permissions part separately from the developer story.
 - **Contact** — both addresses (`waquarsk1@gmail.com`, `waquarsk2@gmail.com`),
   Instagram (`@waquarsk1`), and a Discord row that copies `waquar5555` to the
   clipboard, since Discord has no public profile URL.
@@ -132,10 +132,10 @@ Same story: no build command, output directory `.`. Cloudflare Pages honours
 
 ## Engineering notes
 
-- **No dependencies.** The only external request is the Inter webfont from
-  Google Fonts. Everything else — icons included — is inline SVG in one sprite
-  at the bottom of `index.html`, so there are no icon fonts or image requests
-  for UI chrome.
+- **No dependencies.** The only external request is the Geist / Geist Mono
+  webfont from Google Fonts. Everything else — icons included — is inline SVG in
+  one sprite at the bottom of `index.html`, so there are no icon fonts or image
+  requests for UI chrome.
 - **Security.** Strict CSP with no `unsafe-inline`: there is not one inline
   `<script>`, `<style>` or `style` attribute on the page. External links use
   `rel="noopener noreferrer"`. `frame-ancestors` lives in `_headers` only,
@@ -143,16 +143,60 @@ Same story: no build command, output directory `.`. Cloudflare Pages honours
 - **Accessibility.** Semantic landmarks, a skip link, visible focus rings,
   `aria-expanded`/`aria-controls` on the menu, a focus trap and Escape-to-close
   in the mobile panel, `aria-current` scroll-spy highlighting, `aria-live`
-  form status, and labels tied to every input. Text meets WCAG AA contrast in
-  both themes; the primary button uses a slightly darker indigo→violet ramp
-  than the decorative one specifically so white label text stays above 4.5:1.
-- **Motion.** Scroll reveal, hover lift and smooth scrolling only — all of it
-  disabled under `prefers-reduced-motion: reduce`.
+  form status, and labels tied to every input. Every text element is verified at
+  or above WCAG AA in both themes (lowest measured: 4.53:1), input boundaries
+  clear the 3:1 non-text requirement in both directions, and the dark footer
+  swaps in its own focus-ring colour. See *Design system* below for how the
+  accent is split between decorative and text use.
+- **Motion.** A short, section-level scroll reveal, gentle hover states and
+  smooth scrolling only. Nothing animates item by item, no animation delays
+  access to content, and all of it is disabled under
+  `prefers-reduced-motion: reduce`.
 - **No-JavaScript fallback.** `<html>` is only flagged `.js` by the theme
   script, so with scripting disabled nothing is hidden, and the contact form
   falls back to a normal POST.
 - **Age and privacy.** No personal details were invented or inferred: dates,
   employers, qualifications and handles are all still explicit placeholders.
-- **Theming.** Dark by default, follows `prefers-color-scheme`, and the visitor's
-  explicit choice is remembered in `localStorage`. Because the toggle only ever
-  records a preference, the page stays correct if storage is blocked.
+- **Theming.** The paper theme is the identity and the default; the ink theme
+  follows `prefers-color-scheme` and the visitor's explicit choice is remembered
+  in `localStorage`. Because the toggle only ever records a preference, the page
+  stays correct if storage is blocked.
+
+---
+
+## Design system
+
+An editorial system rather than a component kit: warm paper, ink text and one
+restrained vermilion accent, with hierarchy carried by typography and rules
+instead of cards, shadows or colour washes. Geist and Geist Mono are the only
+typefaces; the whole scale is tokenised in `css/style.css`.
+
+Everything is defined once in `:root` and re-pointed for the ink theme, which
+means the theme switch changes about twenty custom properties and nothing else.
+
+| Token | Paper theme | Ink theme |
+| --- | --- | --- |
+| `--bg` | `#f4f2ec` | `#171815` |
+| `--fg` | `#171815` | `#f4f2ec` |
+| `--fg-muted` | `#686a61` | `#a8a99f` |
+| `--panel` | `#ece9e1` | `#1d1e19` |
+| `--rule` | `#d8d5cc` | `#33342e` |
+| `--accent` | `#c34f32` | `#c34f32` |
+| `--accent-text` | `#b0452b` | `#e87a55` |
+
+**Why the accent is split in two.** `#C34F32` is the brand colour, but as *text*
+it only reaches 4.18:1 on the paper ground — below AA. It therefore stays the
+decorative colour (rules, the hero mark, `::selection`, fills) while `--accent-text`
+carries every case where the accent has to be read: links, hover states, the
+section indices and status messages. On the ink theme the accent is lifted to
+`#e87a55`. Both are paired in the table above so the substitution is visible.
+
+**Hierarchy without a third grey.** The paper ground has no headroom for a text
+tier lighter than `--fg-muted` — anything lighter drops below 4.5:1. Quiet text
+is therefore differentiated by size, case and letter-spacing (12px tracked mono)
+rather than by being washed out.
+
+**Layout.** A 1180px content column, an 8px spacing scale, fluid `clamp()`
+section rhythm, and three composition breakpoints: 640px (two-up groupings),
+900px (full navigation, the project ledger becomes plate / copy / links, periods
+move into the margin), 1120px (three-column skills).

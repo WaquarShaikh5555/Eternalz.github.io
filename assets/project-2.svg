@@ -1,45 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract placeholder cover graphic">
-  <defs>
-    <linearGradient id="p2Accent" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#4f46e5"/>
-      <stop offset="0.5" stop-color="#6366f1"/>
-      <stop offset="1" stop-color="#8b5cf6"/>
-    </linearGradient>
-    <linearGradient id="p2Shell" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#151824"/>
-      <stop offset="1" stop-color="#0c0e14"/>
-    </linearGradient>
-  </defs>
+  <!-- Plate 02: contour study on paper, one arc carrying the accent -->
+  <rect width="1200" height="750" fill="#F4F2EC"/>
 
-  <!-- Base surface -->
-  <rect width="1200" height="750" fill="url(#p2Shell)"/>
-
-  <!-- Concentric rings anchored bottom-left -->
-  <g fill="none" stroke="url(#p2Accent)" stroke-linecap="round" opacity="0.85">
-    <circle cx="210" cy="720" r="120" stroke-width="18" stroke-opacity="0.9"/>
-    <circle cx="210" cy="720" r="220" stroke-width="14" stroke-opacity="0.55"/>
-    <circle cx="210" cy="720" r="320" stroke-width="12" stroke-opacity="0.35"/>
-    <circle cx="210" cy="720" r="430" stroke-width="10" stroke-opacity="0.2"/>
-    <circle cx="210" cy="720" r="550" stroke-width="8" stroke-opacity="0.12"/>
+  <!-- Contour arcs radiating from the lower left -->
+  <g fill="none" stroke="#171815" stroke-linecap="round">
+    <path d="M60 750a300 300 0 0 0 300-300" stroke-opacity="0.85" stroke-width="3"/>
+    <path d="M60 750a420 420 0 0 0 420-420" stroke-opacity="0.45" stroke-width="2"/>
+    <path d="M60 750a540 540 0 0 0 540-540" stroke-opacity="0.3" stroke-width="2"/>
+    <path d="M60 750a660 660 0 0 0 660-660" stroke-opacity="0.18" stroke-width="2"/>
+    <path d="M60 750a780 780 0 0 0 780-780" stroke-opacity="0.12" stroke-width="2"/>
   </g>
+  <path d="M60 750a180 180 0 0 0 180-180" fill="none" stroke="#C34F32" stroke-width="4" stroke-linecap="round"/>
 
-  <!-- Hairline grid -->
-  <g stroke="#ffffff" stroke-opacity="0.07" stroke-width="2">
-    <path d="M600 0v750M760 0v750M920 0v750M1080 0v750"/>
-    <path d="M0 190h1200M0 380h1200M0 570h1200"/>
-  </g>
+  <!-- Measured block, upper right -->
+  <rect x="880" y="240" width="240" height="150" rx="4" fill="none" stroke="#171815" stroke-opacity="0.35" stroke-width="2"/>
+  <path d="M880 315h240M1000 240v150" stroke="#171815" stroke-opacity="0.2" stroke-width="2"/>
+  <rect x="910" y="270" width="80" height="12" fill="#C34F32"/>
+  <rect x="910" y="345" width="140" height="10" fill="#171815" fill-opacity="0.45"/>
 
-  <!-- Floating data card -->
-  <g>
-    <rect x="700" y="150" width="360" height="220" rx="26" fill="#0f1219" stroke="#ffffff" stroke-opacity="0.16" stroke-width="2"/>
-    <rect x="740" y="192" width="120" height="16" rx="8" fill="url(#p2Accent)"/>
-    <rect x="740" y="232" width="240" height="12" rx="6" fill="#ffffff" fill-opacity="0.16"/>
-    <rect x="740" y="262" width="196" height="12" rx="6" fill="#ffffff" fill-opacity="0.12"/>
-    <rect x="740" y="300" width="88" height="34" rx="17" fill="#ffffff" fill-opacity="0.1"/>
-    <circle cx="770" cy="317" r="9" fill="url(#p2Accent)"/>
-  </g>
-
-  <!-- Accent spark -->
-  <circle cx="1000" cy="560" r="70" fill="url(#p2Accent)" opacity="0.28"/>
-  <circle cx="1000" cy="560" r="26" fill="url(#p2Accent)"/>
+  <!-- Baseline -->
+  <path d="M60 706h1080" stroke="#171815" stroke-opacity="0.16" stroke-width="2"/>
 </svg>

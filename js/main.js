@@ -79,7 +79,7 @@
 
       // Keep the browser UI (mobile address bar) in step with the theme.
       if (metaThemeColor) {
-        metaThemeColor.setAttribute("content", theme === "light" ? "#f7f8fb" : "#0b0d12");
+        metaThemeColor.setAttribute("content", theme === "light" ? "#f4f2ec" : "#171815");
       }
 
       // The control describes the action it performs.
@@ -331,8 +331,9 @@
           : [];
         var index = siblings.indexOf(element);
 
-        // Small stagger so cards arrive in sequence rather than all at once.
-        element.style.transitionDelay = Math.min(Math.max(index, 0), 4) * 80 + "ms";
+        // Brief stagger so grouped entries arrive in sequence rather than all
+        // at once. Kept short - the motion must never hold content back.
+        element.style.transitionDelay = Math.min(Math.max(index, 0), 3) * 45 + "ms";
         element.classList.add("is-visible");
         observer.unobserve(element);
       });
