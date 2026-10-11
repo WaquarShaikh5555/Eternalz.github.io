@@ -32,21 +32,44 @@ and no package manager, so the repository deploys exactly as it sits.
 └── CNAME               Custom domain for GitHub Pages (eternalz.me)
 ```
 
+## What is filled in
+
+Your real content is live in these places:
+
+- **Hero** — name, tagline ("AI, software development, web and automation"), intro
+  paragraph, and an "Exploring tech since 2020" fact.
+- **About** — the full story in four parts (where it started, from curiosity to
+  craft, where you are today, what is ahead), the closing note about curiosity and
+  consistency, and a **Gaming & tinkering** card that carries the Minecraft and
+  server/plugin/permissions part separately from the developer story.
+- **Contact** — both addresses (`waquarsk1@gmail.com`, `waquarsk2@gmail.com`),
+  Instagram (`@waquarsk1`), and a Discord row that copies `waquar5555` to the
+  clipboard, since Discord has no public profile URL.
+- **Footer** — Instagram, Discord copy button and email alongside the icon links.
+- **SEO** — description, Open Graph copy, the social card image, and the
+  `Person` structured data now include the Instagram URL.
+
 ## Before you publish
 
-The markup is complete and styled, but every personal detail is a clearly marked
-placeholder. Search `index.html` for `[` and replace:
+Remaining placeholders, all marked in `index.html`. Search for `[` and replace:
 
 | Placeholder | Where |
 | --- | --- |
-| `[PROFESSIONAL_TITLE]`, `[HERO_INTRO_TEXT]`, `[LOCATION]`, `[AVAILABILITY_STATUS]` | Hero |
-| `[ABOUT_ME_TEXT]`, `[ABOUT_PARAGRAPH_1..3]`, `[PRIMARY_FOCUS]`, `[SPOKEN_LANGUAGES]`, `[CURRENT_STATUS]` | About |
+| `[LOCATION]`, `[AVAILABILITY_STATUS]` | Hero quick facts and the About "Quick facts" list — or delete those rows |
 | `[SKILLS_INTRO_TEXT]`, `[SKILL_GROUP_1..3_TITLE/DESCRIPTION]`, `[SKILL_1_1]` … | Skills |
 | `[PROJECTS_INTRO_TEXT]`, `[PROJECT_1..3_TITLE/DESCRIPTION]`, `[TAG]` | Projects |
-| `[EXPERIENCE_INTRO_TEXT]`, `[ROLE_TITLE_1..3]`, `[COMPANY_OR_ORGANISATION_1..3]`, `[START_DATE]`, `[END_DATE]`, dates and education | Experience |
-| `[CONTACT_INTRO_TEXT]`, `[FOOTER_TAGLINE]` | Contact & footer |
+| `[EXPERIENCE_INTRO_TEXT]`, `[ROLE_TITLE_1..3]`, `[COMPANY_OR_ORGANISATION_1..3]`, `[WORK_TYPE_1..3]`, `[START_DATE]`, `[END_DATE]`, `[EDUCATION_QUALIFICATION]`, `[INSTITUTION_NAME]`, `[EDUCATION_TYPE]`, `[EDUCATION_DESCRIPTION]` | Experience |
+| `[FOOTER_TAGLINE]` | Footer |
 | `[GITHUB_PROFILE_URL]`, `[GITHUB_HANDLE]`, `[LINKEDIN_PROFILE_URL]`, `[LINKEDIN_HANDLE]` | Contact, footer, structured data |
 | `[FORMSPREE_ACTION_ID]` | Contact form `action` (see below) |
+
+**Two things left out on purpose.** You described yourself as a 15-year-old tech
+enthusiast; that detail is *not* on the page. There is a marked comment in the
+About section where it would go — tell me and it goes in, or leave it out if you
+would rather not publish your age, which is a perfectly sensible choice. The
+Skills, Projects and Experience sections still hold neutral placeholders because
+you have not sent that content yet; nothing about your work history has been
+invented.
 
 Project covers are abstract SVG placeholders — swap in real screenshots at
 1200×750 if you prefer, keeping the `width`/`height` attributes so the layout
@@ -122,6 +145,8 @@ Same story: no build command, output directory `.`. Cloudflare Pages honours
 - **No-JavaScript fallback.** `<html>` is only flagged `.js` by the theme
   script, so with scripting disabled nothing is hidden, and the contact form
   falls back to a normal POST.
+- **Age and privacy.** No personal details were invented or inferred: dates,
+  employers, qualifications and handles are all still explicit placeholders.
 - **Theming.** Dark by default, follows `prefers-color-scheme`, and the visitor's
   explicit choice is remembered in `localStorage`. Because the toggle only ever
   records a preference, the page stays correct if storage is blocked.

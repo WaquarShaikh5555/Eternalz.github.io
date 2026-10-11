@@ -413,7 +413,56 @@
   }
 
   /* ========================================================================
-     7. Contact form
+     7. Copy-to-clipboard (Discord username)
+     ======================================================================== */
+  function initCopyControls() {
+    var buttons = getAll("[data-copy]");
+    var status = get("#copy-status");
+    var resetTimer = null;
+
+    if (!buttons.length) {
+      return;
+    }
+
+    function announce(message) {
+      if (!status) {
+        return;
+      }
+
+      status.textContent = message;
+
+      // Clear the message after a moment so it never lingers stale.
+      window.clearTimeout(resetTimer);
+      resetTimer = window.setTimeout(function () {
+        status.textContent = "";
+      }, 5000);
+    }
+
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var value = button.getAttribute("data-copy");
+        var label = button.getAttribute("data-copy-label") || "Text";
+        if (!value) {
+          return;
+        }
+
+        // The clipboard API needs a secure context; on plain HTTP (local
+        // previews) it is unavailable, so fall back to simply showing it.
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(value).then(function () {
+            announce(label + " copied to clipboard: " + value);
+          }).catch(function () {
+            announce(label + ": " + value);
+          });
+        } else {
+          announce(label + " (copy manually): " + value);
+        }
+      });
+    });
+  }
+
+  /* ========================================================================
+     8. Contact form
      ======================================================================== */
   function initContactForm() {
     var form = get("#contact-form");
@@ -637,6 +686,7 @@
     initReveal();
     initSmoothScroll();
     initFooterMeta();
+    initCopyControls();
     initContactForm();
   }
 

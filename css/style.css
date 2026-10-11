@@ -890,6 +890,62 @@ p {
   color: var(--text-muted);
 }
 
+/* The honest closing note, set slightly apart from the paragraphs above */
+.about__closing {
+  margin-top: var(--space-2);
+  padding-inline-start: var(--space-2);
+  border-inline-start: 2px solid var(--accent);
+  color: var(--text) !important;
+  font-weight: 500;
+}
+
+/* Gaming / off-screen interests: full-width card under the about grid */
+.feature-card {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(160deg, var(--surface-2) 0%, var(--surface) 70%);
+  box-shadow: var(--shadow-sm);
+}
+
+.feature-card__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.feature-card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.feature-card__eyebrow {
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.feature-card__title {
+  margin-top: 4px;
+  font-size: var(--step-3);
+}
+
+.feature-card__text {
+  margin-top: var(--space-1);
+  max-width: 62ch;
+  color: var(--text-muted);
+}
+
 .about__aside {
   padding: var(--space-3);
   border: 1px solid var(--border);
@@ -1201,6 +1257,11 @@ p {
   align-content: start;
 }
 
+.contact__emails {
+  display: grid;
+  gap: var(--space-1);
+}
+
 .contact__email {
   display: flex;
   align-items: center;
@@ -1252,6 +1313,8 @@ p {
 .contact__email-value {
   font-size: var(--step-1);
   font-weight: 600;
+  /* The markup carries a <wbr> at the "@", so anything unusual wraps there
+     first and only breaks mid-string as a last resort. */
   overflow-wrap: anywhere;
 }
 
@@ -1291,6 +1354,57 @@ p {
   color: var(--text-subtle);
   font-size: var(--step--1);
   font-weight: 500;
+}
+
+/* Below 480px a long label plus its handle no longer share one line. The
+   trailing arrow is decorative - the row is plainly tappable - so it is dropped
+   first, which keeps every row on a single line at 375px. Wrapping stays
+   available as a safety net for unusually long real handles. */
+@media (max-width: 480px) {
+  .social-link__go {
+    display: none;
+  }
+
+  .social-link {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+}
+
+/* Trailing affordance: "opens elsewhere" for links, "copy" for the button */
+.social-link__go {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--text-subtle);
+  transition: color var(--transition), transform var(--transition);
+}
+
+.social-link:hover .social-link__go {
+  color: var(--accent-text);
+}
+
+/* Discord has no public profile URL, so it is a button rather than a link */
+.social-link--copy {
+  width: 100%;
+  text-align: start;
+  cursor: pointer;
+}
+
+.social-link--copy:hover {
+  transform: translateX(4px);
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.copy-status {
+  color: var(--accent-text);
+  font-size: var(--step--1);
+  font-weight: 500;
+}
+
+.copy-status:empty {
+  display: none;
 }
 
 .contact__note {
@@ -1484,7 +1598,8 @@ p {
   gap: var(--space-1);
 }
 
-.site-footer__social a {
+.site-footer__social a,
+.site-footer__social button {
   display: grid;
   place-items: center;
   width: 44px;
@@ -1497,7 +1612,8 @@ p {
               border-color var(--transition);
 }
 
-.site-footer__social a:hover {
+.site-footer__social a:hover,
+.site-footer__social button:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
   color: var(--accent-text);
@@ -1590,6 +1706,14 @@ p {
   .about__grid {
     grid-template-columns: 1.25fr 1fr;
     gap: var(--space-4);
+    align-items: start;
+  }
+
+  /* Icon beside the copy once there is room for it */
+  .feature-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-4);
     align-items: start;
   }
 
