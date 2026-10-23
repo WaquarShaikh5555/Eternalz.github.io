@@ -1309,6 +1309,330 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
 }
 .plate__idx { color: var(--accent-text); }
 
+/* --------------------------------------------------------------------------
+   Featured project — Shaikh's
+   A full-bleed card that carries the first real entry. The visual is an
+   ink panel with a tiny phone, so it reads as an object, not a screenshot.
+   -------------------------------------------------------------------------- */
+.feature {
+  display: grid;
+  gap: 0;
+  margin-top: var(--s-6);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-4);
+  background: var(--card);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.feature__visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  background: #15140f;
+  color: #efe9dc;
+  overflow: hidden;
+}
+
+.feature__glow {
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(520px circle at 55% 42%, rgba(240, 78, 35, 0.28), transparent 72%);
+  pointer-events: none;
+}
+
+.feature__phone-wrap {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--s-3);
+  justify-items: center;
+}
+
+.feature__phone {
+  width: min(240px, 64vw);
+  border: 1.5px solid rgba(239, 233, 220, 0.18);
+  border-radius: 28px;
+  background: linear-gradient(180deg, #1e1d17 0%, #12120f 100%);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(239, 233, 220, 0.12) inset;
+  overflow: hidden;
+}
+
+.feature__phone-head {
+  display: grid;
+  place-items: center;
+  padding: 12px 0 8px;
+  border-bottom: 1px solid rgba(239, 233, 220, 0.08);
+}
+
+.feature__phone-notch {
+  width: 54px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(239, 233, 220, 0.22);
+}
+
+.feature__phone-screen {
+  padding: 18px 18px 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.feature__phone-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(239, 233, 220, 0.62);
+}
+
+.feature__phone-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #fff;
+}
+
+.feature__phone-desc {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: rgba(239, 233, 220, 0.78);
+}
+
+.feature__phone-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid rgba(239, 233, 220, 0.14);
+  border-radius: 12px;
+  background: rgba(239, 233, 220, 0.06);
+}
+
+.feature__phone-toggle-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.feature__phone-toggle-track {
+  margin-left: auto;
+  width: 36px;
+  height: 20px;
+  border-radius: 999px;
+  background: #f04e23;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.feature__phone-toggle-track i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateX(7px);
+  display: block;
+}
+
+.feature__phone-toggle-state {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: rgba(239, 233, 220, 0.9);
+}
+
+.feature__phone-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-top: 1px solid rgba(239, 233, 220, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(239, 233, 220, 0.58);
+}
+
+.feature__caption {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: rgba(239, 233, 220, 0.58);
+  text-align: center;
+  max-width: 28ch;
+}
+
+.feature__body {
+  display: grid;
+  gap: var(--s-4);
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+  align-content: start;
+}
+
+.feature__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feature__kicker span {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.feature__title {
+  font-size: clamp(1.9rem, 1.2rem + 2.4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.feature__lead {
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.feature__lead code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--bg-deep);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--fg);
+  border: 1px solid var(--line);
+}
+
+.feature__highlight {
+  padding: var(--s-4);
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-3);
+  background: var(--bg-deep);
+}
+
+.feature__highlight-title {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.feature__highlight p {
+  color: var(--muted);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+.feature__meta {
+  display: grid;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.feature__meta-row {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: var(--s-3);
+  padding: 10px 0;
+  font-size: var(--fs-small);
+}
+
+.feature__meta-row + .feature__meta-row { border-top: 1px solid var(--line); }
+
+.feature__meta-row dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.feature__meta-row dd { margin: 0; font-weight: 600; }
+
+.feature__meta-row a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--line-strong);
+  transition: color var(--dur) var(--ease), text-decoration-color var(--dur) var(--ease);
+}
+
+.feature__meta-row a:hover { color: var(--accent-text); text-decoration-color: var(--accent); }
+
+.feature__actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
+.feature__links {
+  display: grid;
+  gap: 4px;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+
+.feature__vanity {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.feature__vanity a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line-strong);
+}
+
+.feature__vanity a:hover { color: var(--accent-text); text-decoration-color: var(--accent); }
+
+.feature__note {
+  font-size: var(--fs-small);
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.feature__note code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+}
+
+.feature__next {
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 6px;
+}
+
+.feature__next-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.feature__next-desc { color: var(--muted); max-width: 52ch; }
+
 /* ==========================================================================
    15. EXPERIENCE — ember band
    ========================================================================== */
@@ -1804,6 +2128,9 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
 
   .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); }
   .plates { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); }
+
+  .feature { grid-template-columns: 1fr 1.15fr; }
+  .feature__visual { min-height: 0; align-self: stretch; }
 
   .await {
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);

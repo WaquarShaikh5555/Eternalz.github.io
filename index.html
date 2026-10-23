@@ -456,7 +456,7 @@
     </section>
 
     <!-- =========================================================================
-         PROJECTS — coming soon, presented as an interactive plate wall
+         PROJECTS — Shaikh's for Android (live) + the plate wall for what's next
          ========================================================================= -->
     <section class="section section--projects" id="projects" aria-labelledby="projects-title">
       <div class="container">
@@ -464,40 +464,125 @@
           <span class="section__ghost" aria-hidden="true">03</span>
           <p class="section__label">
             <span class="section__num">03</span> Projects
-            <span class="stamp stamp--sm">Coming soon</span>
+            <span class="stamp stamp--sm">New</span>
           </p>
           <h2 class="section__title" id="projects-title">Selected work</h2>
           <p class="section__intro">
-            I am putting these together now. Write-ups of what I have built will appear
-            here &mdash; until then, feel free to ask.
+            First one is live &mdash; <em>Shaikh's</em> for Android, with Regain that keeps
+            messages open while Reels and Shorts stay closed. Every download pulls the
+            latest release straight from GitHub.
           </p>
           <span class="section__rule" aria-hidden="true"></span>
         </header>
 
-        <!-- Three empty plates that lean toward the pointer, with a chip that
-             follows the cursor. Nothing here claims to be a finished project. -->
+        <!-- Featured project: Shaikh's — Android app. The first real entry on the wall. -->
+        <article class="feature" data-reveal>
+          <div class="feature__visual" aria-hidden="true">
+            <span class="feature__glow"></span>
+            <div class="feature__phone-wrap">
+              <div class="feature__phone">
+                <div class="feature__phone-head">
+                  <span class="feature__phone-notch"></span>
+                </div>
+                <div class="feature__phone-screen">
+                  <p class="feature__phone-kicker">Shaikh's · Android</p>
+                  <h3 class="feature__phone-title">Regain</h3>
+                  <p class="feature__phone-desc">Reels &amp; Shorts stay closed.<br>Messages keep working.</p>
+                  <div class="feature__phone-toggle">
+                    <span class="feature__phone-toggle-label">Regain</span>
+                    <span class="feature__phone-toggle-track"><i></i></span>
+                    <span class="feature__phone-toggle-state">ON</span>
+                  </div>
+                </div>
+                <div class="feature__phone-foot">
+                  <span>shaikhs.apk</span>
+                  <span>~53 MB</span>
+                </div>
+              </div>
+              <p class="feature__caption">Built from the latest commit — auto-updates on every release</p>
+            </div>
+          </div>
+
+          <div class="feature__body">
+            <p class="feature__kicker"><span>Featured</span> Android · APK · Latest</p>
+            <h3 class="feature__title">Shaikh's</h3>
+            <p class="feature__lead">
+              <strong>Shaikh's for Android</strong> — download <code>shaikhs.apk</code> and open it on
+              your phone. If Android asks, allow installing from this source. Built from the
+              latest commit on the <code>apk</code> branch.
+            </p>
+
+            <div class="feature__highlight">
+              <h4 class="feature__highlight-title">Regain is here</h4>
+              <p>
+                Open the app → the Regain card on the home screen → switch it on → allow
+                Regain in Settings → Accessibility. Then Reels, Shorts and the rest stay
+                closed while messages keep working.
+              </p>
+            </div>
+
+            <dl class="feature__meta">
+              <div class="feature__meta-row">
+                <dt>Release</dt>
+                <dd>apk — 23 Oct 2026</dd>
+              </div>
+              <div class="feature__meta-row">
+                <dt>File</dt>
+                <dd>shaikhs.apk · 53 MB</dd>
+              </div>
+              <div class="feature__meta-row">
+                <dt>Source</dt>
+                <dd><a href="https://github.com/WaquarShaikh5555/Mee6" target="_blank" rel="noopener noreferrer">github.com/WaquarShaikh5555/Mee6</a></dd>
+              </div>
+            </dl>
+
+            <div class="feature__actions">
+              <a class="btn btn--solid" href="https://github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk" data-magnetic>
+                <span class="btn__label">Download APK</span>
+                <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
+              </a>
+              <a class="btn btn--ghost" href="https://github.com/WaquarShaikh5555/Mee6/releases/tag/apk" target="_blank" rel="noopener noreferrer" data-magnetic>
+                <span class="btn__label">View on GitHub</span>
+                <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg>
+              </a>
+            </div>
+
+            <div class="feature__links">
+              <p class="feature__vanity">
+                Short link: <a href="https://eternalz.me/download">eternalz.me/download</a> · always the latest
+              </p>
+              <p class="feature__vanity">
+                Also: <a href="https://eternalz.me/apk">eternalz.me/apk</a> · <a href="https://eternalz.me/shaikhs">eternalz.me/shaikhs</a>
+              </p>
+              <p class="feature__note">All three are tiny redirect pages on this site — they send you to <code>github.com/…/latest/download/shaikhs.apk</code> so you never get a stale copy.</p>
+            </div>
+          </div>
+        </article>
+
+        <div class="feature__next" data-reveal>
+          <p class="feature__next-kicker">Up next</p>
+          <p class="feature__next-desc">More write-ups will land here as they ship. These plates hold the space for now.</p>
+        </div>
+
         <div class="plates" id="plates" data-reveal>
           <span class="plates__chip" id="plates-chip" aria-hidden="true">Coming soon</span>
           <figure class="plate">
             <span class="plate__frame">
-              <img src="assets/project-1.svg" alt="Placeholder plate 1" width="1200" height="750"
-                   loading="lazy" decoding="async">
-            </span>
-            <figcaption class="plate__cap"><span class="plate__idx">01</span>Plate</figcaption>
-          </figure>
-          <figure class="plate">
-            <span class="plate__frame">
-              <img src="assets/project-2.svg" alt="Placeholder plate 2" width="1200" height="750"
-                   loading="lazy" decoding="async">
+              <img src="assets/project-1.svg" alt="Placeholder plate 1" width="1200" height="750" loading="lazy" decoding="async">
             </span>
             <figcaption class="plate__cap"><span class="plate__idx">02</span>Plate</figcaption>
           </figure>
           <figure class="plate">
             <span class="plate__frame">
-              <img src="assets/project-3.svg" alt="Placeholder plate 3" width="1200" height="750"
-                   loading="lazy" decoding="async">
+              <img src="assets/project-2.svg" alt="Placeholder plate 2" width="1200" height="750" loading="lazy" decoding="async">
             </span>
             <figcaption class="plate__cap"><span class="plate__idx">03</span>Plate</figcaption>
+          </figure>
+          <figure class="plate">
+            <span class="plate__frame">
+              <img src="assets/project-3.svg" alt="Placeholder plate 3" width="1200" height="750" loading="lazy" decoding="async">
+            </span>
+            <figcaption class="plate__cap"><span class="plate__idx">04</span>Plate</figcaption>
           </figure>
         </div>
       </div>
@@ -788,6 +873,11 @@
       <symbol id="icon-send" viewBox="0 0 24 24">
         <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/>
+        </g>
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v13M7 13l5 5 5-5"/><path d="M4 19h16"/>
         </g>
       </symbol>
       <symbol id="icon-copy" viewBox="0 0 24 24">
