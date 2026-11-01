@@ -1,12 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">Waquar Shaikh favicon</title>
-  <desc id="desc">Stylized W monogram</desc>
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#31d1ff"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="#0b1220"/>
-  <path d="M13 49V15l10 26 9-22 9 22 10-26v34h-7V29l-12 22-12-22v20H13Z" fill="url(#g)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Waquar Shaikh monogram">
+  <!-- Ember tile with an ink monogram: recognisable at 16px, and it reads as
+       the brand's colour even in a crowded tab strip -->
+  <rect width="64" height="64" rx="14" fill="#F04E23"/>
+  <path d="M13 19.5 22.5 45 32 27.5 41.5 45 51 19.5"
+        fill="none" stroke="#15140F" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

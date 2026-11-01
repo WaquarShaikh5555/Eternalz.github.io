@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Single-page site: in-page sections are not listed individually, as search
+     engines treat hash fragments as part of this one URL. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://eternalz.me/</loc>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 </urlset>

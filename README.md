@@ -1,80 +1,70 @@
-# Waquar Shaikh Portfolio
+# Waquar Shaikh — Portfolio
 
-A premium, production-ready personal portfolio built with HTML, CSS, and vanilla JavaScript.
+A personal portfolio built with static HTML, CSS, and vanilla JavaScript. No framework, build step, or package manager is required.
 
-## Features
-- Dark theme with light/dark mode toggle
-- Responsive sticky navigation and mobile menu
-- Hero section with animated typing effect
-- About, Skills, Projects, Experience, and Contact sections
-- Glassmorphism cards, gradients, and smooth entry animations
-- Contact form with validation and honeypot field
-- SEO metadata and social preview tags
-- Basic GitHub Pages / static hosting setup
+**Live site:** https://eternalz.me
+**Email:** waquarsk1@gmail.com
+
+## Site contents
+
+- `index.html` — hero, About, Skills, Projects, Experience, Contact, and footer.
+- `css/style.css` — design tokens, responsive layout, and component styling.
+- `js/theme-init.js` and `js/main.js` — theme, navigation, scroll behavior, form validation, and small interactions.
+- `assets/og-image-v2.png` — the 1200 × 630 social sharing image used by Open Graph and Twitter cards.
+- `assets/` — site icons and the featured project's visual assets.
+- `download/`, `apk/`, `shaikhs/`, `projects/shaikhs/` — short links that redirect to the latest Shaikh's Android release.
+- `_headers`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, and `CNAME` — deployment and site metadata.
+
+## About the content
+
+- **About** tells Waquar's story, including the path from Minecraft servers and plugins to bots, websites, automation, and AI-assisted development. It also explains what the name Eternalz means, without presenting it as an existing company.
+- **Skills** covers AI and automation, web and frontend work, and configuration and setup.
+- **Projects** features Shaikh's for Android. The download points to GitHub's latest-release URL, and the page describes Regain as it is described in the release.
+- **Experience** describes the learning path through personal projects. It does not claim employers, qualifications, or job titles.
+- **Contact** lists the two supplied email addresses, Instagram, GitHub, and Discord. The message form validates the fields and opens a prefilled draft in the visitor's email app; it does not silently send or store messages.
+- The site does not publish Waquar's age.
+
+No profile placeholders remain. The contact form requires no hosted service or private key.
+
+## Contact form behavior
+
+Submitting the form opens a `mailto:` draft addressed to `waquarsk1@gmail.com`. The visitor reviews the draft and chooses whether to send it. If no email app is configured, use the email links shown on the page instead.
 
 ## Run locally
-1. Open the project folder in a code editor.
-2. Serve it with any static server, for example:
-   ```bash
-   python3 -m http.server 8000
-   ```
-3. Open http://localhost:8000 in your browser.
+
+Serve the repository over HTTP so relative paths and security rules behave like production:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open http://localhost:8000.
 
 ## Deploy
-This site is designed for static hosting.
 
-### GitHub Pages
-1. Push this repo to GitHub.
-2. Go to Repository Settings → Pages.
-3. Select the default branch and root folder.
-4. Ensure the custom domain is set to `eternalz.me` and that `CNAME` exists.
+This is a static site. On GitHub Pages, choose the deployment branch and `/ (root)` folder in **Settings → Pages**; use the branch currently configured for this repository unless you intentionally change the Pages source. The included `CNAME` is `eternalz.me`. GitHub Pages does not apply `_headers`, so the CSP meta tag in `index.html` remains important there.
 
-### Netlify
-```toml
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Security-Policy = "default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io;"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-```
+For Netlify or Cloudflare Pages, publish the repository root without a build command. Those hosts can apply `_headers` as well.
 
-### Vercel
-Add the following to `vercel.json`:
-```json
-{
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io;" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
-      ]
-    }
-  ]
-}
-```
+## Engineering notes
 
-### Nginx
-```nginx
-add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io;" always;
-add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-add_header X-Content-Type-Options "nosniff" always;
-add_header X-Frame-Options "DENY" always;
-add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
-```
+- The only third-party requests are the Google Fonts stylesheet and its font files. UI icons use the inline SVG sprite in `index.html`.
+- The Content Security Policy has no `unsafe-inline`. It permits the site's own scripts, Google Fonts, and the `mailto:` form fallback.
+- Navigation supports keyboard use, Escape to close, and reduced-motion preferences. The mobile menu preserves the page's scroll position when it opens and closes.
+- If JavaScript is disabled, the page content remains visible and the form retains its native `mailto:` fallback.
 
-## Contact form and security notes
-- Use a backend or Formspree/EmailJS endpoint for production email sending.
-- The current form includes a honeypot field and basic client-side validation.
-- Don’t expose secrets or API keys in browser code.
-- Use HTTPS only and set proper domain DNS records for `eternalz.me`.
-- Replace placeholder social URLs, project details, and personal bio text before going live.
+## Design system — Signal & Grain
 
-## Important
-The repository already contains a `CNAME` file pointing to `eternalz.me`, which is the correct step for GitHub Pages custom domain setup. Actual live availability depends on DNS configuration at your domain provider and the GitHub Pages publishing settings.
+The page is art-directed like a printed object: warm bone paper, deep ink, ember, a restrained acid highlight, and a subtle grain texture. Geist handles structural text, Geist Mono handles labels and numerals, and Instrument Serif is used sparingly for editorial emphasis.
+
+| Token | Paper theme | Ink theme |
+| --- | --- | --- |
+| `--bg` | `#efe9dc` | `#0f0f0c` |
+| `--fg` | `#15140f` | `#f3efe6` |
+| `--muted` | `#665f53` | `#a6a294` |
+| `--card` | `#f7f3ea` | `#1b1a14` |
+| `--accent` | `#f04e23` | `#ff6b3d` |
+| `--accent-text` | `#ae3510` | `#ff6b3d` |
+| `--acid` | `#d4f04a` | `#d4f04a` |
+
+The palette uses separate decorative and text accents so links stay legible. Motion is deliberately limited: scroll reveals, small hover responses, the hero's pointer-reactive light, and the mobile menu transition. All motion respects `prefers-reduced-motion`.

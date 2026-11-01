@@ -1,1 +1,8 @@
-# this repo uses static site assets; no generated files required
+# Static site - no build step, no generated output to ignore.
+
+# Editor and OS clutter
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
