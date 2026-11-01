@@ -605,10 +605,12 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 .site-header.is-stuck {
+  /* Keep the fixed header free of backdrop-filter: that property creates a
+     containing block for fixed descendants. On mobile, the full-screen nav
+     lives inside this header and must remain anchored to the viewport after
+     scrolling. The translucent fill keeps the same quiet layered look. */
   background: var(--header-bg);
   border-bottom: 1px solid var(--line);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
 }
 
 .site-header__inner {
