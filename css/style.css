@@ -24,7 +24,7 @@
      11. Marquee
      12. About
      13. Skills (inverting band)
-     14. Projects (plates)
+     14. Projects (featured work)
      15. Experience (ember band)
      16. Contact & form
      17. Footer
@@ -340,7 +340,7 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   padding-inline: var(--gutter);
 }
 
-.about__grid > *, .skills > *, .plates > *, .contact__grid > * { min-width: 0; }
+.about__grid > *, .skills > *, .contact__grid > * { min-width: 0; }
 
 .section { padding-block: var(--section-y); position: relative; }
 
@@ -417,7 +417,7 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
 .section__head.is-visible .section__rule { transform: scaleX(1); transition: transform 900ms var(--ease-out); }
 .section__rule { width: min(120px, 30%); }
 
-/* "Coming soon" marker */
+/* Small section marker */
 .stamp {
   display: inline-flex;
   align-items: center;
@@ -1231,86 +1231,8 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
 .skill:hover .skill__list li { border-color: rgba(21, 20, 15, 0.18); }
 
 /* ==========================================================================
-   14. PROJECTS — plate wall
+   14. PROJECTS — featured work
    ========================================================================== */
-.plates {
-  position: relative;
-  display: grid;
-  gap: var(--s-5);
-}
-
-.plates__chip {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  z-index: 5;
-  padding: 0.5em 0.85em;
-  border-radius: 999px;
-  background: var(--ember);
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translate(var(--chip-x, 0), var(--chip-y, 0)) translate(-50%, -50%) scale(var(--chip-s, 0.6));
-  transition: opacity var(--dur) var(--ease), transform var(--dur-slow) var(--ease-out);
-  pointer-events: none;
-  will-change: transform;
-}
-.plates.is-hot .plates__chip { --chip-s: 1; opacity: 1; }
-
-.plate { display: grid; gap: var(--s-2); }
-
-.plate__frame {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-3);
-  background: var(--card);
-  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition: transform var(--dur-slow) var(--ease-out), border-color var(--dur) var(--ease);
-  will-change: transform;
-}
-.plate:hover .plate__frame { border-color: var(--accent); }
-.plate__frame img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 700ms var(--ease-out); }
-.plate:hover .plate__frame img { transform: scale(1.04); }
-
-/* The status band that rises out of the plate edge on hover */
-.plate__frame::after {
-  content: "Coming soon";
-  position: absolute;
-  inset-inline: 0;
-  inset-block-end: 0;
-  padding: 0.7em 1em;
-  background: var(--ember);
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  transform: translateY(100%);
-  transition: transform var(--dur-slow) var(--ease-out);
-}
-.plate:hover .plate__frame::after { transform: translateY(0); }
-
-.plate__cap {
-  display: flex;
-  align-items: center;
-  gap: var(--s-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.plate__idx { color: var(--accent-text); }
-
 /* --------------------------------------------------------------------------
    Featured project — Shaikh's
    A full-bleed card that carries the first real entry. The visual is an
@@ -1617,24 +1539,6 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   border-radius: 4px;
 }
 
-.feature__next {
-  margin-top: var(--s-7);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--line);
-  display: grid;
-  gap: 6px;
-}
-
-.feature__next-kicker {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--accent-text);
-}
-
-.feature__next-desc { color: var(--muted); max-width: 52ch; }
-
 /* ==========================================================================
    15. EXPERIENCE — ember band
    ========================================================================== */
@@ -1670,20 +1574,33 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   line-height: 1.16;
   letter-spacing: -0.025em;
 }
-.await__line em { font-family: var(--font-serif); font-style: italic; }
 
-.await__seal {
-  justify-self: start;
-  padding: 0.55em 1.1em;
-  border: 2px solid var(--ink);
-  border-radius: var(--r-2);
+.await__path {
+  display: grid;
+  align-content: start;
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.await__step {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.2rem var(--s-3);
+  align-items: baseline;
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.await__step-index {
+  grid-row: span 2;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  transform: rotate(-3deg);
+  color: var(--muted);
 }
+
+.await__step-title { font-weight: 600; }
+.await__step-detail { color: var(--muted); font-size: var(--fs-small); }
 
 /* ==========================================================================
    16. CONTACT & FORM
@@ -1775,6 +1692,8 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   background: var(--card);
 }
 
+.form__note { margin-top: calc(var(--s-3) * -1); color: var(--muted); font-size: var(--fs-small); line-height: 1.55; }
+
 .form__title {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
@@ -1813,16 +1732,7 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
 .field__error { color: var(--accent-text); font-size: var(--fs-small); font-weight: 600; }
 .field.is-invalid .field__input { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
 
-.field--honeypot {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
-}
+
 
 .form-status {
   display: none;
@@ -2014,7 +1924,6 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
 
 @media (min-width: 768px) {
   .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); }
-  .plates { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); }
   .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .site-footer__brand { grid-column: 1 / -1; }
 }
@@ -2129,7 +2038,6 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   .about__aside { position: sticky; top: calc(var(--header-h) + var(--s-5)); }
 
   .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); }
-  .plates { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); }
 
   .feature { grid-template-columns: 1fr 1.15fr; }
   .feature__visual { min-height: 0; align-self: stretch; }
@@ -2139,7 +2047,6 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
     align-items: center;
     column-gap: var(--s-7);
   }
-  .await__seal { justify-self: end; }
 
   .contact__grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
@@ -2193,7 +2100,6 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   .marquee__track { animation: none; }
   .seal__ring { animation: none; }
   .scroll-cue__icon { animation: none; }
-  .plate__frame { transform: none; }
   .skill__glow { display: none; }
 }
 
@@ -2210,7 +2116,7 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
 
   .grain, .progress, .site-header, .nav-toggle, .icon-btn, .skip-link, .to-top,
   .scroll-cue, .marquee, .contact-form, .site-footer__nav, .site-footer__social,
-  .plates__chip, .hero__field, .await__seal { display: none !important; }
+  .hero__field { display: none !important; }
 
   body { font-size: 11pt; background: #fff; color: #000; }
   .js [data-reveal] { opacity: 1 !important; transform: none !important; }
@@ -2220,7 +2126,7 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   .hero__title { font-size: 3rem; }
   .hero__word { transform: none; }
 
-  .about__block, .skill, .plate { break-inside: avoid; }
+  .about__block, .skill, .feature { break-inside: avoid; }
 
   a[href^="http"]::after, a[href^="mailto"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; }
 }

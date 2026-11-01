@@ -9,17 +9,17 @@
  *   4.  Scroll reveal via IntersectionObserver
  *   5.  Smooth in-page scrolling that honours reduced-motion
  *   6.  Footer year + back-to-top control
- *   7.  Contact form: validation, honeypot check, AJAX submission
+ *   7.  Contact form: validation and a prefilled email-app draft
  *   8.  Copy-to-clipboard (Discord username)
- *   9.  Pointer-reactive layer: hero spotlight, magnetic controls, project
- *       plate tilt + cursor chip, ghost-numeral parallax, reading progress
+ *   9.  Pointer-reactive layer: hero spotlight, magnetic controls,
+ *       ghost-numeral parallax, reading progress
  *
  * Everything in 9 is an enhancement layered on top of a page that already
  * works without it: each guard checks for the element, for a fine pointer and
  * for the visitor's motion preference before doing anything at all.
  *
  * Progressive enhancement throughout: with JavaScript disabled the site still
- * renders, navigates and submits the form (plain POST to Formspree).
+ * renders and navigates, and the contact form uses its native mailto fallback.
  */
 (function () {
   "use strict";
@@ -551,7 +551,6 @@
     }
 
     var status = get("#form-status", form);
-    var submit = get("#submit-button", form);
 
     var rules = {
       name: {
@@ -686,63 +685,24 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      var honeypot = form.elements["_gotcha"];
-      if (honeypot && honeypot.value !== "") {
-        showStatus("Your message could not be sent. Please email waquarsk1@gmail.com instead.", "error");
-        return;
-      }
-
       if (validateAll().length) {
         showStatus("Please correct the highlighted fields and try again.", "error");
         return;
       }
 
-      // A placeholder endpoint means the form is not wired up yet: say so
-      // rather than posting into the void.
-      if (form.getAttribute("action").indexOf("[FORMSPREE_ACTION_ID]") !== -1) {
-        showStatus(
-          "This form is ready to go - it just needs the Formspree form id in the action attribute. " +
-          "Until then, please email waquarsk1@gmail.com.",
-          "error"
-        );
-        return;
-      }
+      var name = form.elements.name.value.trim();
+      var email = form.elements.email.value.trim();
+      var subject = form.elements.subject.value.trim() || "A note from your website";
+      var message = form.elements.message.value.trim();
+      var body = "Name: " + name + "\nEmail: " + email + "\n\n" + message;
+      var mailto = "mailto:waquarsk1@gmail.com?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
 
-      var label = submit ? get(".button__label", submit) : null;
-      var originalLabel = label ? label.textContent : "";
-
-      if (submit) {
-        submit.disabled = true;
-      }
-      if (label) {
-        label.textContent = "Sending…";
-      }
-      showStatus("", "");
-
-      window.fetch(form.getAttribute("action"), {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      }).then(function (response) {
-        if (!response.ok) {
-          throw new Error("Request failed with status " + response.status);
-        }
-
-        form.reset();
-        showStatus("Thanks - your message is on its way. I'll reply by email.", "success");
-      }).catch(function () {
-        showStatus(
-          "Something went wrong while sending. Please try again, or email waquarsk1@gmail.com.",
-          "error"
-        );
-      }).then(function () {
-        if (submit) {
-          submit.disabled = false;
-        }
-        if (label) {
-          label.textContent = originalLabel;
-        }
-      });
+      showStatus(
+        "Your email app should open with a draft addressed to Waquar. Review it and tap Send there.",
+        "success"
+      );
+      window.location.href = mailto;
     });
   }
 
@@ -831,75 +791,6 @@
     });
   }
 
-  /** Plates lean toward the pointer, and a chip rides along with the cursor. */
-  function initPlates() {
-    var plates = get("#plates");
-    if (!plates) {
-      return;
-    }
-
-    var chip = get("#plates-chip");
-
-    if (!motionOK()) {
-      return; // Static plates and no chip: nothing is lost.
-    }
-
-    var frame = null;
-
-    plates.addEventListener("pointermove", function (event) {
-      if (frame) {
-        return;
-      }
-      frame = window.requestAnimationFrame(function () {
-        frame = null;
-        var box = plates.getBoundingClientRect();
-        var x = event.clientX - box.left;
-        var y = event.clientY - box.top;
-
-        plates.classList.add("is-hot");
-
-        if (chip) {
-          chip.style.setProperty("--chip-x", x.toFixed(1) + "px");
-          chip.style.setProperty("--chip-y", y.toFixed(1) + "px");
-        }
-      });
-    }, { passive: true });
-
-    plates.addEventListener("pointerenter", function () {
-      plates.classList.add("is-hot");
-    });
-    plates.addEventListener("pointerleave", function () {
-      plates.classList.remove("is-hot");
-      getAll(".plate", plates).forEach(function (plate) {
-        plate.style.removeProperty("--rx");
-        plate.style.removeProperty("--ry");
-      });
-    });
-
-    getAll(".plate", plates).forEach(function (plate) {
-      var tiltFrame = null;
-
-      plate.addEventListener("pointermove", function (event) {
-        if (tiltFrame) {
-          return;
-        }
-        tiltFrame = window.requestAnimationFrame(function () {
-          tiltFrame = null;
-          var box = plate.getBoundingClientRect();
-          var relX = (event.clientX - box.left) / box.width - 0.5;
-          var relY = (event.clientY - box.top) / box.height - 0.5;
-          plate.style.setProperty("--ry", (relX * 9).toFixed(2) + "deg");
-          plate.style.setProperty("--rx", (-relY * 9).toFixed(2) + "deg");
-        });
-      }, { passive: true });
-
-      plate.addEventListener("pointerleave", function () {
-        plate.style.removeProperty("--rx");
-        plate.style.removeProperty("--ry");
-      });
-    });
-  }
-
   /* ========================================================================
      Boot
      ======================================================================== */
@@ -914,7 +805,6 @@
     initContactForm();
     initHeroField();
     initMagnetic();
-    initPlates();
   }
 
   if (document.readyState === "loading") {
