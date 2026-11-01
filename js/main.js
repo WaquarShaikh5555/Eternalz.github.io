@@ -130,34 +130,18 @@
 
     var links = getAll(".site-nav__link", nav);
     var desktop = window.matchMedia("(min-width: 900px)");
-    var savedScrollY = 0;
-    var previousBodyStyle = null;
 
-    /* Lock the document in place without losing its scroll position. Using a
-       fixed body is more reliable than overflow:hidden alone on iOS Safari. */
+    /* Lock scrolling with classes only. Avoid fixing the body or calling
+       scrollTo: repeated menu toggles can otherwise strand the page at its
+       saved offset, especially on mobile browsers. */
     function lockScroll() {
-      savedScrollY = window.scrollY || window.pageYOffset || 0;
-      previousBodyStyle = document.body.getAttribute("style");
+      root.classList.add("is-nav-open");
       document.body.classList.add("is-nav-open");
-      document.body.style.position = "fixed";
-      document.body.style.top = (-savedScrollY) + "px";
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
     }
 
     function unlockScroll() {
+      root.classList.remove("is-nav-open");
       document.body.classList.remove("is-nav-open");
-      if (previousBodyStyle === null) {
-        document.body.removeAttribute("style");
-      } else {
-        document.body.setAttribute("style", previousBodyStyle);
-      }
-      previousBodyStyle = null;
-      var previousScrollBehavior = root.style.scrollBehavior;
-      root.style.scrollBehavior = "auto";
-      window.scrollTo(0, savedScrollY);
-      root.style.scrollBehavior = previousScrollBehavior;
     }
 
     function isOpen() {

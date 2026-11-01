@@ -247,8 +247,10 @@ body {
   transition: background-color var(--dur-slow) var(--ease), color var(--dur-slow) var(--ease);
 }
 
-/* Locked while the mobile navigation overlay is open */
-body.is-nav-open { overflow: hidden; }
+/* Lock the document while the mobile navigation overlay is open without
+   changing body positioning or touching the current scroll offset. */
+html.is-nav-open, body.is-nav-open { overflow: hidden; }
+html.is-nav-open { overscroll-behavior: none; }
 
 body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ol, ul { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
@@ -645,6 +647,8 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   z-index: -1;
   display: grid;
   align-content: center;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: calc(var(--header-h) + var(--s-5)) var(--gutter) var(--s-7);
   background: var(--band-bg);
   color: var(--band-fg);
