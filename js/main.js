@@ -84,7 +84,7 @@
       root.setAttribute("data-theme", theme);
 
       if (metaThemeColor) {
-        metaThemeColor.setAttribute("content", theme === "light" ? "#efe9dc" : "#0f0f0c");
+        metaThemeColor.setAttribute("content", theme === "light" ? "#ede6d1" : "#0b1112");
       }
 
       var label = theme === "light" ? "Switch to dark theme" : "Switch to light theme";
@@ -240,7 +240,6 @@
     var toTop = get("#to-top");
     var progress = get("#progress-bar");
     var indicator = get("#nav-indicator");
-    var ghosts = getAll(".section__ghost");
 
     if (!header) {
       return;
@@ -288,16 +287,6 @@
         var max = document.documentElement.scrollHeight - window.innerHeight;
         var ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
         progress.style.transform = "scaleX(" + ratio.toFixed(4) + ")";
-      }
-
-      // Ghost numerals drift a little against the scroll for depth.
-      if (ghosts.length && motionOK()) {
-        var vh = window.innerHeight;
-        ghosts.forEach(function (ghost) {
-          var box = ghost.getBoundingClientRect();
-          var descend = (box.top + box.height / 2 - vh / 2) / vh;
-          ghost.style.setProperty("--ghost-shift", (descend * -34).toFixed(1) + "px");
-        });
       }
 
       var active = "";

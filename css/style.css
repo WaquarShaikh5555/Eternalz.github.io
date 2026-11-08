@@ -352,31 +352,10 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   display: grid;
   gap: var(--s-3);
   margin-bottom: var(--s-7);
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
 }
 .section__label { grid-column: 1; }
 .section__title, .section__intro, .section__rule { grid-column: 1 / -1; }
-
-/* Oversized outlined numeral. It is a real grid item beside the section label
-   - the space next to a short label is otherwise empty, and this way it can
-   never collide with the standfirst. */
-.section__ghost {
-  justify-self: end;
-  align-self: end;
-  font-family: var(--font-sans);
-  font-size: clamp(3.25rem, 8vw, 6.5rem);
-  font-weight: 800;
-  line-height: 0.78;
-  letter-spacing: -0.06em;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--ghost-line);
-  pointer-events: none;
-  user-select: none;
-}
-
-@supports not (-webkit-text-stroke: 1px black) {
-  .section__ghost { color: var(--ghost-line); -webkit-text-stroke: 0; }
-}
 
 .section__label {
   display: flex;
@@ -389,8 +368,6 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   text-transform: uppercase;
   color: var(--muted);
 }
-
-.section__num { color: var(--accent-text); font-weight: 500; }
 
 .section__title {
   font-size: var(--fs-h2);
@@ -1903,9 +1880,6 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
   transition: opacity 620ms var(--ease-out), transform 700ms var(--ease-out);
 }
 
-/* Ghost numerals drift slightly against the scroll */
-.section__ghost { transform: translate3d(0, var(--ghost-shift, 0px), 0); }
-
 /* ==========================================================================
    20. RESPONSIVE
    ========================================================================== */
@@ -2026,12 +2000,10 @@ em { font-family: var(--font-serif); font-style: italic; font-weight: 400; lette
     align-items: end;
     grid-template-rows: auto auto auto;
   }
-  /* Row 1: label on the left, outlined numeral on the right.
-     Row 2: heading on the left, standfirst on the right. */
+  /* The label and heading lead on the left; the introduction sits alongside. */
   .section__label { grid-column: 1; grid-row: 1; }
-  .section__ghost { grid-column: 2; grid-row: 1; }
   .section__title { grid-column: 1; grid-row: 2; font-size: var(--fs-h2); }
-  .section__intro { grid-column: 2; grid-row: 2; }
+  .section__intro { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
   .section__rule { grid-column: 1 / -1; grid-row: 3; }
 
   .about__grid {

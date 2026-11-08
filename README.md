@@ -8,7 +8,8 @@ A personal portfolio built with static HTML, CSS, and vanilla JavaScript. No fra
 ## Site contents
 
 - `index.html` — hero, About, Skills, Projects, Experience, Contact, and footer.
-- `css/style.css` — design tokens, responsive layout, and component styling.
+- `css/style.css` and `css/redesign.css` — component behavior and the responsive world-builder's atlas design system.
+- `css/shortlink.css` — the shared visual system for APK redirect pages.
 - `js/theme-init.js` and `js/main.js` — theme, navigation, scroll behavior, form validation, and small interactions.
 - `assets/og-image-v2.png` — the 1200 × 630 social sharing image used by Open Graph and Twitter cards.
 - `assets/` — site icons and the featured project's visual assets.
@@ -19,7 +20,7 @@ A personal portfolio built with static HTML, CSS, and vanilla JavaScript. No fra
 
 - **About** tells Waquar's story, including the path from Minecraft servers and plugins to bots, websites, automation, and AI-assisted development. It also explains what the name Eternalz means, without presenting it as an existing company.
 - **Skills** covers AI and automation, web and frontend work, and configuration and setup.
-- **Projects** features Shaikh's for Android. The download points to GitHub's latest-release URL, and the page describes Regain as it is described in the release.
+- **Projects** features Shaikh's for Android. The download points to GitHub's latest-release URL, and the page describes Focus Mode as it is described in the release.
 - **Experience** describes the learning path through personal projects. It does not claim employers, qualifications, or job titles.
 - **Contact** lists the two supplied email addresses, Instagram, GitHub, and Discord. The message form validates the fields and opens a prefilled draft in the visitor's email app; it does not silently send or store messages.
 - The site does not publish Waquar's age.
@@ -53,18 +54,6 @@ For Netlify or Cloudflare Pages, publish the repository root without a build com
 - Navigation supports keyboard use, Escape to close, and reduced-motion preferences. The mobile menu preserves the page's scroll position when it opens and closes.
 - If JavaScript is disabled, the page content remains visible and the form retains its native `mailto:` fallback.
 
-## Design system — Signal & Grain
+## Design system — World-builder's atlas
 
-The page is art-directed like a printed object: warm bone paper, deep ink, ember, a restrained acid highlight, and a subtle grain texture. Geist handles structural text, Geist Mono handles labels and numerals, and Instrument Serif is used sparingly for editorial emphasis.
-
-| Token | Paper theme | Ink theme |
-| --- | --- | --- |
-| `--bg` | `#efe9dc` | `#0f0f0c` |
-| `--fg` | `#15140f` | `#f3efe6` |
-| `--muted` | `#665f53` | `#a6a294` |
-| `--card` | `#f7f3ea` | `#1b1a14` |
-| `--accent` | `#f04e23` | `#ff6b3d` |
-| `--accent-text` | `#ae3510` | `#ff6b3d` |
-| `--acid` | `#d4f04a` | `#d4f04a` |
-
-The palette uses separate decorative and text accents so links stay legible. Motion is deliberately limited: scroll reveals, small hover responses, the hero's pointer-reactive light, and the mobile menu transition. All motion respects `prefers-reduced-motion`.
+The portfolio is art-directed from the site's real origin in Minecraft server setup: deep obsidian, moss, sandstone, redstone orange, and signal green; block geometry, terrain grids, inventory-like facts, and a connected experience map. Chakra Petch carries the display type, IBM Plex Sans the reading text, and IBM Plex Mono short technical labels. The existing text, routes, navigation, and form behavior remain in place. `css/redesign.css` owns the homepage's complete composition; `css/shortlink.css` adapts its visual language to APK redirect pages.
