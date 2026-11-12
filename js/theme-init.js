@@ -5,15 +5,15 @@
  * deferred) to apply the visitor's saved colour scheme. This is what stops the
  * page flashing the wrong theme, so it must stay tiny and dependency-free.
  *
- * It also flags the document as script-enabled with `html.js`, which is what
- * arms the scroll-reveal CSS: if JavaScript never runs, nothing is ever hidden.
+ * It also flags the document as script-enabled with `html.js`, which enables
+ * the one-time hero type entrance; the page remains readable without JavaScript.
  */
 (function () {
   "use strict";
 
   var root = document.documentElement;
 
-  // Enables the reveal animations (CSS: `.js [data-reveal]`).
+  // Enables the restrained hero type entrance (CSS: `.js .hero__word`).
   root.classList.add("js");
 
   try {

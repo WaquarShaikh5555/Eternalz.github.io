@@ -1,0 +1,1999 @@
+{
+  "/": [
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh — Website Development, App Development & AI Automation"
+    },
+    {
+      "kind": "meta",
+      "name": "description",
+      "value": "Waquar Shaikh explores website development, app development and AI automation — learning, building and experimenting with technology since 2020."
+    },
+    {
+      "kind": "meta",
+      "name": "author",
+      "value": "Waquar Shaikh"
+    },
+    {
+      "kind": "meta",
+      "name": "og:site_name",
+      "value": "Waquar Shaikh"
+    },
+    {
+      "kind": "meta",
+      "name": "og:title",
+      "value": "Waquar Shaikh — Website Development, App Development & AI Automation"
+    },
+    {
+      "kind": "meta",
+      "name": "og:description",
+      "value": "Website development, app development and AI automation — learning, building and experimenting with technology since 2020."
+    },
+    {
+      "kind": "meta",
+      "name": "og:image:alt",
+      "value": "Waquar Shaikh — website development, app development and AI automation portfolio"
+    },
+    {
+      "kind": "meta",
+      "name": "twitter:card",
+      "value": "summary_large_image"
+    },
+    {
+      "kind": "meta",
+      "name": "twitter:title",
+      "value": "Waquar Shaikh — Website Development, App Development & AI Automation"
+    },
+    {
+      "kind": "meta",
+      "name": "twitter:description",
+      "value": "Website development, app development and AI automation — learning, building and experimenting since 2020."
+    },
+    {
+      "kind": "text",
+      "value": "Skip to main content"
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "aria-label",
+      "value": "Waquar Shaikh — back to top"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh"
+    },
+    {
+      "kind": "attribute",
+      "tag": "nav",
+      "name": "aria-label",
+      "value": "Primary"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "data-label",
+      "value": "About"
+    },
+    {
+      "kind": "text",
+      "value": "About"
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "data-label",
+      "value": "Skills"
+    },
+    {
+      "kind": "text",
+      "value": "Skills"
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "data-label",
+      "value": "Projects"
+    },
+    {
+      "kind": "text",
+      "value": "Projects"
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "data-label",
+      "value": "Experience"
+    },
+    {
+      "kind": "text",
+      "value": "Experience"
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "data-label",
+      "value": "Contact"
+    },
+    {
+      "kind": "text",
+      "value": "Contact"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "aria-label",
+      "value": "Switch to dark theme"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "aria-pressed",
+      "value": "false"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "aria-expanded",
+      "value": "false"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "aria-controls",
+      "value": "site-nav"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "aria-label",
+      "value": "Open navigation menu"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "section",
+      "name": "aria-labelledby",
+      "value": "hero-title"
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Portfolio"
+    },
+    {
+      "kind": "text",
+      "value": "Available for opportunities"
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "AVAILABLE FOR OPPORTUNITIES · EXPLORING TECH SINCE 2020 ·"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "AI, software development, web"
+    },
+    {
+      "kind": "text",
+      "value": "and automation"
+    },
+    {
+      "kind": "text",
+      "value": "I have been exploring technology since 2020. What started as curiosity about how things worked behind the scenes turned into building"
+    },
+    {
+      "kind": "text",
+      "value": "Discord bots"
+    },
+    {
+      "kind": "text",
+      "value": ","
+    },
+    {
+      "kind": "text",
+      "value": "websites"
+    },
+    {
+      "kind": "text",
+      "value": "and"
+    },
+    {
+      "kind": "text",
+      "value": "automation"
+    },
+    {
+      "kind": "text",
+      "value": "— and now"
+    },
+    {
+      "kind": "text",
+      "value": "AI-powered development"
+    },
+    {
+      "kind": "text",
+      "value": "."
+    },
+    {
+      "kind": "text",
+      "value": "View projects"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Get in touch"
+    },
+    {
+      "kind": "text",
+      "value": "Since"
+    },
+    {
+      "kind": "text",
+      "value": "2020"
+    },
+    {
+      "kind": "text",
+      "value": "Based"
+    },
+    {
+      "kind": "text",
+      "value": "Maharashtra, India"
+    },
+    {
+      "kind": "text",
+      "value": "Email"
+    },
+    {
+      "kind": "text",
+      "value": "waquarsk1@gmail.com"
+    },
+    {
+      "kind": "text",
+      "value": "Status"
+    },
+    {
+      "kind": "text",
+      "value": "Exploring tech since 2020"
+    },
+    {
+      "kind": "text",
+      "value": "Scroll"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "AI"
+    },
+    {
+      "kind": "text",
+      "value": "Software development"
+    },
+    {
+      "kind": "text",
+      "value": "Web"
+    },
+    {
+      "kind": "text",
+      "value": "Automation"
+    },
+    {
+      "kind": "text",
+      "value": "Discord bots"
+    },
+    {
+      "kind": "text",
+      "value": "Minecraft servers"
+    },
+    {
+      "kind": "text",
+      "value": "Plugins"
+    },
+    {
+      "kind": "text",
+      "value": "Permissions"
+    },
+    {
+      "kind": "text",
+      "value": "AI"
+    },
+    {
+      "kind": "text",
+      "value": "Software development"
+    },
+    {
+      "kind": "text",
+      "value": "Web"
+    },
+    {
+      "kind": "text",
+      "value": "Automation"
+    },
+    {
+      "kind": "text",
+      "value": "Discord bots"
+    },
+    {
+      "kind": "text",
+      "value": "Minecraft servers"
+    },
+    {
+      "kind": "text",
+      "value": "Plugins"
+    },
+    {
+      "kind": "text",
+      "value": "Permissions"
+    },
+    {
+      "kind": "attribute",
+      "tag": "section",
+      "name": "aria-labelledby",
+      "value": "about-title"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "01"
+    },
+    {
+      "kind": "text",
+      "value": "01"
+    },
+    {
+      "kind": "text",
+      "value": "About"
+    },
+    {
+      "kind": "text",
+      "value": "Hey, I’m Waquar"
+    },
+    {
+      "kind": "text",
+      "value": "A tech enthusiast who has been exploring the world of technology since 2020. What started as a simple interest in Minecraft slowly turned into something much bigger."
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "A"
+    },
+    {
+      "kind": "text",
+      "value": "Where it started"
+    },
+    {
+      "kind": "text",
+      "value": "Back then I played Minecraft, created servers, configured plugins, set up permissions and experimented with features — just for fun. I was not doing it for money or to build a career. I was simply curious about how things worked behind the scenes."
+    },
+    {
+      "kind": "text",
+      "value": "B"
+    },
+    {
+      "kind": "text",
+      "value": "From curiosity to craft"
+    },
+    {
+      "kind": "text",
+      "value": "That curiosity eventually led me to Discord bot development, automation, websites, and now AI-powered development. Over time technology became more than a hobby. I started exploring how things are built, how different systems work together, and how an idea can turn into something people can actually use."
+    },
+    {
+      "kind": "text",
+      "value": "C"
+    },
+    {
+      "kind": "text",
+      "value": "Where I am today"
+    },
+    {
+      "kind": "text",
+      "value": "Right now I am focused on learning, building and experimenting with AI, software development, web technologies and automation. I use AI tools to develop faster and bring ideas to life, but I am always interested in understanding what is happening behind the code, not just generating it."
+    },
+    {
+      "kind": "text",
+      "value": "D"
+    },
+    {
+      "kind": "text",
+      "value": "What’s ahead"
+    },
+    {
+      "kind": "text",
+      "value": "I am still learning and I have a long way to go — but that is exactly what excites me about this field. There is always something new to explore, something to build, or a problem to solve. My goal is simple: keep learning, keep building, and turn ideas into real products people find useful."
+    },
+    {
+      "kind": "text",
+      "value": "I am not here to pretend I know everything. I am here to see how far curiosity, consistency and the willingness to experiment can take me."
+    },
+    {
+      "kind": "attribute",
+      "tag": "aside",
+      "name": "aria-label",
+      "value": "Quick facts"
+    },
+    {
+      "kind": "text",
+      "value": "Quick facts"
+    },
+    {
+      "kind": "text",
+      "value": "Tinkering since"
+    },
+    {
+      "kind": "text",
+      "value": "2020"
+    },
+    {
+      "kind": "text",
+      "value": "Focus"
+    },
+    {
+      "kind": "text",
+      "value": "AI, software, web & automation"
+    },
+    {
+      "kind": "text",
+      "value": "Working in"
+    },
+    {
+      "kind": "text",
+      "value": "Minecraft servers, plugins & permissions"
+    },
+    {
+      "kind": "text",
+      "value": "Based in"
+    },
+    {
+      "kind": "text",
+      "value": "Maharashtra, India"
+    },
+    {
+      "kind": "text",
+      "value": "Currently"
+    },
+    {
+      "kind": "text",
+      "value": "Available for opportunities"
+    },
+    {
+      "kind": "text",
+      "value": "Let’s work together"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Outside the code"
+    },
+    {
+      "kind": "text",
+      "value": "Gaming & tinkering"
+    },
+    {
+      "kind": "text",
+      "value": "Minecraft is where all of this actually began. I spent my time building and running servers, configuring plugins, setting up permissions and pulling apart different features to see what they could do — purely for the fun of it. Those late-night experiments with redstone-level tinkering are the reason I wanted to know how everything else worked too."
+    },
+    {
+      "kind": "text",
+      "value": "Minecraft servers"
+    },
+    {
+      "kind": "text",
+      "value": "Plugins"
+    },
+    {
+      "kind": "text",
+      "value": "Permissions"
+    },
+    {
+      "kind": "text",
+      "value": "Tinkering"
+    },
+    {
+      "kind": "text",
+      "value": "The name behind the site"
+    },
+    {
+      "kind": "text",
+      "value": "Eternalz"
+    },
+    {
+      "kind": "text",
+      "value": "Eternalz is a brand name for a brand that does not exist yet. I came up with it, liked it, and started putting it on everything I build — every bot, every site, every experiment that goes anywhere."
+    },
+    {
+      "kind": "text",
+      "value": "The hope is that it grows into something: Eternalz at the top, with Eternalz Studios and Eternalz Tech underneath it. Right now there's nothing in it but room — which is exactly the fun part. The name is already waiting."
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Eternalz"
+    },
+    {
+      "kind": "text",
+      "value": "the name on everything"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Eternalz Studios"
+    },
+    {
+      "kind": "text",
+      "value": "not yet"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Eternalz Tech"
+    },
+    {
+      "kind": "text",
+      "value": "not yet"
+    },
+    {
+      "kind": "attribute",
+      "tag": "section",
+      "name": "aria-labelledby",
+      "value": "skills-title"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "02"
+    },
+    {
+      "kind": "text",
+      "value": "02"
+    },
+    {
+      "kind": "text",
+      "value": "Skills"
+    },
+    {
+      "kind": "text",
+      "value": "Tools and capabilities"
+    },
+    {
+      "kind": "text",
+      "value": "Where my curiosity has taken me so far. I am still learning all of it — these are the areas I keep coming back to."
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "01"
+    },
+    {
+      "kind": "text",
+      "value": "AI & Automation"
+    },
+    {
+      "kind": "text",
+      "value": "AI-assisted development"
+    },
+    {
+      "kind": "text",
+      "value": "Discord bots"
+    },
+    {
+      "kind": "text",
+      "value": "Automation & scripting"
+    },
+    {
+      "kind": "text",
+      "value": "Working with AI tools"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "02"
+    },
+    {
+      "kind": "text",
+      "value": "Web & Frontend"
+    },
+    {
+      "kind": "text",
+      "value": "Websites"
+    },
+    {
+      "kind": "text",
+      "value": "HTML & CSS"
+    },
+    {
+      "kind": "text",
+      "value": "JavaScript"
+    },
+    {
+      "kind": "text",
+      "value": "Responsive layouts"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "03"
+    },
+    {
+      "kind": "text",
+      "value": "Configuration & Setup"
+    },
+    {
+      "kind": "text",
+      "value": "Server configuration"
+    },
+    {
+      "kind": "text",
+      "value": "Plugin setup"
+    },
+    {
+      "kind": "text",
+      "value": "Permissions & roles"
+    },
+    {
+      "kind": "text",
+      "value": "Testing & troubleshooting"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "section",
+      "name": "aria-labelledby",
+      "value": "projects-title"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "03"
+    },
+    {
+      "kind": "text",
+      "value": "03"
+    },
+    {
+      "kind": "text",
+      "value": "Projects"
+    },
+    {
+      "kind": "text",
+      "value": "New"
+    },
+    {
+      "kind": "text",
+      "value": "Selected work"
+    },
+    {
+      "kind": "text",
+      "value": "First one is live —"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh's"
+    },
+    {
+      "kind": "text",
+      "value": "for Android, with Focus Mode that keeps messages open while Reels and Shorts stay closed. Every download pulls the latest release straight from GitHub."
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh's · Android"
+    },
+    {
+      "kind": "text",
+      "value": "Focus Mode"
+    },
+    {
+      "kind": "text",
+      "value": "Reels & Shorts stay closed."
+    },
+    {
+      "kind": "text",
+      "value": "Messages keep working."
+    },
+    {
+      "kind": "text",
+      "value": "Focus Mode"
+    },
+    {
+      "kind": "text",
+      "value": "ON"
+    },
+    {
+      "kind": "text",
+      "value": "shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": "~53 MB"
+    },
+    {
+      "kind": "text",
+      "value": "Built from the latest commit — auto-updates on every release"
+    },
+    {
+      "kind": "text",
+      "value": "Featured"
+    },
+    {
+      "kind": "text",
+      "value": "Android · APK · Latest"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh's"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh's for Android"
+    },
+    {
+      "kind": "text",
+      "value": "— download"
+    },
+    {
+      "kind": "text",
+      "value": "shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": "and open it on your phone. If Android asks, allow installing from this source. Built from the latest commit on the"
+    },
+    {
+      "kind": "text",
+      "value": "apk"
+    },
+    {
+      "kind": "text",
+      "value": "branch."
+    },
+    {
+      "kind": "text",
+      "value": "Focus Mode is here"
+    },
+    {
+      "kind": "text",
+      "value": "Open the app → the Focus Mode card on the home screen → switch it on → allow Focus Mode in Settings → Accessibility. Then Reels, Shorts and the rest stay closed while messages keep working."
+    },
+    {
+      "kind": "text",
+      "value": "Release"
+    },
+    {
+      "kind": "text",
+      "value": "apk — 23 Oct 2026"
+    },
+    {
+      "kind": "text",
+      "value": "File"
+    },
+    {
+      "kind": "text",
+      "value": "shaikhs.apk · 53 MB"
+    },
+    {
+      "kind": "text",
+      "value": "Source"
+    },
+    {
+      "kind": "text",
+      "value": "github.com/WaquarShaikh5555/Mee6"
+    },
+    {
+      "kind": "text",
+      "value": "Download APK"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "View on GitHub"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Short link:"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me/download"
+    },
+    {
+      "kind": "text",
+      "value": "· always the latest"
+    },
+    {
+      "kind": "text",
+      "value": "Also:"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me/apk"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me/shaikhs"
+    },
+    {
+      "kind": "text",
+      "value": "All three are tiny redirect pages on this site — they send you to"
+    },
+    {
+      "kind": "text",
+      "value": "github.com/…/latest/download/shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": "so you never get a stale copy."
+    },
+    {
+      "kind": "attribute",
+      "tag": "section",
+      "name": "aria-labelledby",
+      "value": "experience-title"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "04"
+    },
+    {
+      "kind": "text",
+      "value": "04"
+    },
+    {
+      "kind": "text",
+      "value": "Experience"
+    },
+    {
+      "kind": "text",
+      "value": "Learning by building"
+    },
+    {
+      "kind": "text",
+      "value": "My path so far has moved from Minecraft servers to Discord bots, websites and AI-powered development."
+    },
+    {
+      "kind": "text",
+      "value": "My experience has grown through projects and experiments, starting with Minecraft and continuing into bots, websites, automation and AI."
+    },
+    {
+      "kind": "attribute",
+      "tag": "ol",
+      "name": "aria-label",
+      "value": "Areas I have explored"
+    },
+    {
+      "kind": "text",
+      "value": "01"
+    },
+    {
+      "kind": "text",
+      "value": "Minecraft servers"
+    },
+    {
+      "kind": "text",
+      "value": "Plugins, permissions and experimenting"
+    },
+    {
+      "kind": "text",
+      "value": "02"
+    },
+    {
+      "kind": "text",
+      "value": "Discord bots"
+    },
+    {
+      "kind": "text",
+      "value": "Bot development and automation"
+    },
+    {
+      "kind": "text",
+      "value": "03"
+    },
+    {
+      "kind": "text",
+      "value": "Websites"
+    },
+    {
+      "kind": "text",
+      "value": "Building for the web"
+    },
+    {
+      "kind": "text",
+      "value": "04"
+    },
+    {
+      "kind": "text",
+      "value": "AI-powered development"
+    },
+    {
+      "kind": "text",
+      "value": "Learning, building and experimenting"
+    },
+    {
+      "kind": "attribute",
+      "tag": "section",
+      "name": "aria-labelledby",
+      "value": "contact-title"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "05"
+    },
+    {
+      "kind": "text",
+      "value": "05"
+    },
+    {
+      "kind": "text",
+      "value": "Contact"
+    },
+    {
+      "kind": "text",
+      "value": "Let’s talk"
+    },
+    {
+      "kind": "text",
+      "value": "Questions about Shaikh’s or the things I’m learning? Email me — I’m open to talking about AI, web development, automation and tech."
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Email"
+    },
+    {
+      "kind": "text",
+      "value": "waquarsk1@"
+    },
+    {
+      "kind": "text",
+      "value": "gmail.com"
+    },
+    {
+      "kind": "text",
+      "value": "Email · alternate"
+    },
+    {
+      "kind": "text",
+      "value": "waquarsk2@"
+    },
+    {
+      "kind": "text",
+      "value": "gmail.com"
+    },
+    {
+      "kind": "text",
+      "value": "Elsewhere"
+    },
+    {
+      "kind": "text",
+      "value": "Instagram"
+    },
+    {
+      "kind": "text",
+      "value": "@waquarsk1"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "GitHub"
+    },
+    {
+      "kind": "text",
+      "value": "@WaquarShaikh5555"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "data-copy",
+      "value": "waquar5555"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "data-copy-label",
+      "value": "Discord username"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "aria-label",
+      "value": "Copy Discord username waquar5555 to clipboard"
+    },
+    {
+      "kind": "text",
+      "value": "Discord"
+    },
+    {
+      "kind": "text",
+      "value": "waquar5555"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "p",
+      "name": "aria-live",
+      "value": "polite"
+    },
+    {
+      "kind": "text",
+      "value": "Compose an email"
+    },
+    {
+      "kind": "text",
+      "value": "This opens an email draft addressed to Waquar. Review the message and send it from your email app."
+    },
+    {
+      "kind": "text",
+      "value": "Name"
+    },
+    {
+      "kind": "attribute",
+      "tag": "input",
+      "name": "aria-describedby",
+      "value": "name-error"
+    },
+    {
+      "kind": "text",
+      "value": "Please enter your name (at least 2 characters)."
+    },
+    {
+      "kind": "text",
+      "value": "Email"
+    },
+    {
+      "kind": "attribute",
+      "tag": "input",
+      "name": "aria-describedby",
+      "value": "email-error"
+    },
+    {
+      "kind": "text",
+      "value": "Please enter a valid email address."
+    },
+    {
+      "kind": "text",
+      "value": "Subject"
+    },
+    {
+      "kind": "text",
+      "value": "(optional)"
+    },
+    {
+      "kind": "text",
+      "value": "Message"
+    },
+    {
+      "kind": "attribute",
+      "tag": "textarea",
+      "name": "aria-describedby",
+      "value": "message-error"
+    },
+    {
+      "kind": "text",
+      "value": "Please write a message of at least 20 characters."
+    },
+    {
+      "kind": "text",
+      "value": "Open email app"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "p",
+      "name": "aria-live",
+      "value": "polite"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Elsewhere, or right here"
+    },
+    {
+      "kind": "text",
+      "value": "Lets Connect!"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "waquarsk1@gmail.com"
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "aria-label",
+      "value": "Waquar Shaikh — back to top"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh"
+    },
+    {
+      "kind": "attribute",
+      "tag": "nav",
+      "name": "aria-label",
+      "value": "Footer"
+    },
+    {
+      "kind": "text",
+      "value": "About"
+    },
+    {
+      "kind": "text",
+      "value": "Skills"
+    },
+    {
+      "kind": "text",
+      "value": "Projects"
+    },
+    {
+      "kind": "text",
+      "value": "Experience"
+    },
+    {
+      "kind": "text",
+      "value": "Contact"
+    },
+    {
+      "kind": "attribute",
+      "tag": "ul",
+      "name": "aria-label",
+      "value": "Social profiles"
+    },
+    {
+      "kind": "text",
+      "value": "Instagram"
+    },
+    {
+      "kind": "text",
+      "value": "GitHub"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "data-copy",
+      "value": "waquar5555"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "data-copy-label",
+      "value": "Discord username"
+    },
+    {
+      "kind": "attribute",
+      "tag": "button",
+      "name": "aria-label",
+      "value": "Copy Discord username"
+    },
+    {
+      "kind": "text",
+      "value": "Discord"
+    },
+    {
+      "kind": "text",
+      "value": "Email"
+    },
+    {
+      "kind": "text",
+      "value": "©"
+    },
+    {
+      "kind": "text",
+      "value": "2026"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh. All rights reserved."
+    },
+    {
+      "kind": "text",
+      "value": "Built with HTML, CSS & JavaScript."
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "aria-label",
+      "value": "Back to top"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "svg",
+      "name": "aria-hidden",
+      "value": "true"
+    }
+  ],
+  "/apk": [
+    {
+      "kind": "text",
+      "value": "Downloading Shaikh's — eternalz.me"
+    },
+    {
+      "kind": "meta",
+      "name": "description",
+      "value": "Redirecting to the latest Shaikh's APK on GitHub — always the newest release."
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "aria-label",
+      "value": "Waquar Shaikh — back to home"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me / apk"
+    },
+    {
+      "kind": "text",
+      "value": "Redirecting"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh's · Android"
+    },
+    {
+      "kind": "text",
+      "value": "Downloading Shaikh's…"
+    },
+    {
+      "kind": "text",
+      "value": "You’re being sent to GitHub for the latest"
+    },
+    {
+      "kind": "text",
+      "value": "shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": ". The link"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me/download"
+    },
+    {
+      "kind": "text",
+      "value": "always points to the newest release — you never get a stale copy."
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Download now"
+    },
+    {
+      "kind": "text",
+      "value": "View release on GitHub"
+    },
+    {
+      "kind": "text",
+      "value": "Direct:"
+    },
+    {
+      "kind": "text",
+      "value": "github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": "File: shaikhs.apk · ~53 MB · Tag"
+    },
+    {
+      "kind": "text",
+      "value": "apk"
+    },
+    {
+      "kind": "text",
+      "value": "If it doesn’t start, tap “Download now” above. On Android, allow installing from this source."
+    },
+    {
+      "kind": "text",
+      "value": "← Back to eternalz.me"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "See Projects"
+    },
+    {
+      "kind": "text",
+      "value": "©"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh · eternalz.me"
+    },
+    {
+      "kind": "text",
+      "value": "Home"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "Mee6 on GitHub"
+    }
+  ],
+  "/download": [
+    {
+      "kind": "text",
+      "value": "Downloading Shaikh's — eternalz.me"
+    },
+    {
+      "kind": "meta",
+      "name": "description",
+      "value": "Redirecting to the latest Shaikh's APK on GitHub — always the newest release."
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "aria-label",
+      "value": "Waquar Shaikh — back to home"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me / download"
+    },
+    {
+      "kind": "text",
+      "value": "Redirecting"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh's · Android"
+    },
+    {
+      "kind": "text",
+      "value": "Downloading Shaikh's…"
+    },
+    {
+      "kind": "text",
+      "value": "You’re being sent to GitHub for the latest"
+    },
+    {
+      "kind": "text",
+      "value": "shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": ". The link"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me/download"
+    },
+    {
+      "kind": "text",
+      "value": "always points to the newest release — you never get a stale copy."
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Download now"
+    },
+    {
+      "kind": "text",
+      "value": "View release on GitHub"
+    },
+    {
+      "kind": "text",
+      "value": "Direct:"
+    },
+    {
+      "kind": "text",
+      "value": "github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": "File: shaikhs.apk · ~53 MB · Tag"
+    },
+    {
+      "kind": "text",
+      "value": "apk"
+    },
+    {
+      "kind": "text",
+      "value": "If it doesn’t start, tap “Download now” above. On Android, allow installing from this source."
+    },
+    {
+      "kind": "text",
+      "value": "← Back to eternalz.me"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "See Projects"
+    },
+    {
+      "kind": "text",
+      "value": "©"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh · eternalz.me"
+    },
+    {
+      "kind": "text",
+      "value": "Home"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "Mee6 on GitHub"
+    }
+  ],
+  "/shaikhs": [
+    {
+      "kind": "text",
+      "value": "Downloading Shaikh's — eternalz.me"
+    },
+    {
+      "kind": "meta",
+      "name": "description",
+      "value": "Redirecting to the latest Shaikh's APK on GitHub — always the newest release."
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "aria-label",
+      "value": "Waquar Shaikh — back to home"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me / shaikhs"
+    },
+    {
+      "kind": "text",
+      "value": "Redirecting"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh's · Android"
+    },
+    {
+      "kind": "text",
+      "value": "Downloading Shaikh's…"
+    },
+    {
+      "kind": "text",
+      "value": "You’re being sent to GitHub for the latest"
+    },
+    {
+      "kind": "text",
+      "value": "shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": ". The link"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me/download"
+    },
+    {
+      "kind": "text",
+      "value": "always points to the newest release — you never get a stale copy."
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Download now"
+    },
+    {
+      "kind": "text",
+      "value": "View release on GitHub"
+    },
+    {
+      "kind": "text",
+      "value": "Direct:"
+    },
+    {
+      "kind": "text",
+      "value": "github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": "File: shaikhs.apk · ~53 MB · Tag"
+    },
+    {
+      "kind": "text",
+      "value": "apk"
+    },
+    {
+      "kind": "text",
+      "value": "If it doesn’t start, tap “Download now” above. On Android, allow installing from this source."
+    },
+    {
+      "kind": "text",
+      "value": "← Back to eternalz.me"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "See Projects"
+    },
+    {
+      "kind": "text",
+      "value": "©"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh · eternalz.me"
+    },
+    {
+      "kind": "text",
+      "value": "Home"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "Mee6 on GitHub"
+    }
+  ],
+  "/projects/shaikhs": [
+    {
+      "kind": "text",
+      "value": "Downloading Shaikh's — eternalz.me"
+    },
+    {
+      "kind": "meta",
+      "name": "description",
+      "value": "Redirecting to the latest Shaikh's APK on GitHub — always the newest release."
+    },
+    {
+      "kind": "attribute",
+      "tag": "a",
+      "name": "aria-label",
+      "value": "Waquar Shaikh — back to home"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me / projects/shaikhs"
+    },
+    {
+      "kind": "text",
+      "value": "Redirecting"
+    },
+    {
+      "kind": "text",
+      "value": "Shaikh's · Android"
+    },
+    {
+      "kind": "text",
+      "value": "Downloading Shaikh's…"
+    },
+    {
+      "kind": "text",
+      "value": "You’re being sent to GitHub for the latest"
+    },
+    {
+      "kind": "text",
+      "value": "shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": ". The link"
+    },
+    {
+      "kind": "text",
+      "value": "eternalz.me/download"
+    },
+    {
+      "kind": "text",
+      "value": "always points to the newest release — you never get a stale copy."
+    },
+    {
+      "kind": "attribute",
+      "tag": "div",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "attribute",
+      "tag": "span",
+      "name": "aria-hidden",
+      "value": "true"
+    },
+    {
+      "kind": "text",
+      "value": "Download now"
+    },
+    {
+      "kind": "text",
+      "value": "View release on GitHub"
+    },
+    {
+      "kind": "text",
+      "value": "Direct:"
+    },
+    {
+      "kind": "text",
+      "value": "github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk"
+    },
+    {
+      "kind": "text",
+      "value": "File: shaikhs.apk · ~53 MB · Tag"
+    },
+    {
+      "kind": "text",
+      "value": "apk"
+    },
+    {
+      "kind": "text",
+      "value": "If it doesn’t start, tap “Download now” above. On Android, allow installing from this source."
+    },
+    {
+      "kind": "text",
+      "value": "← Back to eternalz.me"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "See Projects"
+    },
+    {
+      "kind": "text",
+      "value": "©"
+    },
+    {
+      "kind": "text",
+      "value": "Waquar Shaikh · eternalz.me"
+    },
+    {
+      "kind": "text",
+      "value": "Home"
+    },
+    {
+      "kind": "text",
+      "value": "·"
+    },
+    {
+      "kind": "text",
+      "value": "Mee6 on GitHub"
+    }
+  ]
+}

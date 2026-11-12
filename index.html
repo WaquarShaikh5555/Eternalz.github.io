@@ -22,7 +22,7 @@
   <title>Waquar Shaikh — Website Development, App Development &amp; AI Automation</title>
   <meta name="description" content="Waquar Shaikh explores website development, app development and AI automation — learning, building and experimenting with technology since 2020.">
   <meta name="author" content="Waquar Shaikh">
-  <meta name="theme-color" content="#efe9dc">
+  <meta name="theme-color" content="#f2f0e9">
   <link rel="canonical" href="https://eternalz.me/">
 
   <!-- ======================= Open Graph / social ======================= -->
@@ -53,9 +53,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=workbench-reframe-1">
+  <link rel="stylesheet" href="css/folio.css?v=folio-rebuild-1">
   <script src="js/theme-init.js"></script>
 
   <!-- ======================= Structured data ======================= -->
@@ -140,7 +141,7 @@
          HERO
          ========================================================================= -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <!-- Cursor-reactive light and a technical dot grid -->
+      <!-- Decorative layer kept outside the accessibility tree. -->
       <div class="hero__field" aria-hidden="true">
         <span class="hero__spot" id="hero-spot"></span>
         <span class="hero__grid"></span>
@@ -154,8 +155,7 @@
             <span class="hero__avail">Available for opportunities</span>
           </p>
 
-          <!-- Rotating seal: two facts that are already on the page, spun into a
-               badge. Decorative, so it is hidden from assistive tech. -->
+          <!-- Decorative mark; its repeated wording is hidden from assistive tech. -->
           <div class="seal" aria-hidden="true">
             <svg class="seal__ring" viewBox="0 0 200 200" focusable="false">
               <defs>
@@ -197,13 +197,13 @@
             </p>
 
             <div class="hero__actions">
-              <a class="btn btn--solid" href="#projects" data-magnetic>
+              <a class="btn btn--solid" href="#projects">
                 <span class="btn__label">View projects</span>
                 <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <use href="#icon-arrow-right"></use>
                 </svg>
               </a>
-              <a class="btn btn--ghost" href="#contact" data-magnetic>
+              <a class="btn btn--ghost" href="#contact">
                 <span class="btn__label">Get in touch</span>
               </a>
             </div>
@@ -249,7 +249,7 @@
          ========================================================================= -->
     <section class="section section--about" id="about" aria-labelledby="about-title">
       <div class="container">
-        <header class="section__head" data-reveal>
+        <header class="section__head">
           <span class="section__ghost" aria-hidden="true">01</span>
           <p class="section__label"><span class="section__num">01</span> About</p>
           <h2 class="section__title" id="about-title">Hey, I&rsquo;m Waquar</h2>
@@ -263,7 +263,7 @@
 
         <div class="about__grid">
           <div class="about__body">
-            <article class="about__block" data-reveal>
+            <article class="about__block">
               <h3 class="about__block-title"><span class="about__idx">A</span>Where it started</h3>
               <p>
                 Back then I played Minecraft, created servers, configured plugins, set up
@@ -273,7 +273,7 @@
               </p>
             </article>
 
-            <article class="about__block" data-reveal>
+            <article class="about__block">
               <h3 class="about__block-title"><span class="about__idx">B</span>From curiosity to craft</h3>
               <p>
                 That curiosity eventually led me to Discord bot development, automation,
@@ -284,7 +284,7 @@
               </p>
             </article>
 
-            <article class="about__block" data-reveal>
+            <article class="about__block">
               <h3 class="about__block-title"><span class="about__idx">C</span>Where I am today</h3>
               <p>
                 Right now I am focused on learning, building and experimenting with AI,
@@ -294,7 +294,7 @@
               </p>
             </article>
 
-            <article class="about__block" data-reveal>
+            <article class="about__block">
               <h3 class="about__block-title"><span class="about__idx">D</span>What&rsquo;s ahead</h3>
               <p>
                 I am still learning and I have a long way to go &mdash; but that is exactly
@@ -309,7 +309,7 @@
             </article>
           </div>
 
-          <aside class="about__aside" data-reveal aria-label="Quick facts">
+          <aside class="about__aside" aria-label="Quick facts">
             <h3 class="aside__title">Quick facts</h3>
             <dl class="facts">
               <div class="facts__row">
@@ -333,7 +333,7 @@
                 <dd class="facts__value">Available for opportunities</dd>
               </div>
             </dl>
-            <a class="link-arrow" href="#contact" data-magnetic>
+            <a class="link-arrow" href="#contact">
               <span>Let&rsquo;s work together</span>
               <svg class="link-arrow__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <use href="#icon-arrow-right"></use>
@@ -343,7 +343,7 @@
         </div>
 
         <!-- The gaming side of the story, kept separate from the developer one -->
-        <article class="gaming" data-reveal>
+        <article class="gaming">
           <p class="gaming__label">Outside the code</p>
           <div class="gaming__grid">
             <h3 class="gaming__title">Gaming &amp; tinkering</h3>
@@ -365,7 +365,7 @@
           </div>
         </article>
 
-        <article class="eternalz" data-reveal>
+        <article class="eternalz">
           <p class="eternalz__label">The name behind the site</p>
           <div class="eternalz__grid">
             <h3 class="eternalz__title">Eternalz</h3>
@@ -409,7 +409,7 @@
          ========================================================================= -->
     <section class="section section--ink" id="skills" aria-labelledby="skills-title">
       <div class="container">
-        <header class="section__head" data-reveal>
+        <header class="section__head">
           <span class="section__ghost" aria-hidden="true">02</span>
           <p class="section__label"><span class="section__num">02</span> Skills</p>
           <h2 class="section__title" id="skills-title">Tools and capabilities</h2>
@@ -420,11 +420,11 @@
           <span class="section__rule" aria-hidden="true"></span>
         </header>
 
-        <!-- Hover or tap a panel: it inverts, and the list steps in. -->
+        <!-- Native skill disclosures: all details start visible and can be folded away. -->
         <div class="skills">
-          <article class="skill" data-reveal tabindex="0">
+          <details class="skill" open>
             <span class="skill__num" aria-hidden="true">01</span>
-            <h3 class="skill__title">AI &amp; Automation</h3>
+            <summary class="skill__title">AI &amp; Automation</summary>
             <ul class="skill__list">
               <li>AI-assisted development</li>
               <li>Discord bots</li>
@@ -432,11 +432,11 @@
               <li>Working with AI tools</li>
             </ul>
             <span class="skill__glow" aria-hidden="true"></span>
-          </article>
+          </details>
 
-          <article class="skill" data-reveal tabindex="0">
+          <details class="skill" open>
             <span class="skill__num" aria-hidden="true">02</span>
-            <h3 class="skill__title">Web &amp; Frontend</h3>
+            <summary class="skill__title">Web &amp; Frontend</summary>
             <ul class="skill__list">
               <li>Websites</li>
               <li>HTML &amp; CSS</li>
@@ -444,11 +444,11 @@
               <li>Responsive layouts</li>
             </ul>
             <span class="skill__glow" aria-hidden="true"></span>
-          </article>
+          </details>
 
-          <article class="skill" data-reveal tabindex="0">
+          <details class="skill" open>
             <span class="skill__num" aria-hidden="true">03</span>
-            <h3 class="skill__title">Configuration &amp; Setup</h3>
+            <summary class="skill__title">Configuration &amp; Setup</summary>
             <ul class="skill__list">
               <li>Server configuration</li>
               <li>Plugin setup</li>
@@ -456,7 +456,7 @@
               <li>Testing &amp; troubleshooting</li>
             </ul>
             <span class="skill__glow" aria-hidden="true"></span>
-          </article>
+          </details>
         </div>
       </div>
     </section>
@@ -466,7 +466,7 @@
          ========================================================================= -->
     <section class="section section--projects" id="projects" aria-labelledby="projects-title">
       <div class="container">
-        <header class="section__head" data-reveal>
+        <header class="section__head">
           <span class="section__ghost" aria-hidden="true">03</span>
           <p class="section__label">
             <span class="section__num">03</span> Projects
@@ -474,7 +474,7 @@
           </p>
           <h2 class="section__title" id="projects-title">Selected work</h2>
           <p class="section__intro">
-            First one is live &mdash; <em>Shaikh's</em> for Android, with Regain that keeps
+            First one is live &mdash; <em>Shaikh's</em> for Android, with Focus Mode that keeps
             messages open while Reels and Shorts stay closed. Every download pulls the
             latest release straight from GitHub.
           </p>
@@ -482,7 +482,7 @@
         </header>
 
         <!-- Featured project: Shaikh's — Android app. The first real entry on the wall. -->
-        <article class="feature" data-reveal>
+        <article class="feature">
           <div class="feature__visual" aria-hidden="true">
             <span class="feature__glow"></span>
             <div class="feature__phone-wrap">
@@ -492,10 +492,10 @@
                 </div>
                 <div class="feature__phone-screen">
                   <p class="feature__phone-kicker">Shaikh's · Android</p>
-                  <h3 class="feature__phone-title">Regain</h3>
+                  <h3 class="feature__phone-title">Focus Mode</h3>
                   <p class="feature__phone-desc">Reels &amp; Shorts stay closed.<br>Messages keep working.</p>
                   <div class="feature__phone-toggle">
-                    <span class="feature__phone-toggle-label">Regain</span>
+                    <span class="feature__phone-toggle-label">Focus Mode</span>
                     <span class="feature__phone-toggle-track"><i></i></span>
                     <span class="feature__phone-toggle-state">ON</span>
                   </div>
@@ -519,10 +519,10 @@
             </p>
 
             <div class="feature__highlight">
-              <h4 class="feature__highlight-title">Regain is here</h4>
+              <h4 class="feature__highlight-title">Focus Mode is here</h4>
               <p>
-                Open the app → the Regain card on the home screen → switch it on → allow
-                Regain in Settings → Accessibility. Then Reels, Shorts and the rest stay
+                Open the app → the Focus Mode card on the home screen → switch it on → allow
+                Focus Mode in Settings → Accessibility. Then Reels, Shorts and the rest stay
                 closed while messages keep working.
               </p>
             </div>
@@ -543,11 +543,11 @@
             </dl>
 
             <div class="feature__actions">
-              <a class="btn btn--solid" href="https://github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk" data-magnetic>
+              <a class="btn btn--solid" href="https://github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk">
                 <span class="btn__label">Download APK</span>
                 <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
               </a>
-              <a class="btn btn--ghost" href="https://github.com/WaquarShaikh5555/Mee6/releases/tag/apk" target="_blank" rel="noopener noreferrer" data-magnetic>
+              <a class="btn btn--ghost" href="https://github.com/WaquarShaikh5555/Mee6/releases/tag/apk" target="_blank" rel="noopener noreferrer">
                 <span class="btn__label">View on GitHub</span>
                 <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg>
               </a>
@@ -574,7 +574,7 @@
          ========================================================================= -->
     <section class="section section--ember" id="experience" aria-labelledby="experience-title">
       <div class="container">
-        <header class="section__head" data-reveal>
+        <header class="section__head">
           <span class="section__ghost" aria-hidden="true">04</span>
           <p class="section__label"><span class="section__num">04</span> Experience</p>
           <h2 class="section__title" id="experience-title">Learning by building</h2>
@@ -584,7 +584,7 @@
           </p>
         </header>
 
-        <div class="await" data-reveal>
+        <div class="await">
           <p class="await__line">
             My experience has grown through projects and experiments, starting with
             Minecraft and continuing into bots, websites, automation and AI.
@@ -620,7 +620,7 @@
          ========================================================================= -->
     <section class="section section--contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <header class="section__head" data-reveal>
+        <header class="section__head">
           <span class="section__ghost" aria-hidden="true">05</span>
           <p class="section__label"><span class="section__num">05</span> Contact</p>
           <h2 class="section__title" id="contact-title">Let&rsquo;s talk</h2>
@@ -632,7 +632,7 @@
         </header>
 
         <div class="contact__grid">
-          <div class="contact__details" data-reveal>
+          <div class="contact__details">
             <div class="contact__group">
               <p class="contact__label">Email</p>
               <a class="contact__email" href="mailto:waquarsk1@gmail.com"><span>waquarsk1@<wbr>gmail.com</span></a>
@@ -687,7 +687,7 @@
             <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
           </div>
 
-          <form class="contact-form" id="contact-form" data-reveal
+          <form class="contact-form" id="contact-form"
                 action="mailto:waquarsk1@gmail.com" method="get">
             <p class="form__title">Compose an email</p>
             <p class="form__note">This opens an email draft addressed to Waquar. Review the message and send it from your email app.</p>
@@ -724,7 +724,7 @@
               </p>
             </div>
 
-            <button class="btn btn--solid btn--block" id="submit-button" type="submit" data-magnetic>
+            <button class="btn btn--solid btn--block" id="submit-button" type="submit">
               <span class="button__label">Open email app</span>
               <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <use href="#icon-send"></use>
