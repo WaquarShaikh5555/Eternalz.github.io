@@ -6,17 +6,14 @@
  *   1.  Theme toggle (light / dark, remembered in localStorage)
  *   2.  Mobile navigation (full-screen overlay, focus trap, Escape, scroll lock)
  *   3.  Sticky header, scroll spy and the sliding navigation indicator
- *   4.  Scroll reveal via IntersectionObserver
- *   5.  Smooth in-page scrolling that honours reduced-motion
- *   6.  Footer year + back-to-top control
- *   7.  Contact form: validation and a prefilled email-app draft
- *   8.  Copy-to-clipboard (Discord username)
- *   9.  Pointer-reactive layer: hero spotlight, magnetic controls,
- *       ghost-numeral parallax, reading progress
+ *   4.  Smooth in-page scrolling that honours reduced-motion
+ *   5.  Footer year + back-to-top control
+ *   6.  Contact form: validation and a prefilled email-app draft
+ *   7.  Copy-to-clipboard (Discord username)
+ *   8.  Reading progress and scroll-aware section navigation
  *
- * Everything in 9 is an enhancement layered on top of a page that already
- * works without it: each guard checks for the element, for a fine pointer and
- * for the visitor's motion preference before doing anything at all.
+ * Decorative cursor tracking, magnetic movement, parallax and repeated scroll
+ * reveals are intentionally omitted; the content and controls remain direct.
  *
  * Progressive enhancement throughout: with JavaScript disabled the site still
  * renders and navigates, and the contact form uses its native mailto fallback.
@@ -27,7 +24,6 @@
   var root = document.documentElement;
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
   function get(selector, scope) {
     return (scope || document).querySelector(selector);
@@ -55,11 +51,6 @@
     }
   };
 
-  /** Effects are only worth running for a fine pointer with motion allowed. */
-  function motionOK() {
-    return !reduceMotion.matches && finePointer.matches;
-  }
-
   /* ========================================================================
      1. Theme toggle
      ======================================================================== */
@@ -84,7 +75,7 @@
       root.setAttribute("data-theme", theme);
 
       if (metaThemeColor) {
-        metaThemeColor.setAttribute("content", theme === "light" ? "#ede6d1" : "#0b1112");
+        metaThemeColor.setAttribute("content", theme === "light" ? "#f2f0e9" : "#111a22");
       }
 
       var label = theme === "light" ? "Switch to dark theme" : "Switch to light theme";
@@ -129,7 +120,7 @@
     }
 
     var links = getAll(".site-nav__link", nav);
-    var desktop = window.matchMedia("(min-width: 900px)");
+    var desktop = window.matchMedia("(min-width: 1180px)");
 
     /* Lock scrolling with classes only. Avoid fixing the body or calling
        scrollTo: repeated menu toggles can otherwise strand the page at its
@@ -232,7 +223,7 @@
   }
 
   /* ========================================================================
-     3. Sticky header, scroll spy, sliding indicator, progress, parallax
+     3. Sticky masthead, scroll spy, active navigation, and progress
      ======================================================================== */
   function initScrollState() {
     var header = get("#site-header");
@@ -254,7 +245,7 @@
 
     var queued = null;
 
-    /** Park the indicator under whichever link is current. */
+    /** Position the active marker beside the rail or under the top navigation. */
     function positionIndicator(link) {
       if (!indicator || !nav) {
         return;
@@ -265,8 +256,13 @@
       }
       var navBox = nav.getBoundingClientRect();
       var box = link.getBoundingClientRect();
-      indicator.style.setProperty("--ind-x", (box.left - navBox.left + nav.scrollLeft) + "px");
-      indicator.style.setProperty("--ind-w", box.width + "px");
+      if (window.matchMedia("(min-width: 1180px)").matches) {
+        indicator.style.setProperty("--ind-y", (box.top - navBox.top + nav.scrollTop) + "px");
+        indicator.style.setProperty("--ind-h", box.height + "px");
+      } else {
+        indicator.style.setProperty("--ind-x", (box.left - navBox.left + nav.scrollLeft) + "px");
+        indicator.style.setProperty("--ind-w", box.width + "px");
+      }
       nav.classList.add("has-active");
     }
 
@@ -354,53 +350,6 @@
         });
       }, { threshold: 0 }).observe(footer);
     }
-  }
-
-  /* ========================================================================
-     4. Scroll reveal
-     ======================================================================== */
-  function initReveal() {
-    var items = getAll("[data-reveal]");
-
-    if (!items.length) {
-      return;
-    }
-
-    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
-      items.forEach(function (item) {
-        item.classList.add("is-visible");
-      });
-      return;
-    }
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        var element = entry.target;
-        var siblings = element.parentElement
-          ? getAll("[data-reveal]", element.parentElement)
-          : [];
-        var index = siblings.indexOf(element);
-
-        // Brief stagger so grouped entries arrive in sequence rather than all
-        // at once. Kept short - the motion must never hold content back.
-        element.style.transitionDelay = Math.min(Math.max(index, 0), 3) * 45 + "ms";
-        element.classList.add("is-visible");
-        observer.unobserve(element);
-      });
-    }, {
-      // threshold 0 with a shrunken root: the element reveals as soon as it is
-      // meaningfully on screen, whatever its height.
-      rootMargin: "0px 0px -12% 0px",
-      threshold: 0
-    });
-
-    items.forEach(function (item) {
-      observer.observe(item);
-    });
   }
 
   /* ========================================================================
@@ -680,104 +629,16 @@
   }
 
   /* ========================================================================
-     9. Pointer-reactive layer
-     ======================================================================== */
-
-  /** A warm light plus a slowly drifting grid, both following the pointer. */
-  function initHeroField() {
-    var hero = get(".hero");
-    var field = get(".hero__field");
-    if (!hero || !field || !motionOK()) {
-      return;
-    }
-
-    var frame = null;
-    var spot = get("#hero-spot");
-    var grid = get(".hero__grid");
-
-    hero.addEventListener("pointermove", function (event) {
-      if (frame) {
-        return;
-      }
-
-      frame = window.requestAnimationFrame(function () {
-        frame = null;
-        var box = hero.getBoundingClientRect();
-        var x = event.clientX - box.left;
-        var y = event.clientY - box.top;
-
-        // Also lights on move, not only on enter, so the effect is never missed
-        // by a pointer that was already inside when the listener attached.
-        hero.classList.add("is-lit");
-
-        if (spot) {
-          spot.style.setProperty("--mx", x.toFixed(1) + "px");
-          spot.style.setProperty("--my", y.toFixed(1) + "px");
-        }
-
-        if (grid) {
-          // A few pixels of counter-drift: the grid feels like a surface
-          // sitting slightly behind the page rather than a painted pattern.
-          var gx = ((x / box.width) - 0.5) * -22;
-          var gy = ((y / box.height) - 0.5) * -14;
-          grid.style.setProperty("--gx", gx.toFixed(1) + "px");
-          grid.style.setProperty("--gy", gy.toFixed(1) + "px");
-        }
-      });
-    }, { passive: true });
-
-    hero.addEventListener("pointerenter", function () {
-      hero.classList.add("is-lit");
-    });
-    hero.addEventListener("pointerleave", function () {
-      hero.classList.remove("is-lit");
-    });
-  }
-
-  /** Controls that lean a few pixels toward the cursor. */
-  function initMagnetic() {
-    if (!motionOK()) {
-      return;
-    }
-
-    var strength = 7;
-
-    getAll("[data-magnetic]").forEach(function (el) {
-      var frame = null;
-
-      el.addEventListener("pointermove", function (event) {
-        if (frame) {
-          return;
-        }
-        frame = window.requestAnimationFrame(function () {
-          frame = null;
-          var box = el.getBoundingClientRect();
-          var dx = (event.clientX - (box.left + box.width / 2)) / (box.width / 2);
-          var dy = (event.clientY - (box.top + box.height / 2)) / (box.height / 2);
-          el.style.transform = "translate(" + (dx * strength).toFixed(2) + "px," + (dy * strength).toFixed(2) + "px)";
-        });
-      }, { passive: true });
-
-      el.addEventListener("pointerleave", function () {
-        el.style.transform = "";
-      });
-    });
-  }
-
-  /* ========================================================================
      Boot
      ======================================================================== */
   function init() {
     initTheme();
     initNavigation();
     initScrollState();
-    initReveal();
     initSmoothScroll();
     initFooterMeta();
     initCopyControls();
     initContactForm();
-    initHeroField();
-    initMagnetic();
   }
 
   if (document.readyState === "loading") {

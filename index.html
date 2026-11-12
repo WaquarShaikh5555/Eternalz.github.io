@@ -1,10 +1,3 @@
-<!--
-THESIS: A portfolio for a builder should feel like an explorable world, not a conventional agency landing page.
-OWN-WORLD: Obsidian, moss, sandstone, redstone orange and signal green; block-like geometry, map grids and server-console panels.
-STORY: Follow Waquar's unchanged story from Minecraft tinkering to bots, websites, automation and a live Android project.
-FIRST VIEWPORT: Oversized two-line name and existing introduction on the left; a framed player-inventory column of existing facts on the right, over a custom coordinate-grid terrain.
-FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; every route, control and section uses its map-and-console grammar.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +22,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
   <title>Waquar Shaikh — Website Development, App Development &amp; AI Automation</title>
   <meta name="description" content="Waquar Shaikh explores website development, app development and AI automation — learning, building and experimenting with technology since 2020.">
   <meta name="author" content="Waquar Shaikh">
-  <meta name="theme-color" content="#0b1112">
+  <meta name="theme-color" content="#f2f0e9">
   <link rel="canonical" href="https://eternalz.me/">
 
   <!-- ======================= Open Graph / social ======================= -->
@@ -60,10 +53,10 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/redesign.css">
+  <link rel="stylesheet" href="css/style.css?v=workbench-reframe-1">
+  <link rel="stylesheet" href="css/folio.css?v=folio-rebuild-1">
   <script src="js/theme-init.js"></script>
 
   <!-- ======================= Structured data ======================= -->
@@ -148,7 +141,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
          HERO
          ========================================================================= -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <!-- Cursor-reactive light and a technical dot grid -->
+      <!-- Decorative layer kept outside the accessibility tree. -->
       <div class="hero__field" aria-hidden="true">
         <span class="hero__spot" id="hero-spot"></span>
         <span class="hero__grid"></span>
@@ -162,8 +155,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
             <span class="hero__avail">Available for opportunities</span>
           </p>
 
-          <!-- Rotating seal: two facts that are already on the page, spun into a
-               badge. Decorative, so it is hidden from assistive tech. -->
+          <!-- Decorative mark; its repeated wording is hidden from assistive tech. -->
           <div class="seal" aria-hidden="true">
             <svg class="seal__ring" viewBox="0 0 200 200" focusable="false">
               <defs>
@@ -205,13 +197,13 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
             </p>
 
             <div class="hero__actions">
-              <a class="btn btn--solid" href="#projects" data-magnetic>
+              <a class="btn btn--solid" href="#projects">
                 <span class="btn__label">View projects</span>
                 <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <use href="#icon-arrow-right"></use>
                 </svg>
               </a>
-              <a class="btn btn--ghost" href="#contact" data-magnetic>
+              <a class="btn btn--ghost" href="#contact">
                 <span class="btn__label">Get in touch</span>
               </a>
             </div>
@@ -257,8 +249,9 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
          ========================================================================= -->
     <section class="section section--about" id="about" aria-labelledby="about-title">
       <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="section__label">About</p>
+        <header class="section__head">
+          <span class="section__ghost" aria-hidden="true">01</span>
+          <p class="section__label"><span class="section__num">01</span> About</p>
           <h2 class="section__title" id="about-title">Hey, I&rsquo;m Waquar</h2>
           <p class="section__intro">
             A tech enthusiast who has been exploring the world of technology since 2020.
@@ -270,7 +263,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
 
         <div class="about__grid">
           <div class="about__body">
-            <article class="about__block" data-reveal>
+            <article class="about__block">
               <h3 class="about__block-title"><span class="about__idx">A</span>Where it started</h3>
               <p>
                 Back then I played Minecraft, created servers, configured plugins, set up
@@ -280,7 +273,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
               </p>
             </article>
 
-            <article class="about__block" data-reveal>
+            <article class="about__block">
               <h3 class="about__block-title"><span class="about__idx">B</span>From curiosity to craft</h3>
               <p>
                 That curiosity eventually led me to Discord bot development, automation,
@@ -291,7 +284,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
               </p>
             </article>
 
-            <article class="about__block" data-reveal>
+            <article class="about__block">
               <h3 class="about__block-title"><span class="about__idx">C</span>Where I am today</h3>
               <p>
                 Right now I am focused on learning, building and experimenting with AI,
@@ -301,7 +294,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
               </p>
             </article>
 
-            <article class="about__block" data-reveal>
+            <article class="about__block">
               <h3 class="about__block-title"><span class="about__idx">D</span>What&rsquo;s ahead</h3>
               <p>
                 I am still learning and I have a long way to go &mdash; but that is exactly
@@ -316,7 +309,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
             </article>
           </div>
 
-          <aside class="about__aside" data-reveal aria-label="Quick facts">
+          <aside class="about__aside" aria-label="Quick facts">
             <h3 class="aside__title">Quick facts</h3>
             <dl class="facts">
               <div class="facts__row">
@@ -340,7 +333,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
                 <dd class="facts__value">Available for opportunities</dd>
               </div>
             </dl>
-            <a class="link-arrow" href="#contact" data-magnetic>
+            <a class="link-arrow" href="#contact">
               <span>Let&rsquo;s work together</span>
               <svg class="link-arrow__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <use href="#icon-arrow-right"></use>
@@ -350,7 +343,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
         </div>
 
         <!-- The gaming side of the story, kept separate from the developer one -->
-        <article class="gaming" data-reveal>
+        <article class="gaming">
           <p class="gaming__label">Outside the code</p>
           <div class="gaming__grid">
             <h3 class="gaming__title">Gaming &amp; tinkering</h3>
@@ -372,7 +365,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
           </div>
         </article>
 
-        <article class="eternalz" data-reveal>
+        <article class="eternalz">
           <p class="eternalz__label">The name behind the site</p>
           <div class="eternalz__grid">
             <h3 class="eternalz__title">Eternalz</h3>
@@ -416,8 +409,9 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
          ========================================================================= -->
     <section class="section section--ink" id="skills" aria-labelledby="skills-title">
       <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="section__label">Skills</p>
+        <header class="section__head">
+          <span class="section__ghost" aria-hidden="true">02</span>
+          <p class="section__label"><span class="section__num">02</span> Skills</p>
           <h2 class="section__title" id="skills-title">Tools and capabilities</h2>
           <p class="section__intro">
             Where my curiosity has taken me so far. I am still learning all of it &mdash;
@@ -426,11 +420,11 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
           <span class="section__rule" aria-hidden="true"></span>
         </header>
 
-        <!-- Hover or tap a panel: it inverts, and the list steps in. -->
+        <!-- Native skill disclosures: all details start visible and can be folded away. -->
         <div class="skills">
-          <article class="skill" data-reveal tabindex="0">
+          <details class="skill" open>
             <span class="skill__num" aria-hidden="true">01</span>
-            <h3 class="skill__title">AI &amp; Automation</h3>
+            <summary class="skill__title">AI &amp; Automation</summary>
             <ul class="skill__list">
               <li>AI-assisted development</li>
               <li>Discord bots</li>
@@ -438,11 +432,11 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
               <li>Working with AI tools</li>
             </ul>
             <span class="skill__glow" aria-hidden="true"></span>
-          </article>
+          </details>
 
-          <article class="skill" data-reveal tabindex="0">
+          <details class="skill" open>
             <span class="skill__num" aria-hidden="true">02</span>
-            <h3 class="skill__title">Web &amp; Frontend</h3>
+            <summary class="skill__title">Web &amp; Frontend</summary>
             <ul class="skill__list">
               <li>Websites</li>
               <li>HTML &amp; CSS</li>
@@ -450,11 +444,11 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
               <li>Responsive layouts</li>
             </ul>
             <span class="skill__glow" aria-hidden="true"></span>
-          </article>
+          </details>
 
-          <article class="skill" data-reveal tabindex="0">
+          <details class="skill" open>
             <span class="skill__num" aria-hidden="true">03</span>
-            <h3 class="skill__title">Configuration &amp; Setup</h3>
+            <summary class="skill__title">Configuration &amp; Setup</summary>
             <ul class="skill__list">
               <li>Server configuration</li>
               <li>Plugin setup</li>
@@ -462,7 +456,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
               <li>Testing &amp; troubleshooting</li>
             </ul>
             <span class="skill__glow" aria-hidden="true"></span>
-          </article>
+          </details>
         </div>
       </div>
     </section>
@@ -472,9 +466,10 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
          ========================================================================= -->
     <section class="section section--projects" id="projects" aria-labelledby="projects-title">
       <div class="container">
-        <header class="section__head" data-reveal>
+        <header class="section__head">
+          <span class="section__ghost" aria-hidden="true">03</span>
           <p class="section__label">
-            Projects
+            <span class="section__num">03</span> Projects
             <span class="stamp stamp--sm">New</span>
           </p>
           <h2 class="section__title" id="projects-title">Selected work</h2>
@@ -487,7 +482,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
         </header>
 
         <!-- Featured project: Shaikh's — Android app. The first real entry on the wall. -->
-        <article class="feature" data-reveal>
+        <article class="feature">
           <div class="feature__visual" aria-hidden="true">
             <span class="feature__glow"></span>
             <div class="feature__phone-wrap">
@@ -548,11 +543,11 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
             </dl>
 
             <div class="feature__actions">
-              <a class="btn btn--solid" href="https://github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk" data-magnetic>
+              <a class="btn btn--solid" href="https://github.com/WaquarShaikh5555/Mee6/releases/latest/download/shaikhs.apk">
                 <span class="btn__label">Download APK</span>
                 <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
               </a>
-              <a class="btn btn--ghost" href="https://github.com/WaquarShaikh5555/Mee6/releases/tag/apk" target="_blank" rel="noopener noreferrer" data-magnetic>
+              <a class="btn btn--ghost" href="https://github.com/WaquarShaikh5555/Mee6/releases/tag/apk" target="_blank" rel="noopener noreferrer">
                 <span class="btn__label">View on GitHub</span>
                 <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg>
               </a>
@@ -579,8 +574,9 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
          ========================================================================= -->
     <section class="section section--ember" id="experience" aria-labelledby="experience-title">
       <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="section__label">Experience</p>
+        <header class="section__head">
+          <span class="section__ghost" aria-hidden="true">04</span>
+          <p class="section__label"><span class="section__num">04</span> Experience</p>
           <h2 class="section__title" id="experience-title">Learning by building</h2>
           <p class="section__intro">
             My path so far has moved from Minecraft servers to Discord bots, websites and
@@ -588,7 +584,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
           </p>
         </header>
 
-        <div class="await" data-reveal>
+        <div class="await">
           <p class="await__line">
             My experience has grown through projects and experiments, starting with
             Minecraft and continuing into bots, websites, automation and AI.
@@ -624,8 +620,9 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
          ========================================================================= -->
     <section class="section section--contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="section__label">Contact</p>
+        <header class="section__head">
+          <span class="section__ghost" aria-hidden="true">05</span>
+          <p class="section__label"><span class="section__num">05</span> Contact</p>
           <h2 class="section__title" id="contact-title">Let&rsquo;s talk</h2>
           <p class="section__intro">
             Questions about Shaikh&rsquo;s or the things I&rsquo;m learning? Email me &mdash;
@@ -635,7 +632,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
         </header>
 
         <div class="contact__grid">
-          <div class="contact__details" data-reveal>
+          <div class="contact__details">
             <div class="contact__group">
               <p class="contact__label">Email</p>
               <a class="contact__email" href="mailto:waquarsk1@gmail.com"><span>waquarsk1@<wbr>gmail.com</span></a>
@@ -690,7 +687,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
             <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
           </div>
 
-          <form class="contact-form" id="contact-form" data-reveal
+          <form class="contact-form" id="contact-form"
                 action="mailto:waquarsk1@gmail.com" method="get">
             <p class="form__title">Compose an email</p>
             <p class="form__note">This opens an email draft addressed to Waquar. Review the message and send it from your email app.</p>
@@ -727,7 +724,7 @@ FORM: A Minecraft-era world-builder's atlas reimagined as a living portfolio; ev
               </p>
             </div>
 
-            <button class="btn btn--solid btn--block" id="submit-button" type="submit" data-magnetic>
+            <button class="btn btn--solid btn--block" id="submit-button" type="submit">
               <span class="button__label">Open email app</span>
               <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <use href="#icon-send"></use>

@@ -8,9 +8,10 @@ A personal portfolio built with static HTML, CSS, and vanilla JavaScript. No fra
 ## Site contents
 
 - `index.html` — hero, About, Skills, Projects, Experience, Contact, and footer.
-- `css/style.css` and `css/redesign.css` — component behavior and the responsive world-builder's atlas design system.
-- `css/shortlink.css` — the shared visual system for APK redirect pages.
+- `css/style.css` — the portfolio design tokens, responsive layout, and component styling.
+- `css/redirect.css` — shared styling for the four Android release redirect routes.
 - `js/theme-init.js` and `js/main.js` — theme, navigation, scroll behavior, form validation, and small interactions.
+- `js/redirect.js` — release redirect and footer-year behavior, loaded externally to satisfy the site CSP.
 - `assets/og-image-v2.png` — the 1200 × 630 social sharing image used by Open Graph and Twitter cards.
 - `assets/` — site icons and the featured project's visual assets.
 - `download/`, `apk/`, `shaikhs/`, `projects/shaikhs/` — short links that redirect to the latest Shaikh's Android release.
@@ -53,7 +54,9 @@ For Netlify or Cloudflare Pages, publish the repository root without a build com
 - The Content Security Policy has no `unsafe-inline`. It permits the site's own scripts, Google Fonts, and the `mailto:` form fallback.
 - Navigation supports keyboard use, Escape to close, and reduced-motion preferences. The mobile menu preserves the page's scroll position when it opens and closes.
 - If JavaScript is disabled, the page content remains visible and the form retains its native `mailto:` fallback.
+- Motion is limited to a short hero entrance, small state feedback, and the mobile menu transition; repeated scroll reveals, pointer tracking, magnetic movement, and parallax are intentionally absent.
+- `python3 tests/check_content_lock.py` verifies the exact source-order text/accessibility/SEO baseline across the home page and four release routes.
 
-## Design system — World-builder's atlas
+## Design system — Sculptural folio
 
-The portfolio is art-directed from the site's real origin in Minecraft server setup: deep obsidian, moss, sandstone, redstone orange, and signal green; block geometry, terrain grids, inventory-like facts, and a connected experience map. Chakra Petch carries the display type, IBM Plex Sans the reading text, and IBM Plex Mono short technical labels. The existing text, routes, navigation, and form behavior remain in place. `css/redesign.css` owns the homepage's complete composition; `css/shortlink.css` adapts its visual language to APK redirect pages.
+See [ART-DIRECTION.md](ART-DIRECTION.md) for the retained palette, typography, responsive compositions, and interaction constraints. The revised portfolio uses an image-led opening poster, full-width editorial story bands, an asymmetric skills triptych, a full-width Android project stage, and a broad contact desk. Existing copy, project details, routes, links, and behaviors are preserved.
